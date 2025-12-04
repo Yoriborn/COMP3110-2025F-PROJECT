@@ -1,3 +1,5 @@
+import sys
+
 def compare_files(file1_path, file2_path):
     """
     Compare two text files line by line and print differences.
@@ -30,9 +32,11 @@ def compare_files(file1_path, file2_path):
 
 # Example usage
 if __name__ == "__main__":
-    # Replace these with the file names or paths you want to compare
-    file1 = "file_comparison/file1.txt"
-    file2 = "file_comparison/file2.txt"
+    if len(sys.argv) !=3:
+        print("Usage: python alex-comparison-script.py <file1> <file2>")
+        sys.exit(1)
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
 
 
     compare_files(file1, file2)
