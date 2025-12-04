@@ -20,14 +20,14 @@ def compare_files(file1_path, file2_path):
         if line1 != line2:
             differences += 1
             print(f"Line {i+1}:")
-            print(f"  File 1 → {line1}")
-            print(f"  File 2 → {line2}")
+            print(f"  File 1 -> {line1}")
+            print(f"  File 2 -> {line2}")
             print("-" * 50)
 
     if differences == 0:
-        print("✅ The two files are identical.")
+        print("The two files are identical.")
     else:
-        print(f"\n⚠️ Found {differences} difference(s).")
+        print(f"\nFound {differences} difference(s).")
 
 
 # Example usage
