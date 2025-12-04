@@ -2,12 +2,72 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\proc_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\proc_header_V2.h'...
 
 Line 9:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> void init_proc(); // Initialize the scheduler
+  File 2 -> extern struct process *current_proc;
+--------------------------------------------------
+Line 10:
+  File 1 -> struct process *create_process(const void *image, size_t image_size); // Register a process to the scheduler
+  File 2 -> 
+--------------------------------------------------
+Line 11:
+  File 1 -> void yield(void);
+  File 2 -> void init_proc(); // Initialize the scheduler
+--------------------------------------------------
+Line 12:
+  File 1 -> void proc_exit(void);
+  File 2 -> struct process *create_process(const void *image, size_t image_size); // Register a process to the scheduler
+--------------------------------------------------
+Line 13:
+  File 1 -> 
+  File 2 -> void yield(void);
+--------------------------------------------------
+Line 14:
+  File 1 -> // Structure holding all data needed to handle a process
+  File 2 -> void proc_exit(void);
+--------------------------------------------------
+Line 15:
+  File 1 -> struct process {
+  File 2 -> 
+--------------------------------------------------
+Line 16:
+  File 1 -> uint32_t pid;           // Process ID
+  File 2 -> // Structure holding all data needed to handle a process
+--------------------------------------------------
+Line 17:
+  File 1 -> uint32_t state;         // Process state
+  File 2 -> struct process {
+--------------------------------------------------
+Line 18:
+  File 1 -> uint64_t sp;           // Stack pointer
+  File 2 -> uint32_t pid;           // Process ID
+--------------------------------------------------
+Line 19:
+  File 1 -> uint64_t *page_table;   // Level 2 page table (root table in sv39)
+  File 2 -> uint32_t state;         // Process state
+--------------------------------------------------
+Line 20:
+  File 1 -> uint8_t stack[8192];    // Kernel stack
+  File 2 -> uint64_t sp;           // Stack pointer
+--------------------------------------------------
+Line 21:
+  File 1 -> };
+  File 2 -> uint64_t *page_table;   // Level 2 page table (root table in sv39)
+--------------------------------------------------
+Line 22:
+  File 1 -> 
+  File 2 -> uint8_t stack[8192];    // Kernel stack
+--------------------------------------------------
+Line 23:
+  File 1 -> #endif
+  File 2 -> };
+--------------------------------------------------
+Line 24:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 25:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 17 difference(s).

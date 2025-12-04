@@ -2,12 +2,244 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fs_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fs_header_V2.h'...
 
 Line 14:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> typedef int32_t filedec_t;     // File descriptor (index into file desc. table)
+  File 2 -> struct FILE {
+--------------------------------------------------
+Line 15:
+  File 1 -> 
+  File 2 -> uint64_t file_pointer;      // The current offset into the file being read
+--------------------------------------------------
+Line 16:
+  File 1 -> struct FILE {
+  File 2 -> uint16_t access_mode;       // The permissions of the file
+--------------------------------------------------
+Line 17:
+  File 1 -> uint64_t file_pointer;      // The current offset into the file being read
+  File 2 -> struct inode *inode;        // The inode of the file
+--------------------------------------------------
+Line 18:
+  File 1 -> uint16_t access_mode;       // The permissions of the file
+  File 2 -> uint32_t refrence_count;    // The amount of references to this file
+--------------------------------------------------
+Line 19:
+  File 1 -> struct inode *inode;        // The inode of the file
+  File 2 -> };
+--------------------------------------------------
+Line 20:
+  File 1 -> uint32_t refrence_count;    // The amount of references to this file
+  File 2 -> 
+--------------------------------------------------
+Line 21:
+  File 1 -> };
+  File 2 -> enum FILE_ACCESS_PERMISSIONS {
+--------------------------------------------------
+Line 22:
+  File 1 -> 
+  File 2 -> O_RO        = 1, // Read only
+--------------------------------------------------
+Line 23:
+  File 1 -> enum FILE_ACCESS_PERMISSIONS {
+  File 2 -> O_WO        = 2, // Write only
+--------------------------------------------------
+Line 24:
+  File 1 -> O_RO        = 1, // Read only
+  File 2 -> O_RW        = 3, // Read/Write
+--------------------------------------------------
+Line 25:
+  File 1 -> O_WO        = 2, // Write only
+  File 2 -> O_CREATE    = 4, // Create if not existing
+--------------------------------------------------
+Line 26:
+  File 1 -> O_RW        = 3, // Read/Write
+  File 2 -> O_MKFILE_W  = 6, // Shortcut to create and write file
+--------------------------------------------------
+Line 27:
+  File 1 -> O_CREATE    = 4, // Create if not existing
+  File 2 -> O_MKFILE_WR = 7, // Shortcut to create and W/R file.
+--------------------------------------------------
+Line 28:
+  File 1 -> O_MKFILE_W  = 6, // Shortcut to create and write file
+  File 2 -> };
+--------------------------------------------------
+Line 29:
+  File 1 -> O_MKFILE_WR = 7, // Shortcut to create and W/R file.
+  File 2 -> 
+--------------------------------------------------
+Line 30:
+  File 1 -> };
+  File 2 -> enum FS_FILE_ERR {
+--------------------------------------------------
+Line 31:
+  File 1 -> 
+  File 2 -> FS_FILE_NOT_FOUND = -1,
+--------------------------------------------------
+Line 32:
+  File 1 -> enum FS_FILE_ERR {
+  File 2 -> FS_NO_OPEN_DESCRIPTORS = -2,
+--------------------------------------------------
+Line 33:
+  File 1 -> FS_FILE_NOT_FOUND = -1,
+  File 2 -> FS_INVALID_PERMS = -3,
+--------------------------------------------------
+Line 34:
+  File 1 -> FS_NO_OPEN_DESCRIPTORS = -2,
+  File 2 -> 
+--------------------------------------------------
+Line 35:
+  File 1 -> FS_INVALID_PERMS = -3,
+  File 2 -> 
+--------------------------------------------------
+Line 36:
+  File 1 -> 
+  File 2 -> };
+--------------------------------------------------
+Line 38:
+  File 1 -> };
+  File 2 -> /**
+--------------------------------------------------
+Line 39:
+  File 1 -> 
+  File 2 -> * Reads up to the byte count in size into buf from the file pointed to by the file_desc.
+--------------------------------------------------
+Line 40:
+  File 1 -> /**
+  File 2 -> * Returns a negative value if an error occurs, otherwise returns the number of bytes read.
+--------------------------------------------------
+Line 41:
+  File 1 -> * Reads up to the byte count in size into buf from the file pointed to by the file_desc.
+  File 2 -> *
+--------------------------------------------------
+Line 42:
+  File 1 -> * Returns a negative value if an error occurs, otherwise returns the number of bytes read.
+  File 2 -> * @param file_desc The file descriptor to read from
+--------------------------------------------------
+Line 43:
+  File 1 -> *
+  File 2 -> * @param buf Storage for what's read from the file
+--------------------------------------------------
+Line 44:
+  File 1 -> * @param file_desc The file descriptor to read from
+  File 2 -> * @param size Amount of bytes to read up to
+--------------------------------------------------
+Line 45:
+  File 1 -> * @param buf Storage for what's read from the file
+  File 2 -> *
+--------------------------------------------------
+Line 46:
+  File 1 -> * @param size Amount of bytes to read up to
+  File 2 -> * @returns Amount of bytes read, 0 if EOF.
+--------------------------------------------------
+Line 47:
+  File 1 -> *
+  File 2 -> */
+--------------------------------------------------
+Line 48:
+  File 1 -> * @returns Amount of bytes read, 0 if EOF.
+  File 2 -> int64_t read_file(int32_t file_desc, void *buf, uint32_t size);
+--------------------------------------------------
+Line 49:
+  File 1 -> */
+  File 2 -> 
+--------------------------------------------------
+Line 50:
+  File 1 -> int64_t read_file(filedec_t file_desc, void *buf, uint32_t size);
+  File 2 -> /**
+--------------------------------------------------
+Line 51:
+  File 1 -> 
+  File 2 -> * Retrieves a file from the filesystem for user use.
+--------------------------------------------------
+Line 52:
+  File 1 -> /**
+  File 2 -> *
+--------------------------------------------------
+Line 53:
+  File 1 -> * Retrieves a file from the filesystem for user use.
+  File 2 -> * @param path The path to the file.
+--------------------------------------------------
+Line 54:
+  File 1 -> *
+  File 2 -> * @return File descriptor number representing the file in memory.
+--------------------------------------------------
+Line 55:
+  File 1 -> * @param path The path to the file.
+  File 2 -> */
+--------------------------------------------------
+Line 56:
+  File 1 -> * @return File descriptor number representing the file in memory.
+  File 2 -> int32_t open_file(const char* path, enum FILE_ACCESS_PERMISSIONS perms);
+--------------------------------------------------
+Line 57:
+  File 1 -> */
+  File 2 -> 
+--------------------------------------------------
+Line 58:
+  File 1 -> filedec_t open_file(const char* path, enum FILE_ACCESS_PERMISSIONS perms);
+  File 2 -> /**
+--------------------------------------------------
+Line 59:
+  File 1 -> 
+  File 2 -> * Closes a file and returns the file space back to the allocator.
+--------------------------------------------------
+Line 60:
+  File 1 -> /**
+  File 2 -> *
+--------------------------------------------------
+Line 61:
+  File 1 -> * Closes a file and returns the file space back to the allocator.
+  File 2 -> * @param file Pointer to the `struct file`.
+--------------------------------------------------
+Line 62:
+  File 1 -> *
+  File 2 -> */
+--------------------------------------------------
+Line 63:
+  File 1 -> * @param file Pointer to the `struct file`.
+  File 2 -> void close_file(int32_t file_desc);
+--------------------------------------------------
+Line 64:
+  File 1 -> */
+  File 2 -> 
+--------------------------------------------------
+Line 65:
+  File 1 -> void close_file(filedec_t file_desc);
+  File 2 -> /**
+--------------------------------------------------
+Line 66:
+  File 1 -> 
+  File 2 -> * Writeback to the file pointed to by `struct FILE file`.
+--------------------------------------------------
+Line 67:
+  File 1 -> /**
+  File 2 -> *
+--------------------------------------------------
+Line 68:
+  File 1 -> * Writeback to the file pointed to by `struct FILE file`.
+  File 2 -> * @param file Pointer to the FILE.
+--------------------------------------------------
+Line 69:
+  File 1 -> *
+  File 2 -> */
+--------------------------------------------------
+Line 70:
+  File 1 -> * @param file Pointer to the FILE.
+  File 2 -> void flush_file(int32_t file_desc);
+--------------------------------------------------
+Line 71:
+  File 1 -> */
+  File 2 -> 
+--------------------------------------------------
+Line 72:
+  File 1 -> void flush_file(filedec_t file_desc);
+  File 2 -> #endif
+--------------------------------------------------
+Line 73:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 74:
+  File 1 -> #endif
+  File 2 -> <no line>
+--------------------------------------------------
+
+Found 60 difference(s).

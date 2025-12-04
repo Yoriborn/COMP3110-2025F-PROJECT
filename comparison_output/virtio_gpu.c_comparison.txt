@@ -2,12 +2,1292 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_gpu_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_gpu_V2.c'...
 
 Line 1:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> #include "headers/virtio_gpu.h"
+  File 2 -> #include "virtio_gpu.h"
+--------------------------------------------------
+Line 2:
+  File 1 -> #include "headers/virtio.h"
+  File 2 -> #include "virtio.h"
+--------------------------------------------------
+Line 3:
+  File 1 -> #include "../klib/headers/stdio.h"
+  File 2 -> #include "../../klib/stdio.h"
+--------------------------------------------------
+Line 4:
+  File 1 -> #include "../klib/headers/stdlib.h"
+  File 2 -> #include "../../klib/stdlib.h"
+--------------------------------------------------
+Line 5:
+  File 1 -> #include "../kernel/headers/kernel.h"
+  File 2 -> #include "../../kernel/kernel.h"
+--------------------------------------------------
+Line 17:
+  File 1 -> void *virtio_gpu_init(void) {
+  File 2 -> void bounce() {
+--------------------------------------------------
+Line 18:
+  File 1 -> if (virtio_reg_read32(port, VIRTR_MAGIC_O) != VIRTIO_MAGIC_NUMBER) {
+  File 2 -> // Bounce animation
+--------------------------------------------------
+Line 19:
+  File 1 -> PANIC("virtio: invalid magic value!");
+  File 2 -> struct gpu_pixel_rgba black = {
+--------------------------------------------------
+Line 20:
+  File 1 -> }
+  File 2 -> .a = 255,
+--------------------------------------------------
+Line 21:
+  File 1 -> if (virtio_reg_read32(port, VIRTR_VERSION_O) != 1) {
+  File 2 -> .r = 0,
+--------------------------------------------------
+Line 22:
+  File 1 -> PANIC("virtio: invalid version");
+  File 2 -> .g = 0,
+--------------------------------------------------
+Line 23:
+  File 1 -> }
+  File 2 -> .b = 0
+--------------------------------------------------
+Line 24:
+  File 1 -> if (virtio_reg_read32(port, VIRTR_DEV_ID_O) != VIRTIO_DEVICE_GPU) {
+  File 2 -> };
+--------------------------------------------------
+Line 25:
+  File 1 -> PANIC("virtio: invalid device id");
+  File 2 -> 
+--------------------------------------------------
+Line 26:
+  File 1 -> }
+  File 2 -> int x = 0, y = 0; // Position
+--------------------------------------------------
+Line 27:
+  File 1 -> 
+  File 2 -> int is_left = 0, is_down = 1; // State
+--------------------------------------------------
+Line 28:
+  File 1 -> // Reset device
+  File 2 -> int w = 64, h = 64; // Size
+--------------------------------------------------
+Line 29:
+  File 1 -> virtio_reg_write32(port, VIRTR_DEV_STATUS_O, 0);
+  File 2 -> 
+--------------------------------------------------
+Line 30:
+  File 1 -> // Set ACK status bit
+  File 2 -> while (1) {
+--------------------------------------------------
+Line 31:
+  File 1 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_ACKNOWLEDGE);
+  File 2 -> clear_screen();
+--------------------------------------------------
+Line 32:
+  File 1 -> // Set DRIVER status bit
+  File 2 -> 
+--------------------------------------------------
+Line 33:
+  File 1 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER);
+  File 2 -> if (is_left) {
+--------------------------------------------------
+Line 34:
+  File 1 -> // Set FEATURES bit
+  File 2 -> x -= 1;
+--------------------------------------------------
+Line 35:
+  File 1 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_FEATURES_OK);
+  File 2 -> } else {
+--------------------------------------------------
+Line 36:
+  File 1 -> 
+  File 2 -> x += 1;
+--------------------------------------------------
+Line 37:
+  File 1 -> gpu_request_vq = virtq_init(port, 0);
+  File 2 -> }
+--------------------------------------------------
+Line 38:
+  File 1 -> // Set the DRIVER_OK status bit
+  File 2 -> 
+--------------------------------------------------
+Line 39:
+  File 1 -> virtio_reg_write32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER_OK);
+  File 2 -> if (is_down) {
+--------------------------------------------------
+Line 40:
+  File 1 -> 
+  File 2 -> y += 1;
+--------------------------------------------------
+Line 41:
+  File 1 -> // Allocate a region to store requests to the device.
+  File 2 -> } else {
+--------------------------------------------------
+Line 42:
+  File 1 -> gpu_req_paddr = (uint32_t) kalloc(align_up(sizeof(*gpu_req), PAGE_SIZE) / PAGE_SIZE);
+  File 2 -> y -= 1;
+--------------------------------------------------
+Line 43:
+  File 1 -> if (!gpu_req_paddr) {
+  File 2 -> }
+--------------------------------------------------
+Line 44:
+  File 1 -> PANIC("virtio-gpu: out of memory");
+  File 2 -> 
+--------------------------------------------------
+Line 45:
+  File 1 -> }
+  File 2 -> if (y == 0 || y == 480 - h) {
+--------------------------------------------------
+Line 46:
+  File 1 -> gpu_req = (struct virtio_gpu_ctrl_hdr *) gpu_req_paddr;
+  File 2 -> is_down = !is_down;
+--------------------------------------------------
+Line 47:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 48:
+  File 1 -> // Configure scanout.
+  File 2 -> 
+--------------------------------------------------
+Line 49:
+  File 1 -> struct virtio_gpu_resource_create_2d create2dCmd = {
+  File 2 -> if (x == 0 || x == 640 - w) {
+--------------------------------------------------
+Line 50:
+  File 1 -> .hdr = {
+  File 2 -> is_left = !is_left;
+--------------------------------------------------
+Line 51:
+  File 1 -> .type = VIRTIO_GPU_CMD_RESOURCE_CREATE_2D,
+  File 2 -> }
+--------------------------------------------------
+Line 52:
+  File 1 -> .flags = 0,
+  File 2 -> 
+--------------------------------------------------
+Line 53:
+  File 1 -> .fence_id = 0,
+  File 2 -> draw_rect(framebuffer, x, y, w, h, 0, black);
+--------------------------------------------------
+Line 54:
+  File 1 -> .ctx_id = 0,
+  File 2 -> flush();
+--------------------------------------------------
+Line 55:
+  File 1 -> .ring_idx = 0,
+  File 2 -> 
+--------------------------------------------------
+Line 56:
+  File 1 -> },
+  File 2 -> for (int i = 0; i < 200000; i++) {
+--------------------------------------------------
+Line 57:
+  File 1 -> .resource_id = 1,
+  File 2 -> // Delay
+--------------------------------------------------
+Line 58:
+  File 1 -> .format = VIRTIO_GPU_FORMAT_R8G8B8A8_UNORM,
+  File 2 -> }
+--------------------------------------------------
+Line 59:
+  File 1 -> .width = GPU_DEFAULT_WIDTH,
+  File 2 -> }
+--------------------------------------------------
+Line 60:
+  File 1 -> .height = GPU_DEFAULT_HEIGHT
+  File 2 -> }
+--------------------------------------------------
+Line 61:
+  File 1 -> };
+  File 2 -> 
+--------------------------------------------------
+Line 62:
+  File 1 -> 
+  File 2 -> void *virtio_gpu_init(void) {
+--------------------------------------------------
+Line 63:
+  File 1 -> struct virt_queue *vq = gpu_request_vq;
+  File 2 -> if (virtio_reg_read32(port, VIRTR_MAGIC_O) != VIRTIO_MAGIC_NUMBER) {
+--------------------------------------------------
+Line 64:
+  File 1 -> uint64_t *resp = (uint64_t *) &create2dCmd + sizeof(create2dCmd);
+  File 2 -> PANIC("virtio: invalid magic value!");
+--------------------------------------------------
+Line 65:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 66:
+  File 1 -> vq->buffers[0].addr = (uint64_t) &create2dCmd;
+  File 2 -> if (virtio_reg_read32(port, VIRTR_VERSION_O) != 1) {
+--------------------------------------------------
+Line 67:
+  File 1 -> vq->buffers[0].len = sizeof(create2dCmd);
+  File 2 -> PANIC("virtio: invalid version");
+--------------------------------------------------
+Line 68:
+  File 1 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> }
+--------------------------------------------------
+Line 69:
+  File 1 -> vq->buffers[0].next = 1;
+  File 2 -> if (virtio_reg_read32(port, VIRTR_DEV_ID_O) != VIRTIO_DEVICE_GPU) {
+--------------------------------------------------
+Line 70:
+  File 1 -> 
+  File 2 -> PANIC("virtio: invalid device id");
+--------------------------------------------------
+Line 71:
+  File 1 -> vq->buffers[1].addr = (uint64_t) resp;
+  File 2 -> }
+--------------------------------------------------
+Line 72:
+  File 1 -> vq->buffers[1].len = sizeof(uint64_t);
+  File 2 -> 
+--------------------------------------------------
+Line 73:
+  File 1 -> vq->buffers[1].flags = VIRTQ_DESC_F_WRITE;
+  File 2 -> // Reset device
+--------------------------------------------------
+Line 74:
+  File 1 -> 
+  File 2 -> virtio_reg_write32(port, VIRTR_DEV_STATUS_O, 0);
+--------------------------------------------------
+Line 75:
+  File 1 -> virtq_kick(port, vq, 0);
+  File 2 -> // Set ACK status bit
+--------------------------------------------------
+Line 76:
+  File 1 -> 
+  File 2 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_ACKNOWLEDGE);
+--------------------------------------------------
+Line 77:
+  File 1 -> while (virtq_is_busy(vq)) {}
+  File 2 -> // Set DRIVER status bit
+--------------------------------------------------
+Line 78:
+  File 1 -> 
+  File 2 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER);
+--------------------------------------------------
+Line 79:
+  File 1 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+  File 2 -> // Set FEATURES bit
+--------------------------------------------------
+Line 80:
+  File 1 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+  File 2 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_FEATURES_OK);
+--------------------------------------------------
+Line 81:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 82:
+  File 1 -> 
+  File 2 -> gpu_request_vq = virtq_init(port, 0);
+--------------------------------------------------
+Line 83:
+  File 1 -> // Set buffer
+  File 2 -> // Set the DRIVER_OK status bit
+--------------------------------------------------
+Line 84:
+  File 1 -> framebuffer = kalloc(align_up(sizeof(struct gpu_pixel_rgba) * GPU_DEFAULT_HEIGHT * GPU_DEFAULT_WIDTH, PAGE_SIZE) / PAGE_SIZE);
+  File 2 -> virtio_reg_write32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER_OK);
+--------------------------------------------------
+Line 86:
+  File 1 -> struct virtio_gpu_resource_attach_backing attachBacking = {
+  File 2 -> // Allocate a region to store requests to the device.
+--------------------------------------------------
+Line 87:
+  File 1 -> .hdr = {
+  File 2 -> gpu_req_paddr = (uint32_t) kalloc(align_up(sizeof(*gpu_req), PAGE_SIZE) / PAGE_SIZE);
+--------------------------------------------------
+Line 88:
+  File 1 -> .type = VIRTIO_GPU_CMD_RESOURCE_ATTACH_BACKING,
+  File 2 -> if (!gpu_req_paddr) {
+--------------------------------------------------
+Line 89:
+  File 1 -> .flags = 0,
+  File 2 -> PANIC("virtio-gpu: out of memory");
+--------------------------------------------------
+Line 90:
+  File 1 -> .fence_id = 0,
+  File 2 -> }
+--------------------------------------------------
+Line 91:
+  File 1 -> .ctx_id = 0,
+  File 2 -> gpu_req = (struct virtio_gpu_ctrl_hdr *) gpu_req_paddr;
+--------------------------------------------------
+Line 92:
+  File 1 -> .ring_idx = 0,
+  File 2 -> 
+--------------------------------------------------
+Line 93:
+  File 1 -> },
+  File 2 -> // Configure scanout.
+--------------------------------------------------
+Line 94:
+  File 1 -> .resource_id = 1,
+  File 2 -> struct virtio_gpu_resource_create_2d create2dCmd = {
+--------------------------------------------------
+Line 95:
+  File 1 -> .nr_entries = 1
+  File 2 -> .hdr = {
+--------------------------------------------------
+Line 96:
+  File 1 -> };
+  File 2 -> .type = VIRTIO_GPU_CMD_RESOURCE_CREATE_2D,
+--------------------------------------------------
+Line 97:
+  File 1 -> 
+  File 2 -> .flags = 0,
+--------------------------------------------------
+Line 98:
+  File 1 -> struct virtio_gpu_mem_entry mem_entry = {
+  File 2 -> .fence_id = 0,
+--------------------------------------------------
+Line 99:
+  File 1 -> .addr = (uint64_t) framebuffer,
+  File 2 -> .ctx_id = 0,
+--------------------------------------------------
+Line 100:
+  File 1 -> .length = GPU_DEFAULT_HEIGHT * GPU_DEFAULT_WIDTH * 4,
+  File 2 -> .ring_idx = 0,
+--------------------------------------------------
+Line 101:
+  File 1 -> .padding = 0
+  File 2 -> },
+--------------------------------------------------
+Line 102:
+  File 1 -> };
+  File 2 -> .resource_id = 1,
+--------------------------------------------------
+Line 103:
+  File 1 -> 
+  File 2 -> .format = VIRTIO_GPU_FORMAT_R8G8B8A8_UNORM,
+--------------------------------------------------
+Line 104:
+  File 1 -> resp = (uint64_t *) &attachBacking + sizeof(attachBacking);
+  File 2 -> .width = GPU_DEFAULT_WIDTH,
+--------------------------------------------------
+Line 105:
+  File 1 -> 
+  File 2 -> .height = GPU_DEFAULT_HEIGHT
+--------------------------------------------------
+Line 106:
+  File 1 -> vq->buffers[0].addr = (uint64_t) &attachBacking;
+  File 2 -> };
+--------------------------------------------------
+Line 107:
+  File 1 -> vq->buffers[0].len = sizeof(attachBacking);
+  File 2 -> 
+--------------------------------------------------
+Line 108:
+  File 1 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> struct virt_queue *vq = gpu_request_vq;
+--------------------------------------------------
+Line 109:
+  File 1 -> vq->buffers[0].next = 1;
+  File 2 -> uint64_t *resp = (uint64_t *) &create2dCmd + sizeof(create2dCmd);
+--------------------------------------------------
+Line 111:
+  File 1 -> vq->buffers[1].addr = (uint64_t) &mem_entry;
+  File 2 -> vq->buffers[0].addr = (uint64_t) &create2dCmd;
+--------------------------------------------------
+Line 112:
+  File 1 -> vq->buffers[1].len = sizeof(mem_entry);
+  File 2 -> vq->buffers[0].len = sizeof(create2dCmd);
+--------------------------------------------------
+Line 113:
+  File 1 -> vq->buffers[1].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 114:
+  File 1 -> vq->buffers[1].next = 2;
+  File 2 -> vq->buffers[0].next = 1;
+--------------------------------------------------
+Line 116:
+  File 1 -> vq->buffers[2].addr = (uint64_t) resp;
+  File 2 -> vq->buffers[1].addr = (uint64_t) resp;
+--------------------------------------------------
+Line 117:
+  File 1 -> vq->buffers[2].len = sizeof(uint64_t);
+  File 2 -> vq->buffers[1].len = sizeof(uint64_t);
+--------------------------------------------------
+Line 118:
+  File 1 -> vq->buffers[2].flags = VIRTQ_DESC_F_WRITE;
+  File 2 -> vq->buffers[1].flags = VIRTQ_DESC_F_WRITE;
+--------------------------------------------------
+Line 125:
+  File 1 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+  File 2 -> printf("virtio_gpu: warn: invalid resource: 0x%x\n", *resp);
+--------------------------------------------------
+Line 128:
+  File 1 -> // Link the framebuffer to a display scanout.
+  File 2 -> // Set buffer
+--------------------------------------------------
+Line 129:
+  File 1 -> struct virtio_gpu_set_scanout setScanOut = {
+  File 2 -> framebuffer = kalloc(align_up(sizeof(struct gpu_pixel_rgba) * GPU_DEFAULT_HEIGHT * GPU_DEFAULT_WIDTH, PAGE_SIZE) / PAGE_SIZE);
+--------------------------------------------------
+Line 130:
+  File 1 -> .hdr = {
+  File 2 -> 
+--------------------------------------------------
+Line 131:
+  File 1 -> .type = VIRTIO_GPU_CMD_SET_SCANOUT,
+  File 2 -> struct virtio_gpu_resource_attach_backing attachBacking = {
+--------------------------------------------------
+Line 132:
+  File 1 -> .flags = 0,
+  File 2 -> .hdr = {
+--------------------------------------------------
+Line 133:
+  File 1 -> .fence_id = 0,
+  File 2 -> .type = VIRTIO_GPU_CMD_RESOURCE_ATTACH_BACKING,
+--------------------------------------------------
+Line 134:
+  File 1 -> .ctx_id = 0,
+  File 2 -> .flags = 0,
+--------------------------------------------------
+Line 135:
+  File 1 -> .ring_idx = 0,
+  File 2 -> .fence_id = 0,
+--------------------------------------------------
+Line 136:
+  File 1 -> },
+  File 2 -> .ctx_id = 0,
+--------------------------------------------------
+Line 137:
+  File 1 -> .r = {
+  File 2 -> .ring_idx = 0,
+--------------------------------------------------
+Line 138:
+  File 1 -> .h = GPU_DEFAULT_HEIGHT,
+  File 2 -> },
+--------------------------------------------------
+Line 139:
+  File 1 -> .w = GPU_DEFAULT_WIDTH,
+  File 2 -> .resource_id = 1,
+--------------------------------------------------
+Line 140:
+  File 1 -> .x = 0,
+  File 2 -> .nr_entries = 1
+--------------------------------------------------
+Line 141:
+  File 1 -> .y = 0
+  File 2 -> };
+--------------------------------------------------
+Line 142:
+  File 1 -> },
+  File 2 -> 
+--------------------------------------------------
+Line 143:
+  File 1 -> .resource_id = 1,
+  File 2 -> struct virtio_gpu_mem_entry mem_entry = {
+--------------------------------------------------
+Line 144:
+  File 1 -> .scanout_id = 0
+  File 2 -> .addr = (uint64_t) framebuffer,
+--------------------------------------------------
+Line 145:
+  File 1 -> };
+  File 2 -> .length = GPU_DEFAULT_HEIGHT * GPU_DEFAULT_WIDTH * 4,
+--------------------------------------------------
+Line 146:
+  File 1 -> 
+  File 2 -> .padding = 0
+--------------------------------------------------
+Line 147:
+  File 1 -> resp = (uint64_t *) &setScanOut + sizeof(setScanOut);
+  File 2 -> };
+--------------------------------------------------
+Line 149:
+  File 1 -> vq->buffers[0].addr = (uint64_t) &setScanOut;
+  File 2 -> resp = (uint64_t *) &attachBacking + sizeof(attachBacking);
+--------------------------------------------------
+Line 150:
+  File 1 -> vq->buffers[0].len = sizeof(setScanOut);
+  File 2 -> 
+--------------------------------------------------
+Line 151:
+  File 1 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> vq->buffers[0].addr = (uint64_t) &attachBacking;
+--------------------------------------------------
+Line 152:
+  File 1 -> vq->buffers[0].next = 1;
+  File 2 -> vq->buffers[0].len = sizeof(attachBacking);
+--------------------------------------------------
+Line 153:
+  File 1 -> 
+  File 2 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 154:
+  File 1 -> vq->buffers[1].addr = (uint64_t) resp;
+  File 2 -> vq->buffers[0].next = 1;
+--------------------------------------------------
+Line 155:
+  File 1 -> vq->buffers[1].len = sizeof(uint64_t);
+  File 2 -> 
+--------------------------------------------------
+Line 156:
+  File 1 -> vq->buffers[1].flags = VIRTQ_DESC_F_WRITE;
+  File 2 -> vq->buffers[1].addr = (uint64_t) &mem_entry;
+--------------------------------------------------
+Line 157:
+  File 1 -> 
+  File 2 -> vq->buffers[1].len = sizeof(mem_entry);
+--------------------------------------------------
+Line 158:
+  File 1 -> virtq_kick(port, vq, 0);
+  File 2 -> vq->buffers[1].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 159:
+  File 1 -> 
+  File 2 -> vq->buffers[1].next = 2;
+--------------------------------------------------
+Line 160:
+  File 1 -> while (virtq_is_busy(vq)) {}
+  File 2 -> 
+--------------------------------------------------
+Line 161:
+  File 1 -> 
+  File 2 -> vq->buffers[2].addr = (uint64_t) resp;
+--------------------------------------------------
+Line 162:
+  File 1 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+  File 2 -> vq->buffers[2].len = sizeof(uint64_t);
+--------------------------------------------------
+Line 163:
+  File 1 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+  File 2 -> vq->buffers[2].flags = VIRTQ_DESC_F_WRITE;
+--------------------------------------------------
+Line 164:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 165:
+  File 1 -> 
+  File 2 -> virtq_kick(port, vq, 0);
+--------------------------------------------------
+Line 166:
+  File 1 -> // Test with full white
+  File 2 -> 
+--------------------------------------------------
+Line 167:
+  File 1 -> struct gpu_pixel_rgba white = {
+  File 2 -> while (virtq_is_busy(vq)) {}
+--------------------------------------------------
+Line 168:
+  File 1 -> .r = 255,
+  File 2 -> 
+--------------------------------------------------
+Line 169:
+  File 1 -> .a = 255,
+  File 2 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+--------------------------------------------------
+Line 170:
+  File 1 -> .g = 255,
+  File 2 -> printf("virtio_gpu: warn: invalid backing: 0x%x\n", *resp);
+--------------------------------------------------
+Line 171:
+  File 1 -> .b = 255
+  File 2 -> }
+--------------------------------------------------
+Line 172:
+  File 1 -> };
+  File 2 -> 
+--------------------------------------------------
+Line 173:
+  File 1 -> 
+  File 2 -> // Link the framebuffer to a display scanout.
+--------------------------------------------------
+Line 174:
+  File 1 -> for (int i = 0; i < GPU_DEFAULT_HEIGHT * GPU_DEFAULT_WIDTH; i++) {
+  File 2 -> struct virtio_gpu_set_scanout setScanOut = {
+--------------------------------------------------
+Line 175:
+  File 1 -> framebuffer[i] = white;
+  File 2 -> .hdr = {
+--------------------------------------------------
+Line 176:
+  File 1 -> }
+  File 2 -> .type = VIRTIO_GPU_CMD_SET_SCANOUT,
+--------------------------------------------------
+Line 177:
+  File 1 -> 
+  File 2 -> .flags = 0,
+--------------------------------------------------
+Line 178:
+  File 1 -> struct virtio_gpu_transfer_to_host_2d transfer = {
+  File 2 -> .fence_id = 0,
+--------------------------------------------------
+Line 179:
+  File 1 -> .hdr = {
+  File 2 -> .ctx_id = 0,
+--------------------------------------------------
+Line 180:
+  File 1 -> .type = VIRTIO_GPU_CMD_TRANSFER_TO_HOST_2D,
+  File 2 -> .ring_idx = 0,
+--------------------------------------------------
+Line 181:
+  File 1 -> .flags = 0,
+  File 2 -> },
+--------------------------------------------------
+Line 182:
+  File 1 -> .fence_id = 0,
+  File 2 -> .r = {
+--------------------------------------------------
+Line 183:
+  File 1 -> .ctx_id = 0,
+  File 2 -> .h = GPU_DEFAULT_HEIGHT,
+--------------------------------------------------
+Line 184:
+  File 1 -> .ring_idx = 0,
+  File 2 -> .w = GPU_DEFAULT_WIDTH,
+--------------------------------------------------
+Line 185:
+  File 1 -> },
+  File 2 -> .x = 0,
+--------------------------------------------------
+Line 186:
+  File 1 -> .r = {
+  File 2 -> .y = 0
+--------------------------------------------------
+Line 187:
+  File 1 -> .h = GPU_DEFAULT_HEIGHT,
+  File 2 -> },
+--------------------------------------------------
+Line 188:
+  File 1 -> .w = GPU_DEFAULT_WIDTH,
+  File 2 -> .resource_id = 1,
+--------------------------------------------------
+Line 189:
+  File 1 -> .x = 0,
+  File 2 -> .scanout_id = 0
+--------------------------------------------------
+Line 190:
+  File 1 -> .y = 0
+  File 2 -> };
+--------------------------------------------------
+Line 191:
+  File 1 -> },
+  File 2 -> 
+--------------------------------------------------
+Line 192:
+  File 1 -> .offset = 0,
+  File 2 -> resp = (uint64_t *) &setScanOut + sizeof(setScanOut);
+--------------------------------------------------
+Line 193:
+  File 1 -> .resource_id = 1,
+  File 2 -> 
+--------------------------------------------------
+Line 194:
+  File 1 -> .padding = 0
+  File 2 -> vq->buffers[0].addr = (uint64_t) &setScanOut;
+--------------------------------------------------
+Line 195:
+  File 1 -> };
+  File 2 -> vq->buffers[0].len = sizeof(setScanOut);
+--------------------------------------------------
+Line 196:
+  File 1 -> 
+  File 2 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 197:
+  File 1 -> resp = (uint64_t *) &transfer + sizeof(transfer);
+  File 2 -> vq->buffers[0].next = 1;
+--------------------------------------------------
+Line 199:
+  File 1 -> vq->buffers[0].addr = (uint64_t) &transfer;
+  File 2 -> vq->buffers[1].addr = (uint64_t) resp;
+--------------------------------------------------
+Line 200:
+  File 1 -> vq->buffers[0].len = sizeof(transfer);
+  File 2 -> vq->buffers[1].len = sizeof(uint64_t);
+--------------------------------------------------
+Line 201:
+  File 1 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> vq->buffers[1].flags = VIRTQ_DESC_F_WRITE;
+--------------------------------------------------
+Line 202:
+  File 1 -> vq->buffers[0].next = 1;
+  File 2 -> 
+--------------------------------------------------
+Line 203:
+  File 1 -> 
+  File 2 -> virtq_kick(port, vq, 0);
+--------------------------------------------------
+Line 204:
+  File 1 -> vq->buffers[1].addr = (uint64_t) framebuffer;
+  File 2 -> 
+--------------------------------------------------
+Line 205:
+  File 1 -> vq->buffers[1].len = sizeof(framebuffer);
+  File 2 -> while (virtq_is_busy(vq)) {}
+--------------------------------------------------
+Line 206:
+  File 1 -> vq->buffers[1].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> 
+--------------------------------------------------
+Line 207:
+  File 1 -> vq->buffers[1].next = 2;
+  File 2 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+--------------------------------------------------
+Line 208:
+  File 1 -> 
+  File 2 -> printf("virtio_gpu: warn: invalid scan out: 0x%x\n", *resp);
+--------------------------------------------------
+Line 209:
+  File 1 -> vq->buffers[2].addr = (uint64_t) resp;
+  File 2 -> }
+--------------------------------------------------
+Line 210:
+  File 1 -> vq->buffers[2].len = sizeof(uint64_t);
+  File 2 -> 
+--------------------------------------------------
+Line 211:
+  File 1 -> vq->buffers[2].flags = VIRTQ_DESC_F_WRITE;
+  File 2 -> printf("virtio_gpu: initialized.\n");
+--------------------------------------------------
+Line 213:
+  File 1 -> virtq_kick(port, vq, 0);
+  File 2 -> bounce();
+--------------------------------------------------
+Line 215:
+  File 1 -> while (virtq_is_busy(vq)) {}
+  File 2 -> return 0;
+--------------------------------------------------
+Line 216:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 217:
+  File 1 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+  File 2 -> 
+--------------------------------------------------
+Line 218:
+  File 1 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+  File 2 -> void clear_screen() {
+--------------------------------------------------
+Line 219:
+  File 1 -> }
+  File 2 -> struct gpu_pixel_rgba white = {
+--------------------------------------------------
+Line 220:
+  File 1 -> 
+  File 2 -> .r = 255,
+--------------------------------------------------
+Line 221:
+  File 1 -> struct virtio_gpu_resource_flush flush = {
+  File 2 -> .a = 255,
+--------------------------------------------------
+Line 222:
+  File 1 -> .hdr = {
+  File 2 -> .g = 255,
+--------------------------------------------------
+Line 223:
+  File 1 -> .type = VIRTIO_GPU_CMD_RESOURCE_FLUSH,
+  File 2 -> .b = 255
+--------------------------------------------------
+Line 224:
+  File 1 -> .flags = 0,
+  File 2 -> };
+--------------------------------------------------
+Line 225:
+  File 1 -> .fence_id = 0,
+  File 2 -> 
+--------------------------------------------------
+Line 226:
+  File 1 -> .ctx_id = 0,
+  File 2 -> for (int i = 0; i < GPU_DEFAULT_HEIGHT * GPU_DEFAULT_WIDTH; i++) {
+--------------------------------------------------
+Line 227:
+  File 1 -> .ring_idx = 0,
+  File 2 -> framebuffer[i] = white;
+--------------------------------------------------
+Line 228:
+  File 1 -> },
+  File 2 -> }
+--------------------------------------------------
+Line 229:
+  File 1 -> .r = {
+  File 2 -> }
+--------------------------------------------------
+Line 230:
+  File 1 -> .h = GPU_DEFAULT_HEIGHT,
+  File 2 -> 
+--------------------------------------------------
+Line 231:
+  File 1 -> .w = GPU_DEFAULT_WIDTH,
+  File 2 -> static struct gpu_pixel_rgba hex_to_rgba(uint64_t color) {
+--------------------------------------------------
+Line 232:
+  File 1 -> .x = 0,
+  File 2 -> struct gpu_pixel_rgba rgba;
+--------------------------------------------------
+Line 233:
+  File 1 -> .y = 0
+  File 2 -> memcpy(&rgba, &color, 4);
+--------------------------------------------------
+Line 234:
+  File 1 -> },
+  File 2 -> return rgba;
+--------------------------------------------------
+Line 235:
+  File 1 -> .resource_id = 1,
+  File 2 -> }
+--------------------------------------------------
+Line 236:
+  File 1 -> .padding = 0
+  File 2 -> 
+--------------------------------------------------
+Line 237:
+  File 1 -> };
+  File 2 -> void set_pixel(struct gpu_pixel_rgba *fb, uint32_t x, uint32_t y, struct gpu_pixel_rgba color) {
+--------------------------------------------------
+Line 238:
+  File 1 -> 
+  File 2 -> if (x < GPU_DEFAULT_WIDTH && y < GPU_DEFAULT_HEIGHT) {
+--------------------------------------------------
+Line 239:
+  File 1 -> resp = (uint64_t *) &flush + sizeof(flush);
+  File 2 -> framebuffer[y * GPU_DEFAULT_WIDTH + x] = color;
+--------------------------------------------------
+Line 240:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 241:
+  File 1 -> vq->buffers[0].addr = (uint64_t) &flush;
+  File 2 -> }
+--------------------------------------------------
+Line 242:
+  File 1 -> vq->buffers[0].len = sizeof(flush);
+  File 2 -> 
+--------------------------------------------------
+Line 243:
+  File 1 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> void fill_rect(struct gpu_pixel_rgba *fb, uint32_t x, uint32_t y, uint32_t w, uint32_t h, struct gpu_pixel_rgba color) {
+--------------------------------------------------
+Line 244:
+  File 1 -> vq->buffers[0].next = 1;
+  File 2 -> for (uint32_t row = y; row < (y + h); row++) {
+--------------------------------------------------
+Line 245:
+  File 1 -> 
+  File 2 -> for (uint32_t col = x; col < (x + w); col++) {
+--------------------------------------------------
+Line 246:
+  File 1 -> vq->buffers[1].addr = (uint64_t) resp;
+  File 2 -> set_pixel(fb, col, row, color);
+--------------------------------------------------
+Line 247:
+  File 1 -> vq->buffers[1].len = sizeof(uint64_t);
+  File 2 -> }
+--------------------------------------------------
+Line 248:
+  File 1 -> vq->buffers[1].flags = VIRTQ_DESC_F_WRITE;
+  File 2 -> }
+--------------------------------------------------
+Line 249:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 250:
+  File 1 -> virtq_kick(port, vq, 0);
+  File 2 -> 
+--------------------------------------------------
+Line 251:
+  File 1 -> 
+  File 2 -> void stroke_rect(struct gpu_pixel_rgba *fb, uint32_t x, uint32_t y, uint32_t w, uint32_t h, struct gpu_pixel_rgba color, uint32_t size) {
+--------------------------------------------------
+Line 252:
+  File 1 -> while (virtq_is_busy(vq)) {}
+  File 2 -> fill_rect(fb, x, y, w, size, color);
+--------------------------------------------------
+Line 253:
+  File 1 -> 
+  File 2 -> fill_rect(fb, x, y + h, w, size, color);
+--------------------------------------------------
+Line 254:
+  File 1 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+  File 2 -> fill_rect(fb, x, y, size, h, color);
+--------------------------------------------------
+Line 255:
+  File 1 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+  File 2 -> fill_rect(fb, x + w, y, size, h + size, color);
+--------------------------------------------------
+Line 258:
+  File 1 -> printf("virtio_gpu: initialized.\n");
+  File 2 -> void draw_rect(struct gpu_pixel_rgba *fb, uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint32_t size, struct gpu_pixel_rgba color) {
+--------------------------------------------------
+Line 259:
+  File 1 -> 
+  File 2 -> if (size == 0) {
+--------------------------------------------------
+Line 260:
+  File 1 -> return 0;
+  File 2 -> fill_rect(fb, x, y, w, h, color);
+--------------------------------------------------
+Line 261:
+  File 1 -> }
+  File 2 -> return;
+--------------------------------------------------
+Line 262:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 264:
+  File 1 -> 
+  File 2 -> stroke_rect(fb, x, y, w, h, color, size);
+--------------------------------------------------
+Line 265:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 267:
+  File 1 -> 
+  File 2 -> void flush() {
+--------------------------------------------------
+Line 268:
+  File 1 -> 
+  File 2 -> uint64_t *resp; // Location of the response
+--------------------------------------------------
+Line 269:
+  File 1 -> 
+  File 2 -> struct virt_queue *vq = gpu_request_vq;
+--------------------------------------------------
+Line 270:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 271:
+  File 1 -> <no line>
+  File 2 -> // Move buffer to the GPU
+--------------------------------------------------
+Line 272:
+  File 1 -> <no line>
+  File 2 -> struct virtio_gpu_transfer_to_host_2d transfer = {
+--------------------------------------------------
+Line 273:
+  File 1 -> <no line>
+  File 2 -> .hdr = {
+--------------------------------------------------
+Line 274:
+  File 1 -> <no line>
+  File 2 -> .type = VIRTIO_GPU_CMD_TRANSFER_TO_HOST_2D,
+--------------------------------------------------
+Line 275:
+  File 1 -> <no line>
+  File 2 -> .flags = 0,
+--------------------------------------------------
+Line 276:
+  File 1 -> <no line>
+  File 2 -> .fence_id = 0,
+--------------------------------------------------
+Line 277:
+  File 1 -> <no line>
+  File 2 -> .ctx_id = 0,
+--------------------------------------------------
+Line 278:
+  File 1 -> <no line>
+  File 2 -> .ring_idx = 0,
+--------------------------------------------------
+Line 279:
+  File 1 -> <no line>
+  File 2 -> },
+--------------------------------------------------
+Line 280:
+  File 1 -> <no line>
+  File 2 -> .r = {
+--------------------------------------------------
+Line 281:
+  File 1 -> <no line>
+  File 2 -> .h = GPU_DEFAULT_HEIGHT,
+--------------------------------------------------
+Line 282:
+  File 1 -> <no line>
+  File 2 -> .w = GPU_DEFAULT_WIDTH,
+--------------------------------------------------
+Line 283:
+  File 1 -> <no line>
+  File 2 -> .x = 0,
+--------------------------------------------------
+Line 284:
+  File 1 -> <no line>
+  File 2 -> .y = 0
+--------------------------------------------------
+Line 285:
+  File 1 -> <no line>
+  File 2 -> },
+--------------------------------------------------
+Line 286:
+  File 1 -> <no line>
+  File 2 -> .offset = 0,
+--------------------------------------------------
+Line 287:
+  File 1 -> <no line>
+  File 2 -> .resource_id = 1,
+--------------------------------------------------
+Line 288:
+  File 1 -> <no line>
+  File 2 -> .padding = 0
+--------------------------------------------------
+Line 289:
+  File 1 -> <no line>
+  File 2 -> };
+--------------------------------------------------
+Line 290:
+  File 1 -> <no line>
+  File 2 -> resp = (uint64_t *) &transfer;
+--------------------------------------------------
+Line 291:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 292:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].addr = (uint64_t) &transfer;
+--------------------------------------------------
+Line 293:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].len = sizeof(transfer);
+--------------------------------------------------
+Line 294:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 295:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].next = 1;
+--------------------------------------------------
+Line 296:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].addr = (uint64_t) framebuffer;
+--------------------------------------------------
+Line 297:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].len = sizeof(framebuffer);
+--------------------------------------------------
+Line 298:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 299:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].next = 2;
+--------------------------------------------------
+Line 300:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[2].addr = (uint64_t) resp;
+--------------------------------------------------
+Line 301:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[2].len = sizeof(uint64_t);
+--------------------------------------------------
+Line 302:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[2].flags = VIRTQ_DESC_F_WRITE;
+--------------------------------------------------
+Line 303:
+  File 1 -> <no line>
+  File 2 -> virtq_kick(port, vq, 0);
+--------------------------------------------------
+Line 304:
+  File 1 -> <no line>
+  File 2 -> while (virtq_is_busy(vq)) {}
+--------------------------------------------------
+Line 305:
+  File 1 -> <no line>
+  File 2 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+--------------------------------------------------
+Line 306:
+  File 1 -> <no line>
+  File 2 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+--------------------------------------------------
+Line 307:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 308:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 309:
+  File 1 -> <no line>
+  File 2 -> // Flush
+--------------------------------------------------
+Line 310:
+  File 1 -> <no line>
+  File 2 -> struct virtio_gpu_resource_flush flush = {
+--------------------------------------------------
+Line 311:
+  File 1 -> <no line>
+  File 2 -> .hdr = {
+--------------------------------------------------
+Line 312:
+  File 1 -> <no line>
+  File 2 -> .type = VIRTIO_GPU_CMD_RESOURCE_FLUSH,
+--------------------------------------------------
+Line 313:
+  File 1 -> <no line>
+  File 2 -> .flags = 0,
+--------------------------------------------------
+Line 314:
+  File 1 -> <no line>
+  File 2 -> .fence_id = 0,
+--------------------------------------------------
+Line 315:
+  File 1 -> <no line>
+  File 2 -> .ctx_id = 0,
+--------------------------------------------------
+Line 316:
+  File 1 -> <no line>
+  File 2 -> .ring_idx = 0,
+--------------------------------------------------
+Line 317:
+  File 1 -> <no line>
+  File 2 -> },
+--------------------------------------------------
+Line 318:
+  File 1 -> <no line>
+  File 2 -> .r = {
+--------------------------------------------------
+Line 319:
+  File 1 -> <no line>
+  File 2 -> .h = GPU_DEFAULT_HEIGHT,
+--------------------------------------------------
+Line 320:
+  File 1 -> <no line>
+  File 2 -> .w = GPU_DEFAULT_WIDTH,
+--------------------------------------------------
+Line 321:
+  File 1 -> <no line>
+  File 2 -> .x = 0,
+--------------------------------------------------
+Line 322:
+  File 1 -> <no line>
+  File 2 -> .y = 0
+--------------------------------------------------
+Line 323:
+  File 1 -> <no line>
+  File 2 -> },
+--------------------------------------------------
+Line 324:
+  File 1 -> <no line>
+  File 2 -> .resource_id = 1,
+--------------------------------------------------
+Line 325:
+  File 1 -> <no line>
+  File 2 -> .padding = 0
+--------------------------------------------------
+Line 326:
+  File 1 -> <no line>
+  File 2 -> };
+--------------------------------------------------
+Line 327:
+  File 1 -> <no line>
+  File 2 -> resp = (uint64_t *) &flush + sizeof(flush);
+--------------------------------------------------
+Line 328:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 329:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].addr = (uint64_t) &flush;
+--------------------------------------------------
+Line 330:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].len = sizeof(flush);
+--------------------------------------------------
+Line 331:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 332:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[0].next = 1;
+--------------------------------------------------
+Line 333:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 334:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].addr = (uint64_t) resp;
+--------------------------------------------------
+Line 335:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].len = sizeof(uint64_t);
+--------------------------------------------------
+Line 336:
+  File 1 -> <no line>
+  File 2 -> vq->buffers[1].flags = VIRTQ_DESC_F_WRITE;
+--------------------------------------------------
+Line 337:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 338:
+  File 1 -> <no line>
+  File 2 -> virtq_kick(port, vq, 0);
+--------------------------------------------------
+Line 339:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 340:
+  File 1 -> <no line>
+  File 2 -> while (virtq_is_busy(vq)) {}
+--------------------------------------------------
+Line 341:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 342:
+  File 1 -> <no line>
+  File 2 -> if (*resp != VIRTIO_GPU_RESP_OK_NODATA) {
+--------------------------------------------------
+Line 343:
+  File 1 -> <no line>
+  File 2 -> printf("virtio_gpu: warn: invalid response: 0x%x\n", *resp);
+--------------------------------------------------
+Line 344:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 345:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 346:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 347:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 348:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 349:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 350:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 351:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 352:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+
+Found 322 difference(s).

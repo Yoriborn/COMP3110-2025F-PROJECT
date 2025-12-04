@@ -2,12 +2,216 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\paging_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\paging_V2.c'...
 
 Line 5:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> /**
+  File 2 -> void map_page(uint64_t *root_table, uint64_t vaddr, uint64_t paddr, uint32_t flags) {
+--------------------------------------------------
+Line 6:
+  File 1 -> Maps a page of memory at the specified virtual address to the page tables used by the MMU
+  File 2 -> if (!is_aligned(vaddr, PAGE_SIZE)) {
+--------------------------------------------------
+Line 7:
+  File 1 -> 
+  File 2 -> PANIC("unaligned vaddr %x", vaddr);
+--------------------------------------------------
+Line 8:
+  File 1 -> @param vaddr Virtual address where the page should be mapped.
+  File 2 -> }
+--------------------------------------------------
+Line 9:
+  File 1 -> @param paddr Physical address of the page to map.
+  File 2 -> if (!is_aligned(paddr, PAGE_SIZE)) {
+--------------------------------------------------
+Line 10:
+  File 1 -> @param flags Permissions of the page
+  File 2 -> PANIC("unaligned paddr %x", paddr);
+--------------------------------------------------
+Line 11:
+  File 1 -> */
+  File 2 -> }
+--------------------------------------------------
+Line 12:
+  File 1 -> void map_page(uint64_t *root_table, uint64_t vaddr, uint64_t paddr, uint32_t flags) {
+  File 2 -> 
+--------------------------------------------------
+Line 13:
+  File 1 -> if (!is_aligned(vaddr, PAGE_SIZE)) {
+  File 2 -> if ((flags & 0xe) == 0) {
+--------------------------------------------------
+Line 14:
+  File 1 -> PANIC("unaligned vaddr %x", vaddr);
+  File 2 -> PANIC("Attempted map with no permissions!");
+--------------------------------------------------
+Line 16:
+  File 1 -> if (!is_aligned(paddr, PAGE_SIZE)) {
+  File 2 -> // NOTE: This assumes that we want the smallest granularity of page size, 4096B
+--------------------------------------------------
+Line 17:
+  File 1 -> PANIC("unaligned paddr %x", paddr);
+  File 2 -> 
+--------------------------------------------------
+Line 18:
+  File 1 -> }
+  File 2 -> uint64_t vpn2 = (vaddr >> VPN2_SHIFT) & VPN_MASK; // Retrieve the virtual page number for table 2
+--------------------------------------------------
+Line 19:
+  File 1 -> 
+  File 2 -> if ((root_table[vpn2] & PAGE_V) == 0) { // Check for no entry, and make an entry for next table if none exists.
+--------------------------------------------------
+Line 20:
+  File 1 -> if ((flags & 0xe) == 0) {
+  File 2 -> uint64_t table1_paddr = (uint64_t) kalloc(1); // Allocate new page to hold next level of table
+--------------------------------------------------
+Line 21:
+  File 1 -> PANIC("Attempted map with no permissions!");
+  File 2 -> root_table[vpn2] = (PPN_MASK & ((table1_paddr / PAGE_SIZE) << 10)) | PAGE_V; // Assign a new PTE. (Branch to level 1)
+--------------------------------------------------
+Line 23:
+  File 1 -> // NOTE: This assumes that we want the smallest granularity of page size, 4096B
+  File 2 -> // Get p_address of table pointed to by root_table PTE
+--------------------------------------------------
+Line 24:
+  File 1 -> 
+  File 2 -> uint64_t *table1 = (uint64_t *) ((root_table[vpn2] >> 10) << PAGE_SHIFT);
+--------------------------------------------------
+Line 25:
+  File 1 -> uint64_t vpn2 = (vaddr >> VPN2_SHIFT) & VPN_MASK; // Retrieve the virtual page number for table 2
+  File 2 -> 
+--------------------------------------------------
+Line 26:
+  File 1 -> if ((root_table[vpn2] & PAGE_V) == 0) { // Check for no entry, and make an entry for next table if none exists.
+  File 2 -> 
+--------------------------------------------------
+Line 27:
+  File 1 -> uint64_t table1_paddr = (uint64_t) kalloc(1); // Allocate new page to hold next level of table
+  File 2 -> uint64_t vpn1 = (vaddr >> VPN1_SHIFT) & VPN_MASK;
+--------------------------------------------------
+Line 28:
+  File 1 -> root_table[vpn2] = (PPN_MASK & ((table1_paddr / PAGE_SIZE) << 10)) | PAGE_V; // Assign a new PTE. (Branch to level 1)
+  File 2 -> if ((table1[vpn1] & PAGE_V) == 0) { // Check for no entry, and make an entry for next table if none exists.
+--------------------------------------------------
+Line 29:
+  File 1 -> }
+  File 2 -> // Create the 1st level page table if it doesn't exist
+--------------------------------------------------
+Line 30:
+  File 1 -> // Get p_address of table pointed to by root_table PTE
+  File 2 -> uint64_t table0_paddr = (uint64_t) kalloc(1);
+--------------------------------------------------
+Line 31:
+  File 1 -> uint64_t *table1 = (uint64_t *) ((root_table[vpn2] >> 10) << PAGE_SHIFT);
+  File 2 -> table1[vpn1] = (PPN_MASK & ((table0_paddr / PAGE_SIZE) << 10)) | PAGE_V; // Assign a new PTE. (Branch to level 0)
+--------------------------------------------------
+Line 32:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 33:
+  File 1 -> 
+  File 2 -> uint64_t *table0 = (uint64_t *) ((table1[vpn1] >> 10) << PAGE_SHIFT);
+--------------------------------------------------
+Line 34:
+  File 1 -> uint64_t vpn1 = (vaddr >> VPN1_SHIFT) & VPN_MASK;
+  File 2 -> 
+--------------------------------------------------
+Line 35:
+  File 1 -> if ((table1[vpn1] & PAGE_V) == 0) { // Check for no entry, and make an entry for next table if none exists.
+  File 2 -> uint64_t vpn0 = (vaddr >> VPN0_SHIFT) & VPN_MASK;
+--------------------------------------------------
+Line 36:
+  File 1 -> // Create the 1st level page table if it doesn't exist
+  File 2 -> table0[vpn0] = (PPN_MASK & ((paddr / PAGE_SIZE) << 10)) | flags | PAGE_V; // Assign a new PTE. (Leaf)
+--------------------------------------------------
+Line 37:
+  File 1 -> uint64_t table0_paddr = (uint64_t) kalloc(1);
+  File 2 -> }
+--------------------------------------------------
+Line 38:
+  File 1 -> table1[vpn1] = (PPN_MASK & ((table0_paddr / PAGE_SIZE) << 10)) | PAGE_V; // Assign a new PTE. (Branch to level 0)
+  File 2 -> 
+--------------------------------------------------
+Line 39:
+  File 1 -> }
+  File 2 -> uint64_t *vaddr_to_paddr(uint64_t *root_table, uint64_t vaddr) {
+--------------------------------------------------
+Line 40:
+  File 1 -> uint64_t *table0 = (uint64_t *) ((table1[vpn1] >> 10) << PAGE_SHIFT);
+  File 2 -> uint64_t vpn2 = (vaddr >> VPN2_SHIFT) & VPN_MASK;
+--------------------------------------------------
+Line 41:
+  File 1 -> 
+  File 2 -> uint64_t pte2 = root_table[vpn2];
+--------------------------------------------------
+Line 42:
+  File 1 -> uint64_t vpn0 = (vaddr >> VPN0_SHIFT) & VPN_MASK;
+  File 2 -> if ((pte2 & PAGE_V) == 0) return NULL; // Not mapped
+--------------------------------------------------
+Line 43:
+  File 1 -> table0[vpn0] = (PPN_MASK & ((paddr / PAGE_SIZE) << 10)) | flags | PAGE_V; // Assign a new PTE. (Leaf)
+  File 2 -> 
+--------------------------------------------------
+Line 44:
+  File 1 -> }
+  File 2 -> uint64_t *table1 = (uint64_t *) ((pte2 >> 10) << PAGE_SHIFT);
+--------------------------------------------------
+Line 45:
+  File 1 -> 
+  File 2 -> uint64_t vpn1 = (vaddr >> VPN1_SHIFT) & VPN_MASK;
+--------------------------------------------------
+Line 46:
+  File 1 -> 
+  File 2 -> uint64_t pte1 = table1[vpn1];
+--------------------------------------------------
+Line 47:
+  File 1 -> <no line>
+  File 2 -> if ((pte1 & PAGE_V) == 0) return NULL; // Not mapped
+--------------------------------------------------
+Line 48:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 49:
+  File 1 -> <no line>
+  File 2 -> uint64_t *table0 = (uint64_t *) ((pte1 >> 10) << PAGE_SHIFT);
+--------------------------------------------------
+Line 50:
+  File 1 -> <no line>
+  File 2 -> uint64_t vpn0 = (vaddr >> VPN0_SHIFT) & VPN_MASK;
+--------------------------------------------------
+Line 51:
+  File 1 -> <no line>
+  File 2 -> uint64_t pte0 = table0[vpn0];
+--------------------------------------------------
+Line 52:
+  File 1 -> <no line>
+  File 2 -> if ((pte0 & PAGE_V) == 0) return NULL; // Not mapped
+--------------------------------------------------
+Line 53:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 54:
+  File 1 -> <no line>
+  File 2 -> // Extract physical page number and offset
+--------------------------------------------------
+Line 55:
+  File 1 -> <no line>
+  File 2 -> uint64_t ppn = (pte0 >> 10) & PPN_MASK;
+--------------------------------------------------
+Line 56:
+  File 1 -> <no line>
+  File 2 -> uint64_t page_offset = vaddr & (PAGE_SIZE - 1);
+--------------------------------------------------
+Line 57:
+  File 1 -> <no line>
+  File 2 -> uint64_t phys_addr = (ppn << PAGE_SHIFT) | page_offset;
+--------------------------------------------------
+Line 58:
+  File 1 -> <no line>
+  File 2 -> return (void *) phys_addr;
+--------------------------------------------------
+Line 59:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+
+Found 53 difference(s).

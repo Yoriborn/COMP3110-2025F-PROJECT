@@ -2,12 +2,156 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\trap_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\trap_header_V2.h'...
 
 Line 6:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> void init_trap_handler(void);
+  File 2 -> #include <stdint.h>
+--------------------------------------------------
+Line 8:
+  File 1 -> #endif
+  File 2 -> struct trap_frame {
+--------------------------------------------------
+Line 9:
+  File 1 -> <no line>
+  File 2 -> uint64_t ra;
+--------------------------------------------------
+Line 10:
+  File 1 -> <no line>
+  File 2 -> uint64_t gp;
+--------------------------------------------------
+Line 11:
+  File 1 -> <no line>
+  File 2 -> uint64_t tp;
+--------------------------------------------------
+Line 12:
+  File 1 -> <no line>
+  File 2 -> uint64_t t0;
+--------------------------------------------------
+Line 13:
+  File 1 -> <no line>
+  File 2 -> uint64_t t1;
+--------------------------------------------------
+Line 14:
+  File 1 -> <no line>
+  File 2 -> uint64_t t2;
+--------------------------------------------------
+Line 15:
+  File 1 -> <no line>
+  File 2 -> uint64_t t3;
+--------------------------------------------------
+Line 16:
+  File 1 -> <no line>
+  File 2 -> uint64_t t4;
+--------------------------------------------------
+Line 17:
+  File 1 -> <no line>
+  File 2 -> uint64_t t5;
+--------------------------------------------------
+Line 18:
+  File 1 -> <no line>
+  File 2 -> uint64_t t6;
+--------------------------------------------------
+Line 19:
+  File 1 -> <no line>
+  File 2 -> uint64_t a0;
+--------------------------------------------------
+Line 20:
+  File 1 -> <no line>
+  File 2 -> uint64_t a1;
+--------------------------------------------------
+Line 21:
+  File 1 -> <no line>
+  File 2 -> uint64_t a2;
+--------------------------------------------------
+Line 22:
+  File 1 -> <no line>
+  File 2 -> uint64_t a3;
+--------------------------------------------------
+Line 23:
+  File 1 -> <no line>
+  File 2 -> uint64_t a4;
+--------------------------------------------------
+Line 24:
+  File 1 -> <no line>
+  File 2 -> uint64_t a5;
+--------------------------------------------------
+Line 25:
+  File 1 -> <no line>
+  File 2 -> uint64_t a6;
+--------------------------------------------------
+Line 26:
+  File 1 -> <no line>
+  File 2 -> uint64_t a7;
+--------------------------------------------------
+Line 27:
+  File 1 -> <no line>
+  File 2 -> uint64_t s0;
+--------------------------------------------------
+Line 28:
+  File 1 -> <no line>
+  File 2 -> uint64_t s1;
+--------------------------------------------------
+Line 29:
+  File 1 -> <no line>
+  File 2 -> uint64_t s2;
+--------------------------------------------------
+Line 30:
+  File 1 -> <no line>
+  File 2 -> uint64_t s3;
+--------------------------------------------------
+Line 31:
+  File 1 -> <no line>
+  File 2 -> uint64_t s4;
+--------------------------------------------------
+Line 32:
+  File 1 -> <no line>
+  File 2 -> uint64_t s5;
+--------------------------------------------------
+Line 33:
+  File 1 -> <no line>
+  File 2 -> uint64_t s6;
+--------------------------------------------------
+Line 34:
+  File 1 -> <no line>
+  File 2 -> uint64_t s7;
+--------------------------------------------------
+Line 35:
+  File 1 -> <no line>
+  File 2 -> uint64_t s8;
+--------------------------------------------------
+Line 36:
+  File 1 -> <no line>
+  File 2 -> uint64_t s9;
+--------------------------------------------------
+Line 37:
+  File 1 -> <no line>
+  File 2 -> uint64_t s10;
+--------------------------------------------------
+Line 38:
+  File 1 -> <no line>
+  File 2 -> uint64_t s11;
+--------------------------------------------------
+Line 39:
+  File 1 -> <no line>
+  File 2 -> uint64_t sp;
+--------------------------------------------------
+Line 40:
+  File 1 -> <no line>
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 41:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 42:
+  File 1 -> <no line>
+  File 2 -> void init_trap_handler(void);
+--------------------------------------------------
+Line 43:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 44:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 38 difference(s).

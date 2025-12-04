@@ -2,12 +2,112 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\sbi_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\sbi_header_V2.h'...
 
 Line 1:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> #ifndef SBI_H
+  File 2 -> /*
+--------------------------------------------------
+Line 2:
+  File 1 -> #define SBI_H
+  File 2 -> OpenSBI related code goes here!
+--------------------------------------------------
+Line 3:
+  File 1 -> 
+  File 2 -> */
+--------------------------------------------------
+Line 4:
+  File 1 -> #include <stdint.h>
+  File 2 -> 
+--------------------------------------------------
+Line 5:
+  File 1 -> 
+  File 2 -> #ifndef SBI_H
+--------------------------------------------------
+Line 6:
+  File 1 -> struct sbiret {
+  File 2 -> #define SBI_H
+--------------------------------------------------
+Line 7:
+  File 1 -> uint64_t error;
+  File 2 -> 
+--------------------------------------------------
+Line 8:
+  File 1 -> uint64_t value;
+  File 2 -> #include <stdint.h>
+--------------------------------------------------
+Line 9:
+  File 1 -> };
+  File 2 -> 
+--------------------------------------------------
+Line 10:
+  File 1 -> 
+  File 2 -> struct sbiret {
+--------------------------------------------------
+Line 11:
+  File 1 -> struct sbiret sbi_call(uint64_t arg0,
+  File 2 -> uint64_t error;
+--------------------------------------------------
+Line 12:
+  File 1 -> uint64_t arg1,
+  File 2 -> uint64_t value;
+--------------------------------------------------
+Line 13:
+  File 1 -> uint64_t arg2,
+  File 2 -> };
+--------------------------------------------------
+Line 14:
+  File 1 -> uint64_t arg3,
+  File 2 -> 
+--------------------------------------------------
+Line 15:
+  File 1 -> uint64_t arg4,
+  File 2 -> struct sbiret sbi_call(uint64_t arg0,
+--------------------------------------------------
+Line 16:
+  File 1 -> uint64_t arg5,
+  File 2 -> uint64_t arg1,
+--------------------------------------------------
+Line 17:
+  File 1 -> uint64_t fid,
+  File 2 -> uint64_t arg2,
+--------------------------------------------------
+Line 18:
+  File 1 -> uint64_t eid);
+  File 2 -> uint64_t arg3,
+--------------------------------------------------
+Line 19:
+  File 1 -> 
+  File 2 -> uint64_t arg4,
+--------------------------------------------------
+Line 20:
+  File 1 -> 
+  File 2 -> uint64_t arg5,
+--------------------------------------------------
+Line 21:
+  File 1 -> struct sbiret sbi_putc(const char c);
+  File 2 -> uint64_t fid,
+--------------------------------------------------
+Line 22:
+  File 1 -> long sbi_getc(void);
+  File 2 -> uint64_t eid);
+--------------------------------------------------
+Line 23:
+  File 1 -> #endif SBI_H
+  File 2 -> 
+--------------------------------------------------
+Line 24:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 25:
+  File 1 -> <no line>
+  File 2 -> struct sbiret sbi_putc(const char c);
+--------------------------------------------------
+Line 26:
+  File 1 -> <no line>
+  File 2 -> long sbi_getc(void);
+--------------------------------------------------
+Line 27:
+  File 1 -> <no line>
+  File 2 -> #endif SBI_H
+--------------------------------------------------
+
+Found 27 difference(s).

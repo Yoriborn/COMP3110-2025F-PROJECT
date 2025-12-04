@@ -2,12 +2,360 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\stdlib_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\stdlib_header_V2.h'...
 
 Line 8:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> extern char __free_ram[], __free_ram_end[];
+  File 2 -> extern char __free_ram[], __free_ram_end[]; // Represents the full range of kernel ram for use.
+--------------------------------------------------
+Line 11:
+  File 1 -> * Initialize the kernel memory management system.
+  File 2 -> * Converts a number of pages to a corresponding `order` for the buddy allocator.
+--------------------------------------------------
+Line 13:
+  File 1 -> * init_memory() sets up the memory management system by initializing
+  File 2 -> * @param pages Number of pages
+--------------------------------------------------
+Line 14:
+  File 1 -> * the free list with pages from the specified heap range. Each page
+  File 2 -> * @return The `order` for the pages
+--------------------------------------------------
+Line 15:
+  File 1 -> * is added to the free list, making it available for allocation.
+  File 2 -> */
+--------------------------------------------------
+Line 16:
+  File 1 -> *
+  File 2 -> int order_for_pages(size_t pages);
+--------------------------------------------------
+Line 17:
+  File 1 -> * @param heap_start The starting address of the heap.
+  File 2 -> 
+--------------------------------------------------
+Line 18:
+  File 1 -> * @param heap_end The ending address of the heap.
+  File 2 -> /**
+--------------------------------------------------
+Line 19:
+  File 1 -> */
+  File 2 -> * Initialize the kernel memory management system.
+--------------------------------------------------
+Line 20:
+  File 1 -> void init_memory();
+  File 2 -> *
+--------------------------------------------------
+Line 21:
+  File 1 -> 
+  File 2 -> * init_memory() sets up the memory management system by initializing
+--------------------------------------------------
+Line 22:
+  File 1 -> /**
+  File 2 -> * the free list with pages from the specified heap range. Each page
+--------------------------------------------------
+Line 23:
+  File 1 -> * Allocate a page of memory.
+  File 2 -> * is added to the free list, making it available for allocation.
+--------------------------------------------------
+Line 25:
+  File 1 -> * kalloc() allocates a single page of memory. If no more pages are available,
+  File 2 -> * @param heap_start The starting address of the heap.
+--------------------------------------------------
+Line 26:
+  File 1 -> * it returns NULL.
+  File 2 -> * @param heap_end The ending address of the heap.
+--------------------------------------------------
+Line 27:
+  File 1 -> *
+  File 2 -> */
+--------------------------------------------------
+Line 28:
+  File 1 -> * @return A pointer to the allocated page of memory, or NULL if no more
+  File 2 -> void init_memory();
+--------------------------------------------------
+Line 29:
+  File 1 -> *         pages are available.
+  File 2 -> 
+--------------------------------------------------
+Line 30:
+  File 1 -> */
+  File 2 -> /**
+--------------------------------------------------
+Line 31:
+  File 1 -> void* kalloc(size_t n);
+  File 2 -> * Allocate a page of memory.
+--------------------------------------------------
+Line 32:
+  File 1 -> 
+  File 2 -> *
+--------------------------------------------------
+Line 33:
+  File 1 -> /**
+  File 2 -> * kalloc() allocates a single page of memory. If no more pages are available,
+--------------------------------------------------
+Line 34:
+  File 1 -> * Free a previously allocated page of memory.
+  File 2 -> * it returns NULL.
+--------------------------------------------------
+Line 36:
+  File 1 -> * kfree() returns a page of memory back to the free list, making it available
+  File 2 -> * @return A pointer to the allocated page of memory, or NULL if no more
+--------------------------------------------------
+Line 37:
+  File 1 -> * for future allocations. The pointer passed must be a valid page previously
+  File 2 -> *         pages are available.
+--------------------------------------------------
+Line 38:
+  File 1 -> * allocated by kalloc().
+  File 2 -> */
+--------------------------------------------------
+Line 39:
+  File 1 -> *
+  File 2 -> void* kalloc(size_t n);
+--------------------------------------------------
+Line 40:
+  File 1 -> * @param ptr A pointer to the page of memory to be freed.
+  File 2 -> 
+--------------------------------------------------
+Line 41:
+  File 1 -> */
+  File 2 -> /**
+--------------------------------------------------
+Line 42:
+  File 1 -> void kfree_order(void *ptr, size_t order);
+  File 2 -> * Free a previously allocated page of memory.
+--------------------------------------------------
+Line 43:
+  File 1 -> 
+  File 2 -> *
+--------------------------------------------------
+Line 44:
+  File 1 -> /**
+  File 2 -> * kfree() returns a page of memory back to the free list, making it available
+--------------------------------------------------
+Line 45:
+  File 1 -> * Fill a block of memory with a given value.
+  File 2 -> * for future allocations. The pointer passed must be a valid page previously
+--------------------------------------------------
+Line 46:
+  File 1 -> *
+  File 2 -> * allocated by kalloc().
+--------------------------------------------------
+Line 47:
+  File 1 -> * memset() fills the first n bytes of the memory area pointed to by dest
+  File 2 -> *
+--------------------------------------------------
+Line 48:
+  File 1 -> * with the constant byte value. The memory area must be at least n bytes
+  File 2 -> * @param ptr A pointer to the page of memory to be freed.
+--------------------------------------------------
+Line 49:
+  File 1 -> * large.
+  File 2 -> */
+--------------------------------------------------
+Line 50:
+  File 1 -> *
+  File 2 -> void kfree_order(void *ptr, size_t order);
+--------------------------------------------------
+Line 51:
+  File 1 -> * @param dest The memory area to fill.
+  File 2 -> 
+--------------------------------------------------
+Line 52:
+  File 1 -> * @param value The byte value to use for filling.
+  File 2 -> /**
+--------------------------------------------------
+Line 53:
+  File 1 -> * @param n The number of bytes to fill.
+  File 2 -> * Fill a block of memory with a given value.
+--------------------------------------------------
+Line 54:
+  File 1 -> * @return dest, for convenience.
+  File 2 -> *
+--------------------------------------------------
+Line 55:
+  File 1 -> */
+  File 2 -> * memset() fills the first n bytes of the memory area pointed to by dest
+--------------------------------------------------
+Line 56:
+  File 1 -> void* memset(void *dest, int value, size_t n);
+  File 2 -> * with the constant byte value. The memory area must be at least n bytes
+--------------------------------------------------
+Line 57:
+  File 1 -> 
+  File 2 -> * large.
+--------------------------------------------------
+Line 58:
+  File 1 -> /**
+  File 2 -> *
+--------------------------------------------------
+Line 59:
+  File 1 -> * Copy a block of memory from one location to another.
+  File 2 -> * @param dest The memory area to fill.
+--------------------------------------------------
+Line 60:
+  File 1 -> *
+  File 2 -> * @param value The byte value to use for filling.
+--------------------------------------------------
+Line 61:
+  File 1 -> * memcpy() copies the first n bytes of the memory area pointed to by src
+  File 2 -> * @param n The number of bytes to fill.
+--------------------------------------------------
+Line 62:
+  File 1 -> * to the memory area pointed to by dest. The memory areas must not overlap.
+  File 2 -> * @return dest, for convenience.
+--------------------------------------------------
+Line 63:
+  File 1 -> *
+  File 2 -> */
+--------------------------------------------------
+Line 64:
+  File 1 -> * @param dest The memory area to fill.
+  File 2 -> void* memset(void *dest, int value, size_t n);
+--------------------------------------------------
+Line 65:
+  File 1 -> * @param src The memory area to read from.
+  File 2 -> 
+--------------------------------------------------
+Line 66:
+  File 1 -> * @param len The number of bytes to copy.
+  File 2 -> /**
+--------------------------------------------------
+Line 67:
+  File 1 -> * @return dest, for convenience.
+  File 2 -> * Copy a block of memory from one location to another.
+--------------------------------------------------
+Line 68:
+  File 1 -> */
+  File 2 -> *
+--------------------------------------------------
+Line 69:
+  File 1 -> void* memcpy(void* dest, const void* src, size_t len);
+  File 2 -> * memcpy() copies the first n bytes of the memory area pointed to by src
+--------------------------------------------------
+Line 70:
+  File 1 -> 
+  File 2 -> * to the memory area pointed to by dest. The memory areas must not overlap.
+--------------------------------------------------
+Line 71:
+  File 1 -> static inline int is_aligned(uint64_t value, uint64_t align) {
+  File 2 -> *
+--------------------------------------------------
+Line 72:
+  File 1 -> if (align == 0)
+  File 2 -> * @param dest The memory area to fill.
+--------------------------------------------------
+Line 73:
+  File 1 -> align = sizeof(void*);
+  File 2 -> * @param src The memory area to read from.
+--------------------------------------------------
+Line 74:
+  File 1 -> return value % align == 0;
+  File 2 -> * @param len The number of bytes to copy.
+--------------------------------------------------
+Line 75:
+  File 1 -> }
+  File 2 -> * @return dest, for convenience.
+--------------------------------------------------
+Line 76:
+  File 1 -> 
+  File 2 -> */
+--------------------------------------------------
+Line 77:
+  File 1 -> static inline uint64_t align_up(uint64_t value, uint64_t align) {
+  File 2 -> void* memcpy(void* dest, const void* src, size_t len);
+--------------------------------------------------
+Line 78:
+  File 1 -> return (value + align - 1) & ~(align - 1);
+  File 2 -> 
+--------------------------------------------------
+Line 79:
+  File 1 -> }
+  File 2 -> /**
+--------------------------------------------------
+Line 80:
+  File 1 -> int order_for_pages(size_t pages);
+  File 2 -> * Frees allocated memory with size in bytes
+--------------------------------------------------
+Line 81:
+  File 1 -> 
+  File 2 -> *
+--------------------------------------------------
+Line 82:
+  File 1 -> static inline uint32_t get_pages_from_bytes(uint64_t bytes) {
+  File 2 -> * @param ptr Pointer to allocated memory
+--------------------------------------------------
+Line 83:
+  File 1 -> return (bytes + PAGE_SIZE - 1) / PAGE_SIZE;
+  File 2 -> * @param bytes The size of the allocated memory in bytes
+--------------------------------------------------
+Line 84:
+  File 1 -> }
+  File 2 -> */
+--------------------------------------------------
+Line 85:
+  File 1 -> #endif
+  File 2 -> void kfree_size(void *ptr, uint64_t bytes);
+--------------------------------------------------
+Line 86:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 87:
+  File 1 -> <no line>
+  File 2 -> static inline int is_aligned(uint64_t value, uint64_t align) {
+--------------------------------------------------
+Line 88:
+  File 1 -> <no line>
+  File 2 -> if (align == 0)
+--------------------------------------------------
+Line 89:
+  File 1 -> <no line>
+  File 2 -> align = sizeof(void*);
+--------------------------------------------------
+Line 90:
+  File 1 -> <no line>
+  File 2 -> return value % align == 0;
+--------------------------------------------------
+Line 91:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 92:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 93:
+  File 1 -> <no line>
+  File 2 -> static inline uint64_t align_up(uint64_t value, uint64_t align) {
+--------------------------------------------------
+Line 94:
+  File 1 -> <no line>
+  File 2 -> return (value + align - 1) & ~(align - 1);
+--------------------------------------------------
+Line 95:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 96:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 97:
+  File 1 -> <no line>
+  File 2 -> static inline uint32_t get_pages_from_bytes(uint64_t bytes) {
+--------------------------------------------------
+Line 98:
+  File 1 -> <no line>
+  File 2 -> return (bytes + PAGE_SIZE - 1) / PAGE_SIZE;
+--------------------------------------------------
+Line 99:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 100:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 101:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 89 difference(s).

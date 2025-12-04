@@ -2,12 +2,224 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fs_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fs_V2.c'...
 
 Line 17:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> filedec_t open_file(const char* path, enum FILE_ACCESS_PERMISSIONS perms) {
+  File 2 -> int32_t open_file(const char* path, enum FILE_ACCESS_PERMISSIONS perms) {
+--------------------------------------------------
+Line 37:
+  File 1 -> filedec_t desc_idx = -1;
+  File 2 -> int32_t desc_idx = -1;
+--------------------------------------------------
+Line 60:
+  File 1 -> int64_t read_file(filedec_t file_desc, void *buf, uint32_t size) {
+  File 2 -> int64_t read_file(int32_t file_desc, void *buf, uint32_t size) {
+--------------------------------------------------
+Line 74:
+  File 1 -> int64_t bytes_read = 0;
+  File 2 -> int64_t bytes_read = 0; // Counter for return value.
+--------------------------------------------------
+Line 76:
+  File 1 -> uint32_t block_idx = 0; // Index into the block.
+  File 2 -> uint32_t size_left = size; // Remaining bytes to read into the buffer
+--------------------------------------------------
+Line 77:
+  File 1 -> uint32_t size_left = size; // Remaining bytes to read into the buffer
+  File 2 -> uint32_t offset = 0; // Current offset into the buffer and block
+--------------------------------------------------
+Line 78:
+  File 1 -> uint32_t buffer_offset = 0; // Current buffer offset to write to.
+  File 2 -> uint64_t file_size = i_node->low_size + (i_node->high_size << 32); // Size of the file in bytes
+--------------------------------------------------
+Line 79:
+  File 1 -> uint32_t file_size = (i_node->high_size << 32) || (i_node->low_size); // Size of the file in bytes
+  File 2 -> uint32_t remaining_bytes = file_size - f->file_pointer; // Remaining bytes to read
+--------------------------------------------------
+Line 80:
+  File 1 -> uint32_t bytes_left_in_file = file_size - f->file_pointer; // Remaining bytes to read
+  File 2 -> 
+--------------------------------------------------
+Line 81:
+  File 1 -> 
+  File 2 -> for (; size_left > 0;) { // Read in a block at a time
+--------------------------------------------------
+Line 82:
+  File 1 -> for (; size_left > 0;) { // Read in a block at a time
+  File 2 -> // Determine which block to read.
+--------------------------------------------------
+Line 83:
+  File 1 -> // Determine which block to read.
+  File 2 -> uint32_t current_offset_block = f->file_pointer / ext2_block_size; // How many blocks of pointers into the inode to start the read from.
+--------------------------------------------------
+Line 84:
+  File 1 -> uint32_t current_offset_block = f->file_pointer / ext2_block_size; // How many blocks of pointers into the inode to start the read from.
+  File 2 -> uint32_t block_address = get_block_address(i_node, current_offset_block);
+--------------------------------------------------
+Line 85:
+  File 1 -> uint32_t block_address = get_block_address(i_node, current_offset_block);
+  File 2 -> 
+--------------------------------------------------
+Line 86:
+  File 1 -> 
+  File 2 -> // Retrieve the block
+--------------------------------------------------
+Line 87:
+  File 1 -> // memcpy basically. This isn't efficient, but it is intuitive. Use memcpy() later for efficiency.
+  File 2 -> block = read_block(block_address);
+--------------------------------------------------
+Line 88:
+  File 1 -> uint8_t *buffer = buf; // Cast to malleable type
+  File 2 -> 
+--------------------------------------------------
+Line 89:
+  File 1 -> while (bytes_left_in_file && block_idx < ext2_block_size) {
+  File 2 -> // memcpy basically. This isn't efficient, but it is intuitive. Use memcpy() later for efficiency.
+--------------------------------------------------
+Line 90:
+  File 1 -> buffer[buffer_offset] = block[block_idx]; // Read in the byte
+  File 2 -> uint8_t *buffer = buf; // Cast to malleable type
+--------------------------------------------------
+Line 91:
+  File 1 -> block_idx++;
+  File 2 -> while (remaining_bytes && offset < ext2_block_size && size_left > 0) {
+--------------------------------------------------
+Line 92:
+  File 1 -> bytes_read++;
+  File 2 -> buffer[offset + (current_offset_block * ext2_block_size)] = block[offset]; // Read in the byte
+--------------------------------------------------
+Line 93:
+  File 1 -> f->file_pointer++;
+  File 2 -> offset++;
+--------------------------------------------------
+Line 94:
+  File 1 -> }
+  File 2 -> size_left--;
+--------------------------------------------------
+Line 95:
+  File 1 -> 
+  File 2 -> bytes_read++;
+--------------------------------------------------
+Line 96:
+  File 1 -> // Reset block state after reading in block.
+  File 2 -> f->file_pointer++;
+--------------------------------------------------
+Line 97:
+  File 1 -> block_idx = 0;
+  File 2 -> remaining_bytes--;
+--------------------------------------------------
+Line 100:
+  File 1 -> return bytes_read;
+  File 2 -> // Return if EOF
+--------------------------------------------------
+Line 101:
+  File 1 -> }
+  File 2 -> if (remaining_bytes == 0) {
+--------------------------------------------------
+Line 102:
+  File 1 -> 
+  File 2 -> break;
+--------------------------------------------------
+Line 103:
+  File 1 -> void flush_file(filedec_t file_desc) {
+  File 2 -> }
+--------------------------------------------------
+Line 105:
+  File 1 -> }
+  File 2 -> // Reset block state after reading in block.
+--------------------------------------------------
+Line 106:
+  File 1 -> 
+  File 2 -> offset = 0;
+--------------------------------------------------
+Line 107:
+  File 1 -> void close_file(filedec_t file_desc) {
+  File 2 -> kfree_size(block, PAGE_SIZE); // Free up for next call
+--------------------------------------------------
+Line 108:
+  File 1 -> struct FILE *file = &file_descriptors[file_desc];
+  File 2 -> }
+--------------------------------------------------
+Line 110:
+  File 1 -> // Decrement the reference counter
+  File 2 -> return bytes_read;
+--------------------------------------------------
+Line 111:
+  File 1 -> file->refrence_count--;
+  File 2 -> }
+--------------------------------------------------
+Line 113:
+  File 1 -> // Free references and clear struct if file is no longer used
+  File 2 -> void flush_file(int32_t file_desc) {
+--------------------------------------------------
+Line 114:
+  File 1 -> if (file->refrence_count == 0) {
+  File 2 -> 
+--------------------------------------------------
+Line 115:
+  File 1 -> kfree_size(file->inode, PAGE_SIZE); // Free the memory that held the inode
+  File 2 -> }
+--------------------------------------------------
+Line 116:
+  File 1 -> file_descriptors[file_desc].access_mode = 0;
+  File 2 -> 
+--------------------------------------------------
+Line 117:
+  File 1 -> file_descriptors[file_desc].file_pointer = 0;
+  File 2 -> void close_file(int32_t file_desc) {
+--------------------------------------------------
+Line 118:
+  File 1 -> file_descriptors[file_desc].inode = NULL;
+  File 2 -> struct FILE *file = &file_descriptors[file_desc];
+--------------------------------------------------
+Line 119:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 120:
+  File 1 -> }
+  File 2 -> // Decrement the reference counter
+--------------------------------------------------
+Line 121:
+  File 1 -> 
+  File 2 -> file->refrence_count--;
+--------------------------------------------------
+Line 122:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 123:
+  File 1 -> <no line>
+  File 2 -> // Free references and clear struct if file is no longer used
+--------------------------------------------------
+Line 124:
+  File 1 -> <no line>
+  File 2 -> if (file->refrence_count == 0) {
+--------------------------------------------------
+Line 125:
+  File 1 -> <no line>
+  File 2 -> kfree_size(file->inode, PAGE_SIZE); // Free the memory that held the inode
+--------------------------------------------------
+Line 126:
+  File 1 -> <no line>
+  File 2 -> file_descriptors[file_desc].access_mode = 0;
+--------------------------------------------------
+Line 127:
+  File 1 -> <no line>
+  File 2 -> file_descriptors[file_desc].file_pointer = 0;
+--------------------------------------------------
+Line 128:
+  File 1 -> <no line>
+  File 2 -> file_descriptors[file_desc].inode = NULL;
+--------------------------------------------------
+Line 129:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 130:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 131:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+
+Found 55 difference(s).

@@ -2,12 +2,80 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\paging_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\paging_header_V2.h'...
 
 Line 25:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> void map_page(uint64_t *root_table, uint64_t vaddr, uint64_t paddr, uint32_t flags);
+  File 2 -> /**
+--------------------------------------------------
+Line 26:
+  File 1 -> 
+  File 2 -> * Maps a page of memory at the specified virtual address to the page tables used by the MMU
+--------------------------------------------------
+Line 27:
+  File 1 -> #endif
+  File 2 -> *
+--------------------------------------------------
+Line 28:
+  File 1 -> <no line>
+  File 2 -> * @param vaddr Virtual address where the page should be mapped.
+--------------------------------------------------
+Line 29:
+  File 1 -> <no line>
+  File 2 -> * @param paddr Physical address of the page to map.
+--------------------------------------------------
+Line 30:
+  File 1 -> <no line>
+  File 2 -> * @param flags Permissions of the page
+--------------------------------------------------
+Line 31:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 32:
+  File 1 -> <no line>
+  File 2 -> void map_page(uint64_t *root_table, uint64_t vaddr, uint64_t paddr, uint32_t flags);
+--------------------------------------------------
+Line 33:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 34:
+  File 1 -> <no line>
+  File 2 -> /**
+--------------------------------------------------
+Line 35:
+  File 1 -> <no line>
+  File 2 -> * Translates a virtual address to a physical address for use in the kernel.
+--------------------------------------------------
+Line 36:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 37:
+  File 1 -> <no line>
+  File 2 -> * @param root_table The address of the base of the root table
+--------------------------------------------------
+Line 38:
+  File 1 -> <no line>
+  File 2 -> * @param vaddr The virtual address to convert
+--------------------------------------------------
+Line 39:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 40:
+  File 1 -> <no line>
+  File 2 -> * @returns Physical address of the given virtual address
+--------------------------------------------------
+Line 41:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 42:
+  File 1 -> <no line>
+  File 2 -> uint64_t *vaddr_to_paddr(uint64_t *root_table, uint64_t vaddr);
+--------------------------------------------------
+Line 43:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 19 difference(s).

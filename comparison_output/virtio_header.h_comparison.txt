@@ -2,12 +2,28 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_header_V2.h'...
 
 Line 127:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> struct virt_queue *virtq_init(unsigned index);
+  File 2 -> struct virt_queue *virtq_init(unsigned port, unsigned index);
+--------------------------------------------------
+Line 128:
+  File 1 -> uint32_t virtio_reg_read32(unsigned offset);
+  File 2 -> uint32_t virtio_reg_read32(unsigned port, unsigned offset);
+--------------------------------------------------
+Line 129:
+  File 1 -> uint64_t virtio_reg_read64(unsigned offset);
+  File 2 -> uint64_t virtio_reg_read64(unsigned port, unsigned offset);
+--------------------------------------------------
+Line 130:
+  File 1 -> void virtio_reg_write32(unsigned offset, uint32_t value);
+  File 2 -> void virtio_reg_write32(unsigned port, unsigned offset, uint32_t value);
+--------------------------------------------------
+Line 131:
+  File 1 -> void virtio_reg_fetch_and_or32(unsigned offset, uint32_t value);
+  File 2 -> void virtio_reg_fetch_and_or32(unsigned port, unsigned offset, uint32_t value);
+--------------------------------------------------
+Line 136:
+  File 1 -> void virtq_kick(struct virt_queue *vq, int desc_index);
+  File 2 -> void virtq_kick(unsigned port, struct virt_queue *vq, int desc_index);
+--------------------------------------------------
+
+Found 6 difference(s).

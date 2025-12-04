@@ -2,12 +2,628 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_gpu_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_gpu_header_V2.h'...
 
 Line 5:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> 
+  File 2 -> #include <stdbool.h>
+--------------------------------------------------
+Line 6:
+  File 1 -> #define VIRTIO_DEVICE_GPU 16
+  File 2 -> 
+--------------------------------------------------
+Line 7:
+  File 1 -> #define VIRTIO_GPU_MAX_SCANOUTS 16
+  File 2 -> #define VIRTIO_DEVICE_GPU 16
+--------------------------------------------------
+Line 8:
+  File 1 -> 
+  File 2 -> #define VIRTIO_GPU_MAX_SCANOUTS 16
+--------------------------------------------------
+Line 10:
+  File 1 -> enum virtio_gpu_ctrl_type {
+  File 2 -> 
+--------------------------------------------------
+Line 11:
+  File 1 -> /* 2d commands */
+  File 2 -> enum virtio_gpu_ctrl_type {
+--------------------------------------------------
+Line 12:
+  File 1 -> VIRTIO_GPU_CMD_GET_DISPLAY_INFO = 0x0100,
+  File 2 -> /* 2d commands */
+--------------------------------------------------
+Line 13:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_CREATE_2D,
+  File 2 -> VIRTIO_GPU_CMD_GET_DISPLAY_INFO = 0x0100,
+--------------------------------------------------
+Line 14:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_UNREF,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_CREATE_2D,
+--------------------------------------------------
+Line 15:
+  File 1 -> VIRTIO_GPU_CMD_SET_SCANOUT,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_UNREF,
+--------------------------------------------------
+Line 16:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_FLUSH,
+  File 2 -> VIRTIO_GPU_CMD_SET_SCANOUT,
+--------------------------------------------------
+Line 17:
+  File 1 -> VIRTIO_GPU_CMD_TRANSFER_TO_HOST_2D,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_FLUSH,
+--------------------------------------------------
+Line 18:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_ATTACH_BACKING,
+  File 2 -> VIRTIO_GPU_CMD_TRANSFER_TO_HOST_2D,
+--------------------------------------------------
+Line 19:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_DETACH_BACKING,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_ATTACH_BACKING,
+--------------------------------------------------
+Line 20:
+  File 1 -> VIRTIO_GPU_CMD_GET_CAPSET_INFO,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_DETACH_BACKING,
+--------------------------------------------------
+Line 21:
+  File 1 -> VIRTIO_GPU_CMD_GET_CAPSET,
+  File 2 -> VIRTIO_GPU_CMD_GET_CAPSET_INFO,
+--------------------------------------------------
+Line 22:
+  File 1 -> VIRTIO_GPU_CMD_GET_EDID,
+  File 2 -> VIRTIO_GPU_CMD_GET_CAPSET,
+--------------------------------------------------
+Line 23:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_ASSIGN_UUID,
+  File 2 -> VIRTIO_GPU_CMD_GET_EDID,
+--------------------------------------------------
+Line 24:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_CREATE_BLOB,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_ASSIGN_UUID,
+--------------------------------------------------
+Line 25:
+  File 1 -> VIRTIO_GPU_CMD_SET_SCANOUT_BLOB,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_CREATE_BLOB,
+--------------------------------------------------
+Line 26:
+  File 1 -> 
+  File 2 -> VIRTIO_GPU_CMD_SET_SCANOUT_BLOB,
+--------------------------------------------------
+Line 27:
+  File 1 -> /* 3d commands */
+  File 2 -> 
+--------------------------------------------------
+Line 28:
+  File 1 -> VIRTIO_GPU_CMD_CTX_CREATE = 0x0200,
+  File 2 -> /* 3d commands */
+--------------------------------------------------
+Line 29:
+  File 1 -> VIRTIO_GPU_CMD_CTX_DESTROY,
+  File 2 -> VIRTIO_GPU_CMD_CTX_CREATE = 0x0200,
+--------------------------------------------------
+Line 30:
+  File 1 -> VIRTIO_GPU_CMD_CTX_ATTACH_RESOURCE,
+  File 2 -> VIRTIO_GPU_CMD_CTX_DESTROY,
+--------------------------------------------------
+Line 31:
+  File 1 -> VIRTIO_GPU_CMD_CTX_DETACH_RESOURCE,
+  File 2 -> VIRTIO_GPU_CMD_CTX_ATTACH_RESOURCE,
+--------------------------------------------------
+Line 32:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_CREATE_3D,
+  File 2 -> VIRTIO_GPU_CMD_CTX_DETACH_RESOURCE,
+--------------------------------------------------
+Line 33:
+  File 1 -> VIRTIO_GPU_CMD_TRANSFER_TO_HOST_3D,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_CREATE_3D,
+--------------------------------------------------
+Line 34:
+  File 1 -> VIRTIO_GPU_CMD_TRANSFER_FROM_HOST_3D,
+  File 2 -> VIRTIO_GPU_CMD_TRANSFER_TO_HOST_3D,
+--------------------------------------------------
+Line 35:
+  File 1 -> VIRTIO_GPU_CMD_SUBMIT_3D,
+  File 2 -> VIRTIO_GPU_CMD_TRANSFER_FROM_HOST_3D,
+--------------------------------------------------
+Line 36:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_MAP_BLOB,
+  File 2 -> VIRTIO_GPU_CMD_SUBMIT_3D,
+--------------------------------------------------
+Line 37:
+  File 1 -> VIRTIO_GPU_CMD_RESOURCE_UNMAP_BLOB,
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_MAP_BLOB,
+--------------------------------------------------
+Line 38:
+  File 1 -> /* cursor commands */
+  File 2 -> VIRTIO_GPU_CMD_RESOURCE_UNMAP_BLOB,
+--------------------------------------------------
+Line 39:
+  File 1 -> VIRTIO_GPU_CMD_UPDATE_CURSOR = 0x0300,
+  File 2 -> /* cursor commands */
+--------------------------------------------------
+Line 40:
+  File 1 -> VIRTIO_GPU_CMD_MOVE_CURSOR,
+  File 2 -> VIRTIO_GPU_CMD_UPDATE_CURSOR = 0x0300,
+--------------------------------------------------
+Line 41:
+  File 1 -> /* success responses */
+  File 2 -> VIRTIO_GPU_CMD_MOVE_CURSOR,
+--------------------------------------------------
+Line 42:
+  File 1 -> VIRTIO_GPU_RESP_OK_NODATA = 0x1100,
+  File 2 -> /* success responses */
+--------------------------------------------------
+Line 43:
+  File 1 -> VIRTIO_GPU_RESP_OK_DISPLAY_INFO,
+  File 2 -> VIRTIO_GPU_RESP_OK_NODATA = 0x1100,
+--------------------------------------------------
+Line 44:
+  File 1 -> VIRTIO_GPU_RESP_OK_CAPSET_INFO,
+  File 2 -> VIRTIO_GPU_RESP_OK_DISPLAY_INFO,
+--------------------------------------------------
+Line 45:
+  File 1 -> VIRTIO_GPU_RESP_OK_CAPSET,
+  File 2 -> VIRTIO_GPU_RESP_OK_CAPSET_INFO,
+--------------------------------------------------
+Line 46:
+  File 1 -> VIRTIO_GPU_RESP_OK_EDID,
+  File 2 -> VIRTIO_GPU_RESP_OK_CAPSET,
+--------------------------------------------------
+Line 47:
+  File 1 -> VIRTIO_GPU_RESP_OK_RESOURCE_UUID,
+  File 2 -> VIRTIO_GPU_RESP_OK_EDID,
+--------------------------------------------------
+Line 48:
+  File 1 -> VIRTIO_GPU_RESP_OK_MAP_INFO,
+  File 2 -> VIRTIO_GPU_RESP_OK_RESOURCE_UUID,
+--------------------------------------------------
+Line 49:
+  File 1 -> /* error responses */
+  File 2 -> VIRTIO_GPU_RESP_OK_MAP_INFO,
+--------------------------------------------------
+Line 50:
+  File 1 -> VIRTIO_GPU_RESP_ERR_UNSPEC = 0x1200,
+  File 2 -> /* error responses */
+--------------------------------------------------
+Line 51:
+  File 1 -> VIRTIO_GPU_RESP_ERR_OUT_OF_MEMORY,
+  File 2 -> VIRTIO_GPU_RESP_ERR_UNSPEC = 0x1200,
+--------------------------------------------------
+Line 52:
+  File 1 -> VIRTIO_GPU_RESP_ERR_INVALID_SCANOUT_ID,
+  File 2 -> VIRTIO_GPU_RESP_ERR_OUT_OF_MEMORY,
+--------------------------------------------------
+Line 53:
+  File 1 -> VIRTIO_GPU_RESP_ERR_INVALID_RESOURCE_ID,
+  File 2 -> VIRTIO_GPU_RESP_ERR_INVALID_SCANOUT_ID,
+--------------------------------------------------
+Line 54:
+  File 1 -> VIRTIO_GPU_RESP_ERR_INVALID_CONTEXT_ID,
+  File 2 -> VIRTIO_GPU_RESP_ERR_INVALID_RESOURCE_ID,
+--------------------------------------------------
+Line 55:
+  File 1 -> VIRTIO_GPU_RESP_ERR_INVALID_PARAMETER,
+  File 2 -> VIRTIO_GPU_RESP_ERR_INVALID_CONTEXT_ID,
+--------------------------------------------------
+Line 56:
+  File 1 -> };
+  File 2 -> VIRTIO_GPU_RESP_ERR_INVALID_PARAMETER,
+--------------------------------------------------
+Line 57:
+  File 1 -> 
+  File 2 -> };
+--------------------------------------------------
+Line 58:
+  File 1 -> #define VIRTIO_GPU_FLAG_FENCE (1 << 0)
+  File 2 -> 
+--------------------------------------------------
+Line 59:
+  File 1 -> #define VIRTIO_GPU_FLAG_INFO_RING_IDX (1 << 1)
+  File 2 -> #define VIRTIO_GPU_FLAG_FENCE (1 << 0)
+--------------------------------------------------
+Line 60:
+  File 1 -> 
+  File 2 -> #define VIRTIO_GPU_FLAG_INFO_RING_IDX (1 << 1)
+--------------------------------------------------
+Line 61:
+  File 1 -> struct gpu_pixel_rgba {
+  File 2 -> 
+--------------------------------------------------
+Line 62:
+  File 1 -> uint8_t r;
+  File 2 -> struct gpu_pixel_rgba {
+--------------------------------------------------
+Line 63:
+  File 1 -> uint8_t g;
+  File 2 -> uint8_t r;
+--------------------------------------------------
+Line 64:
+  File 1 -> uint8_t b;
+  File 2 -> uint8_t g;
+--------------------------------------------------
+Line 65:
+  File 1 -> uint8_t a;
+  File 2 -> uint8_t b;
+--------------------------------------------------
+Line 66:
+  File 1 -> } __attribute__((packed));
+  File 2 -> uint8_t a;
+--------------------------------------------------
+Line 67:
+  File 1 -> 
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 68:
+  File 1 -> struct virtio_gpu_rect {
+  File 2 -> 
+--------------------------------------------------
+Line 69:
+  File 1 -> uint32_t x;
+  File 2 -> struct virtio_gpu_rect {
+--------------------------------------------------
+Line 70:
+  File 1 -> uint32_t y;
+  File 2 -> uint32_t x;
+--------------------------------------------------
+Line 71:
+  File 1 -> uint32_t w;
+  File 2 -> uint32_t y;
+--------------------------------------------------
+Line 72:
+  File 1 -> uint32_t h;
+  File 2 -> uint32_t w;
+--------------------------------------------------
+Line 73:
+  File 1 -> } __attribute__((packed));
+  File 2 -> uint32_t h;
+--------------------------------------------------
+Line 74:
+  File 1 -> 
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 75:
+  File 1 -> struct virtio_gpu_ctrl_hdr {
+  File 2 -> 
+--------------------------------------------------
+Line 76:
+  File 1 -> uint32_t type;          // Type of CMD or response
+  File 2 -> struct virtio_gpu_ctrl_hdr {
+--------------------------------------------------
+Line 77:
+  File 1 -> uint32_t flags;         // Request/Response flags
+  File 2 -> uint32_t type;          // Type of CMD or response
+--------------------------------------------------
+Line 78:
+  File 1 -> uint64_t fence_id;      //
+  File 2 -> uint32_t flags;         // Request/Response flags
+--------------------------------------------------
+Line 79:
+  File 1 -> uint32_t ctx_id;        // Rendering context (3D only)
+  File 2 -> uint64_t fence_id;      //
+--------------------------------------------------
+Line 80:
+  File 1 -> uint8_t ring_idx;       //
+  File 2 -> uint32_t ctx_id;        // Rendering context (3D only)
+--------------------------------------------------
+Line 81:
+  File 1 -> uint8_t padding[3];
+  File 2 -> uint8_t ring_idx;       //
+--------------------------------------------------
+Line 82:
+  File 1 -> } __attribute__((packed));
+  File 2 -> uint8_t padding[3];
+--------------------------------------------------
+Line 83:
+  File 1 -> 
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 84:
+  File 1 -> enum virtio_gpu_formats {
+  File 2 -> 
+--------------------------------------------------
+Line 85:
+  File 1 -> VIRTIO_GPU_FORMAT_B8G8R8A8_UNORM = 1,
+  File 2 -> enum virtio_gpu_formats {
+--------------------------------------------------
+Line 86:
+  File 1 -> VIRTIO_GPU_FORMAT_B8G8R8X8_UNORM = 2,
+  File 2 -> VIRTIO_GPU_FORMAT_B8G8R8A8_UNORM = 1,
+--------------------------------------------------
+Line 87:
+  File 1 -> VIRTIO_GPU_FORMAT_A8R8G8B8_UNORM = 3,
+  File 2 -> VIRTIO_GPU_FORMAT_B8G8R8X8_UNORM = 2,
+--------------------------------------------------
+Line 88:
+  File 1 -> VIRTIO_GPU_FORMAT_X8R8G8B8_UNORM = 4,
+  File 2 -> VIRTIO_GPU_FORMAT_A8R8G8B8_UNORM = 3,
+--------------------------------------------------
+Line 89:
+  File 1 -> VIRTIO_GPU_FORMAT_R8G8B8A8_UNORM = 67,
+  File 2 -> VIRTIO_GPU_FORMAT_X8R8G8B8_UNORM = 4,
+--------------------------------------------------
+Line 90:
+  File 1 -> VIRTIO_GPU_FORMAT_X8B8G8R8_UNORM = 68,
+  File 2 -> VIRTIO_GPU_FORMAT_R8G8B8A8_UNORM = 67,
+--------------------------------------------------
+Line 91:
+  File 1 -> VIRTIO_GPU_FORMAT_A8B8G8R8_UNORM = 121,
+  File 2 -> VIRTIO_GPU_FORMAT_X8B8G8R8_UNORM = 68,
+--------------------------------------------------
+Line 92:
+  File 1 -> VIRTIO_GPU_FORMAT_R8G8B8X8_UNORM = 134,
+  File 2 -> VIRTIO_GPU_FORMAT_A8B8G8R8_UNORM = 121,
+--------------------------------------------------
+Line 93:
+  File 1 -> };
+  File 2 -> VIRTIO_GPU_FORMAT_R8G8B8X8_UNORM = 134,
+--------------------------------------------------
+Line 94:
+  File 1 -> 
+  File 2 -> };
+--------------------------------------------------
+Line 95:
+  File 1 -> struct virtio_gpu_resource_create_2d {
+  File 2 -> 
+--------------------------------------------------
+Line 96:
+  File 1 -> struct virtio_gpu_ctrl_hdr hdr;
+  File 2 -> struct virtio_gpu_resource_create_2d {
+--------------------------------------------------
+Line 97:
+  File 1 -> uint32_t resource_id;
+  File 2 -> struct virtio_gpu_ctrl_hdr hdr;
+--------------------------------------------------
+Line 98:
+  File 1 -> uint32_t format;
+  File 2 -> uint32_t resource_id;
+--------------------------------------------------
+Line 99:
+  File 1 -> uint32_t width;
+  File 2 -> uint32_t format;
+--------------------------------------------------
+Line 100:
+  File 1 -> uint32_t height;
+  File 2 -> uint32_t width;
+--------------------------------------------------
+Line 101:
+  File 1 -> }__attribute__((packed));
+  File 2 -> uint32_t height;
+--------------------------------------------------
+Line 102:
+  File 1 -> 
+  File 2 -> }__attribute__((packed));
+--------------------------------------------------
+Line 103:
+  File 1 -> struct virtio_gpu_resp_display_info {
+  File 2 -> 
+--------------------------------------------------
+Line 104:
+  File 1 -> struct virtio_gpu_ctrl_hdr hdr;
+  File 2 -> struct virtio_gpu_resp_display_info {
+--------------------------------------------------
+Line 105:
+  File 1 -> struct virtio_gpu_display_one {
+  File 2 -> struct virtio_gpu_ctrl_hdr hdr;
+--------------------------------------------------
+Line 106:
+  File 1 -> struct virtio_gpu_rect r;
+  File 2 -> struct virtio_gpu_display_one {
+--------------------------------------------------
+Line 107:
+  File 1 -> uint32_t enabled;
+  File 2 -> struct virtio_gpu_rect r;
+--------------------------------------------------
+Line 108:
+  File 1 -> uint32_t flags;
+  File 2 -> uint32_t enabled;
+--------------------------------------------------
+Line 109:
+  File 1 -> } pmodes[VIRTIO_GPU_MAX_SCANOUTS];
+  File 2 -> uint32_t flags;
+--------------------------------------------------
+Line 110:
+  File 1 -> } __attribute__((packed));
+  File 2 -> } pmodes[VIRTIO_GPU_MAX_SCANOUTS];
+--------------------------------------------------
+Line 111:
+  File 1 -> 
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 112:
+  File 1 -> struct virtio_gpu_resource_attach_backing {
+  File 2 -> 
+--------------------------------------------------
+Line 113:
+  File 1 -> struct virtio_gpu_ctrl_hdr hdr;
+  File 2 -> struct virtio_gpu_resource_attach_backing {
+--------------------------------------------------
+Line 114:
+  File 1 -> uint32_t resource_id;
+  File 2 -> struct virtio_gpu_ctrl_hdr hdr;
+--------------------------------------------------
+Line 115:
+  File 1 -> uint32_t nr_entries;
+  File 2 -> uint32_t resource_id;
+--------------------------------------------------
+Line 116:
+  File 1 -> }__attribute__((packed));
+  File 2 -> uint32_t nr_entries;
+--------------------------------------------------
+Line 117:
+  File 1 -> 
+  File 2 -> }__attribute__((packed));
+--------------------------------------------------
+Line 118:
+  File 1 -> struct virtio_gpu_mem_entry {
+  File 2 -> 
+--------------------------------------------------
+Line 119:
+  File 1 -> uint64_t addr;
+  File 2 -> struct virtio_gpu_mem_entry {
+--------------------------------------------------
+Line 120:
+  File 1 -> uint32_t length;
+  File 2 -> uint64_t addr;
+--------------------------------------------------
+Line 121:
+  File 1 -> uint32_t padding;
+  File 2 -> uint32_t length;
+--------------------------------------------------
+Line 122:
+  File 1 -> }__attribute__((packed));
+  File 2 -> uint32_t padding;
+--------------------------------------------------
+Line 123:
+  File 1 -> 
+  File 2 -> }__attribute__((packed));
+--------------------------------------------------
+Line 124:
+  File 1 -> struct virtio_gpu_set_scanout {
+  File 2 -> 
+--------------------------------------------------
+Line 125:
+  File 1 -> struct virtio_gpu_ctrl_hdr hdr;
+  File 2 -> struct virtio_gpu_set_scanout {
+--------------------------------------------------
+Line 126:
+  File 1 -> struct virtio_gpu_rect r;
+  File 2 -> struct virtio_gpu_ctrl_hdr hdr;
+--------------------------------------------------
+Line 127:
+  File 1 -> uint32_t scanout_id;
+  File 2 -> struct virtio_gpu_rect r;
+--------------------------------------------------
+Line 128:
+  File 1 -> uint32_t resource_id;
+  File 2 -> uint32_t scanout_id;
+--------------------------------------------------
+Line 129:
+  File 1 -> }__attribute__((packed));
+  File 2 -> uint32_t resource_id;
+--------------------------------------------------
+Line 130:
+  File 1 -> 
+  File 2 -> }__attribute__((packed));
+--------------------------------------------------
+Line 131:
+  File 1 -> struct virtio_gpu_transfer_to_host_2d {
+  File 2 -> 
+--------------------------------------------------
+Line 132:
+  File 1 -> struct virtio_gpu_ctrl_hdr hdr;
+  File 2 -> struct virtio_gpu_transfer_to_host_2d {
+--------------------------------------------------
+Line 133:
+  File 1 -> struct virtio_gpu_rect r;
+  File 2 -> struct virtio_gpu_ctrl_hdr hdr;
+--------------------------------------------------
+Line 134:
+  File 1 -> uint64_t offset;
+  File 2 -> struct virtio_gpu_rect r;
+--------------------------------------------------
+Line 135:
+  File 1 -> uint32_t resource_id;
+  File 2 -> uint64_t offset;
+--------------------------------------------------
+Line 136:
+  File 1 -> uint32_t padding;
+  File 2 -> uint32_t resource_id;
+--------------------------------------------------
+Line 137:
+  File 1 -> }__attribute__((packed));
+  File 2 -> uint32_t padding;
+--------------------------------------------------
+Line 138:
+  File 1 -> 
+  File 2 -> }__attribute__((packed));
+--------------------------------------------------
+Line 139:
+  File 1 -> struct virtio_gpu_resource_flush {
+  File 2 -> 
+--------------------------------------------------
+Line 140:
+  File 1 -> struct virtio_gpu_ctrl_hdr hdr;
+  File 2 -> struct virtio_gpu_resource_flush {
+--------------------------------------------------
+Line 141:
+  File 1 -> struct virtio_gpu_rect r;
+  File 2 -> struct virtio_gpu_ctrl_hdr hdr;
+--------------------------------------------------
+Line 142:
+  File 1 -> uint32_t resource_id;
+  File 2 -> struct virtio_gpu_rect r;
+--------------------------------------------------
+Line 143:
+  File 1 -> uint32_t padding;
+  File 2 -> uint32_t resource_id;
+--------------------------------------------------
+Line 144:
+  File 1 -> }__attribute__((packed));
+  File 2 -> uint32_t padding;
+--------------------------------------------------
+Line 145:
+  File 1 -> 
+  File 2 -> }__attribute__((packed));
+--------------------------------------------------
+Line 149:
+  File 1 -> #endif
+  File 2 -> /*
+--------------------------------------------------
+Line 150:
+  File 1 -> <no line>
+  File 2 -> * Flushes the current framebuffer to the GPU
+--------------------------------------------------
+Line 151:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 152:
+  File 1 -> <no line>
+  File 2 -> void flush();
+--------------------------------------------------
+Line 153:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 154:
+  File 1 -> <no line>
+  File 2 -> /*
+--------------------------------------------------
+Line 155:
+  File 1 -> <no line>
+  File 2 -> * Draws a rectangle to the framebuffer, if size is 0 the rect is filled with the color.
+--------------------------------------------------
+Line 156:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 157:
+  File 1 -> <no line>
+  File 2 -> void draw_rect(struct gpu_pixel_rgba *fb, uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint32_t size, struct gpu_pixel_rgba color);
+--------------------------------------------------
+Line 158:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 159:
+  File 1 -> <no line>
+  File 2 -> /*
+--------------------------------------------------
+Line 160:
+  File 1 -> <no line>
+  File 2 -> * Sets the screen to white.
+--------------------------------------------------
+Line 161:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 162:
+  File 1 -> <no line>
+  File 2 -> void clear_screen();
+--------------------------------------------------
+Line 163:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 164:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 156 difference(s).

@@ -2,12 +2,72 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fat_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fat_header_V2.h'...
 
 Line 93:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> UNKNOWN_ERR = -5,
+  File 2 -> UNKNOWN_ERR = -5,           // Unknown error occured, or SOMEONE is too lazy to determine why.
+--------------------------------------------------
+Line 94:
+  File 1 -> DIR_FULL = -6,
+  File 2 -> DIR_FULL = -6,              // Directory is full! (Which means I should allocate another cluster for the dir, but when will I actually use them all)
+--------------------------------------------------
+Line 95:
+  File 1 -> NO_SPACE = -7,
+  File 2 -> NO_SPACE = -7,              // No space to write the file in either a cluster, or the FAT.
+--------------------------------------------------
+Line 98:
+  File 1 -> struct fsinfo {
+  File 2 -> struct fsinfo { // Unused, but here when we do!
+--------------------------------------------------
+Line 122:
+  File 1 -> enum FILE_ERR fat32_write_file_by_path(const char* path, void* file_data, uint64_t file_size, uint8_t flags);
+  File 2 -> 
+--------------------------------------------------
+Line 123:
+  File 1 -> #endif
+  File 2 -> /**
+--------------------------------------------------
+Line 124:
+  File 1 -> <no line>
+  File 2 -> * Write to a file by its absolute path. Will create a new file, or overwrite the existing file.
+--------------------------------------------------
+Line 125:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 126:
+  File 1 -> <no line>
+  File 2 -> * @param path The absolute path of the file.
+--------------------------------------------------
+Line 127:
+  File 1 -> <no line>
+  File 2 -> * @param file_data Pointer to the contents of the file
+--------------------------------------------------
+Line 128:
+  File 1 -> <no line>
+  File 2 -> * @param file_size A buffer to hold the size of the returned file. Returns 0 on file not found.
+--------------------------------------------------
+Line 129:
+  File 1 -> <no line>
+  File 2 -> * @param flags The attributes of the file to write
+--------------------------------------------------
+Line 130:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 131:
+  File 1 -> <no line>
+  File 2 -> * @return `struct FILE_ERR` containing the return status of the file write. Must be read by the file handler.
+--------------------------------------------------
+Line 132:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 133:
+  File 1 -> <no line>
+  File 2 -> enum FILE_ERR fat32_write_file_by_path(const char* path, void* file_data, uint64_t file_size, uint8_t flags);
+--------------------------------------------------
+Line 134:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 17 difference(s).

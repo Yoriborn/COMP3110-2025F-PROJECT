@@ -2,12 +2,68 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\kernel_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\kernel_header_V2.h'...
 
 Line 6:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> // Syscall numbers are defined once here, and once again in the userspace.
+  File 2 -> #define PANIC(fmt, ...)                                                        \
+--------------------------------------------------
+Line 7:
+  File 1 -> 
+  File 2 -> do {                                                                       \
+--------------------------------------------------
+Line 8:
+  File 1 -> #define SYS_PUTC            1
+  File 2 -> printf("PANIC: %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__);  \
+--------------------------------------------------
+Line 9:
+  File 1 -> #define SYS_GETC            2
+  File 2 -> while (1) {}                                                           \
+--------------------------------------------------
+Line 10:
+  File 1 -> #define SYS_EXIT            3
+  File 2 -> } while (0)
+--------------------------------------------------
+Line 11:
+  File 1 -> #define SYS_OPEN_FILE       4
+  File 2 -> 
+--------------------------------------------------
+Line 12:
+  File 1 -> #define SYS_CLOSE_FILE      5
+  File 2 -> #endif
+--------------------------------------------------
+Line 13:
+  File 1 -> #define SYS_EXEC            6
+  File 2 -> <no line>
+--------------------------------------------------
+Line 14:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 15:
+  File 1 -> #define PANIC(fmt, ...)                                                        \
+  File 2 -> <no line>
+--------------------------------------------------
+Line 16:
+  File 1 -> do {                                                                       \
+  File 2 -> <no line>
+--------------------------------------------------
+Line 17:
+  File 1 -> printf("PANIC: %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__);  \
+  File 2 -> <no line>
+--------------------------------------------------
+Line 18:
+  File 1 -> while (1) {}                                                           \
+  File 2 -> <no line>
+--------------------------------------------------
+Line 19:
+  File 1 -> } while (0)
+  File 2 -> <no line>
+--------------------------------------------------
+Line 20:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 21:
+  File 1 -> #endif
+  File 2 -> <no line>
+--------------------------------------------------
+
+Found 16 difference(s).

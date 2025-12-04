@@ -2,12 +2,2052 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fat_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\fat_V2.c'...
 
 Line 1:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> #include "headers/fat.h"
+  File 2 -> #include "fat.h"
+--------------------------------------------------
+Line 2:
+  File 1 -> #include "headers/blkio.h" // We'll just assume this device for now!
+  File 2 -> #include "../virtio/virtio_blkio.h"       // We'll just assume this device for now!
+--------------------------------------------------
+Line 3:
+  File 1 -> #include "../kernel/headers/kernel.h"
+  File 2 -> #include "../../kernel/kernel.h"
+--------------------------------------------------
+Line 4:
+  File 1 -> #include "../klib/headers/stdlib.h"
+  File 2 -> #include "../../klib/stdlib.h"
+--------------------------------------------------
+Line 5:
+  File 1 -> #include "../klib/headers/stdio.h"
+  File 2 -> #include "../../klib/stdio.h"
+--------------------------------------------------
+Line 16:
+  File 1 -> uint32_t pages_per_cluster;         // Pages needed for a single cluster
+  File 2 -> uint32_t sectors_per_fat;           // Size of the FAT in sectors
+--------------------------------------------------
+Line 17:
+  File 1 -> 
+  File 2 -> uint32_t pages_per_cluster;         // Pages needed for a single cluster
+--------------------------------------------------
+Line 18:
+  File 1 -> uint64_t read_bpb_u64(uint8_t *bpb, size_t offset) {
+  File 2 -> 
+--------------------------------------------------
+Line 19:
+  File 1 -> return ((uint64_t)bpb[offset]) |
+  File 2 -> uint64_t read_bpb_u64(uint8_t *bpb, size_t offset) {
+--------------------------------------------------
+Line 20:
+  File 1 -> ((uint64_t)bpb[offset + 1] << 8) |
+  File 2 -> return ((uint64_t)bpb[offset]) |
+--------------------------------------------------
+Line 21:
+  File 1 -> ((uint64_t)bpb[offset + 2] << 16) |
+  File 2 -> ((uint64_t)bpb[offset + 1] << 8) |
+--------------------------------------------------
+Line 22:
+  File 1 -> ((uint64_t)bpb[offset + 3] << 24) |
+  File 2 -> ((uint64_t)bpb[offset + 2] << 16) |
+--------------------------------------------------
+Line 23:
+  File 1 -> ((uint64_t)bpb[offset + 4] << 32) |
+  File 2 -> ((uint64_t)bpb[offset + 3] << 24) |
+--------------------------------------------------
+Line 24:
+  File 1 -> ((uint64_t)bpb[offset + 5] << 40) |
+  File 2 -> ((uint64_t)bpb[offset + 4] << 32) |
+--------------------------------------------------
+Line 25:
+  File 1 -> ((uint64_t)bpb[offset + 6] << 48) |
+  File 2 -> ((uint64_t)bpb[offset + 5] << 40) |
+--------------------------------------------------
+Line 26:
+  File 1 -> ((uint64_t)bpb[offset + 7] << 56);
+  File 2 -> ((uint64_t)bpb[offset + 6] << 48) |
+--------------------------------------------------
+Line 27:
+  File 1 -> }
+  File 2 -> ((uint64_t)bpb[offset + 7] << 56);
+--------------------------------------------------
+Line 28:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 29:
+  File 1 -> uint32_t read_bpb_u32(uint8_t *bpb, size_t offset) {
+  File 2 -> 
+--------------------------------------------------
+Line 30:
+  File 1 -> return ((uint32_t)bpb[offset]) |
+  File 2 -> uint32_t read_bpb_u32(uint8_t *bpb, size_t offset) {
+--------------------------------------------------
+Line 31:
+  File 1 -> ((uint32_t)bpb[offset + 1] << 8) |
+  File 2 -> return ((uint32_t)bpb[offset]) |
+--------------------------------------------------
+Line 32:
+  File 1 -> ((uint32_t)bpb[offset + 2] << 16) |
+  File 2 -> ((uint32_t)bpb[offset + 1] << 8) |
+--------------------------------------------------
+Line 33:
+  File 1 -> ((uint32_t)bpb[offset + 3] << 24);
+  File 2 -> ((uint32_t)bpb[offset + 2] << 16) |
+--------------------------------------------------
+Line 34:
+  File 1 -> }
+  File 2 -> ((uint32_t)bpb[offset + 3] << 24);
+--------------------------------------------------
+Line 35:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 36:
+  File 1 -> uint16_t read_bpb_u16(uint8_t *bpb, size_t offset) {
+  File 2 -> 
+--------------------------------------------------
+Line 37:
+  File 1 -> return ((uint16_t)bpb[offset]) |
+  File 2 -> uint16_t read_bpb_u16(uint8_t *bpb, size_t offset) {
+--------------------------------------------------
+Line 38:
+  File 1 -> ((uint16_t)bpb[offset + 1] << 8);
+  File 2 -> return ((uint16_t)bpb[offset]) |
+--------------------------------------------------
+Line 39:
+  File 1 -> }
+  File 2 -> ((uint16_t)bpb[offset + 1] << 8);
+--------------------------------------------------
+Line 40:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 41:
+  File 1 -> uint8_t read_bpb_u8(uint8_t *bpb, size_t offset) {
+  File 2 -> 
+--------------------------------------------------
+Line 42:
+  File 1 -> return (uint8_t) bpb[offset]; // Yeah yeah this is for readability, the overhead is small enough for this os.
+  File 2 -> uint8_t read_bpb_u8(uint8_t *bpb, size_t offset) {
+--------------------------------------------------
+Line 43:
+  File 1 -> }
+  File 2 -> return (uint8_t) bpb[offset]; // Yeah yeah this is for readability, the overhead is small enough for this os.
+--------------------------------------------------
+Line 44:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 45:
+  File 1 -> uint32_t convert_bytes_to_clusters(uint64_t bytes) {
+  File 2 -> 
+--------------------------------------------------
+Line 46:
+  File 1 -> return (bytes + (sectors_per_cluster * SECTOR_SIZE) - 1) / (sectors_per_cluster * SECTOR_SIZE);
+  File 2 -> uint32_t convert_bytes_to_clusters(uint64_t bytes) {
+--------------------------------------------------
+Line 47:
+  File 1 -> }
+  File 2 -> return (bytes + (sectors_per_cluster * SECTOR_SIZE) - 1) / (sectors_per_cluster * SECTOR_SIZE);
+--------------------------------------------------
+Line 48:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 49:
+  File 1 -> void path_to_directory_tokens(const char* path, char tokens[64][12], uint32_t *argc) {
+  File 2 -> 
+--------------------------------------------------
+Line 50:
+  File 1 -> uint32_t path_len = strlen(path);
+  File 2 -> void path_to_directory_tokens(const char* path, char tokens[64][12], uint32_t *argc) {
+--------------------------------------------------
+Line 51:
+  File 1 -> *argc = 0; // Args counter (number of tokens)
+  File 2 -> uint32_t path_len = strlen(path);
+--------------------------------------------------
+Line 52:
+  File 1 -> memset(tokens, 0, 64 * 12); // Clear the tokens string array
+  File 2 -> *argc = 0; // Args counter (number of tokens)
+--------------------------------------------------
+Line 53:
+  File 1 -> 
+  File 2 -> memset(tokens, 0, 64 * 12); // Clear the tokens string array
+--------------------------------------------------
+Line 54:
+  File 1 -> char current_token[12];
+  File 2 -> 
+--------------------------------------------------
+Line 55:
+  File 1 -> int current_token_index = 0;
+  File 2 -> char current_token[12];
+--------------------------------------------------
+Line 56:
+  File 1 -> memset(current_token, 0, 12); // Ensure string is empty.
+  File 2 -> int current_token_index = 0;
+--------------------------------------------------
+Line 57:
+  File 1 -> 
+  File 2 -> memset(current_token, 0, 12); // Ensure string is empty.
+--------------------------------------------------
+Line 58:
+  File 1 -> for (int i = 0; i < path_len; i++) {
+  File 2 -> 
+--------------------------------------------------
+Line 59:
+  File 1 -> char current_char = path[i];
+  File 2 -> for (int i = 0; i < path_len; i++) {
+--------------------------------------------------
+Line 60:
+  File 1 -> 
+  File 2 -> char current_char = path[i];
+--------------------------------------------------
+Line 61:
+  File 1 -> if (current_char == '/') { // Directory, end of token.
+  File 2 -> 
+--------------------------------------------------
+Line 62:
+  File 1 -> strcpy(tokens[*argc], current_token); // Write the current token
+  File 2 -> if (current_char == '/') { // Directory, end of token.
+--------------------------------------------------
+Line 63:
+  File 1 -> current_token_index = 0;
+  File 2 -> strcpy(tokens[*argc], current_token); // Write the current token
+--------------------------------------------------
+Line 64:
+  File 1 -> (*argc)++;
+  File 2 -> current_token_index = 0;
+--------------------------------------------------
+Line 65:
+  File 1 -> memset(current_token, 0, 12); // Clear the current token.
+  File 2 -> (*argc)++;
+--------------------------------------------------
+Line 66:
+  File 1 -> continue;
+  File 2 -> memset(current_token, 0, 12); // Clear the current token.
+--------------------------------------------------
+Line 67:
+  File 1 -> } else if (i == path_len - 1) { // End of the path, submit and finish
+  File 2 -> continue;
+--------------------------------------------------
+Line 68:
+  File 1 -> current_token[current_token_index] = current_char;
+  File 2 -> } else if (i == path_len - 1) { // End of the path, submit and finish
+--------------------------------------------------
+Line 69:
+  File 1 -> strcpy(tokens[*argc], current_token);
+  File 2 -> current_token[current_token_index] = current_char;
+--------------------------------------------------
+Line 70:
+  File 1 -> (*argc)++;
+  File 2 -> strcpy(tokens[*argc], current_token);
+--------------------------------------------------
+Line 71:
+  File 1 -> return;
+  File 2 -> (*argc)++;
+--------------------------------------------------
+Line 72:
+  File 1 -> }
+  File 2 -> return;
+--------------------------------------------------
+Line 73:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 74:
+  File 1 -> current_token[current_token_index] = current_char; // Just write the char, nothing fancy.
+  File 2 -> 
+--------------------------------------------------
+Line 75:
+  File 1 -> current_token_index++;
+  File 2 -> current_token[current_token_index] = current_char; // Just write the char, nothing fancy.
+--------------------------------------------------
+Line 76:
+  File 1 -> }
+  File 2 -> current_token_index++;
+--------------------------------------------------
+Line 78:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 79:
+  File 1 -> uint32_t write_to_cluster(void* data, uint32_t cluster) {
+  File 2 -> 
+--------------------------------------------------
+Line 80:
+  File 1 -> uint32_t cluster_lba = cluster_begin_lba + (cluster - 2) * sectors_per_cluster;
+  File 2 -> uint32_t write_to_cluster(void* data, uint32_t cluster) {
+--------------------------------------------------
+Line 81:
+  File 1 -> 
+  File 2 -> uint32_t cluster_lba = cluster_begin_lba + (cluster - 2) * sectors_per_cluster;
+--------------------------------------------------
+Line 82:
+  File 1 -> // Read in the sectors to the buffer
+  File 2 -> 
+--------------------------------------------------
+Line 83:
+  File 1 -> for (uint32_t i = 0; i < sectors_per_cluster; i++) {
+  File 2 -> // Read in the sectors to the buffer
+--------------------------------------------------
+Line 84:
+  File 1 -> uint8_t *sector_ptr = (uint8_t *)data + i * SECTOR_SIZE;
+  File 2 -> for (uint32_t i = 0; i < sectors_per_cluster; i++) {
+--------------------------------------------------
+Line 85:
+  File 1 -> read_write_disk(sector_ptr, cluster_lba + i, 1);
+  File 2 -> uint8_t *sector_ptr = (uint8_t *)data + i * SECTOR_SIZE;
+--------------------------------------------------
+Line 86:
+  File 1 -> }
+  File 2 -> read_write_disk(sector_ptr, cluster_lba + i, 1);
+--------------------------------------------------
+Line 88:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 89:
+  File 1 -> uint32_t find_free_cluster() {
+  File 2 -> 
+--------------------------------------------------
+Line 90:
+  File 1 -> for (int i = 2; i < fat_entries; i++) {
+  File 2 -> uint32_t find_free_cluster() {
+--------------------------------------------------
+Line 91:
+  File 1 -> if (FAT[i] == 0) {
+  File 2 -> for (int i = 2; i < fat_entries; i++) {
+--------------------------------------------------
+Line 92:
+  File 1 -> return i;
+  File 2 -> if (FAT[i] == 0) {
+--------------------------------------------------
+Line 93:
+  File 1 -> }
+  File 2 -> return i;
+--------------------------------------------------
+Line 95:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 96:
+  File 1 -> return 0;
+  File 2 -> 
+--------------------------------------------------
+Line 97:
+  File 1 -> }
+  File 2 -> return 0;
+--------------------------------------------------
+Line 98:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 99:
+  File 1 -> uint32_t update_fat_chain(uint64_t size_bytes, uint32_t start_cluster_id) {
+  File 2 -> 
+--------------------------------------------------
+Line 100:
+  File 1 -> uint32_t clusters_needed = convert_bytes_to_clusters(size_bytes);
+  File 2 -> uint32_t update_fat_chain(uint64_t size_bytes, uint32_t start_cluster_id) {
+--------------------------------------------------
+Line 101:
+  File 1 -> uint32_t current_cluster_id;
+  File 2 -> uint32_t clusters_needed = convert_bytes_to_clusters(size_bytes);
+--------------------------------------------------
+Line 102:
+  File 1 -> uint32_t prev_cluster_id = 0;
+  File 2 -> uint32_t current_cluster_id = start_cluster_id;
+--------------------------------------------------
+Line 103:
+  File 1 -> uint32_t clusters_used = 0;
+  File 2 -> uint32_t prev_cluster_id = 0;
+--------------------------------------------------
+Line 104:
+  File 1 -> 
+  File 2 -> uint32_t clusters_used = 0;
+--------------------------------------------------
+Line 106:
+  File 1 -> // Count currently used clusters
+  File 2 -> 
+--------------------------------------------------
+Line 107:
+  File 1 -> while (!is_eoc(FAT[current_cluster_id]) && clusters_used < clusters_needed) {
+  File 2 -> // Count currently used clusters
+--------------------------------------------------
+Line 108:
+  File 1 -> clusters_used++;
+  File 2 -> while (current_cluster_id >= 2 && !is_eoc(FAT[current_cluster_id]) && clusters_used < clusters_needed) {
+--------------------------------------------------
+Line 109:
+  File 1 -> prev_cluster_id = current_cluster_id;
+  File 2 -> clusters_used++;
+--------------------------------------------------
+Line 110:
+  File 1 -> current_cluster_id = FAT[current_cluster_id]; // Get next cluster
+  File 2 -> prev_cluster_id = current_cluster_id;
+--------------------------------------------------
+Line 111:
+  File 1 -> }
+  File 2 -> current_cluster_id = FAT[current_cluster_id]; // Get next cluster
+--------------------------------------------------
+Line 112:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 113:
+  File 1 -> // Update the chain
+  File 2 -> 
+--------------------------------------------------
+Line 114:
+  File 1 -> if (clusters_used == clusters_needed) {
+  File 2 -> // Update the chain
+--------------------------------------------------
+Line 115:
+  File 1 -> // Shrink the chain
+  File 2 -> if (clusters_used == clusters_needed) {
+--------------------------------------------------
+Line 116:
+  File 1 -> if (!is_eoc(FAT[current_cluster_id])) {
+  File 2 -> // Shrink the chain
+--------------------------------------------------
+Line 117:
+  File 1 -> uint32_t to_free = current_cluster_id;
+  File 2 -> if (!is_eoc(FAT[current_cluster_id])) {
+--------------------------------------------------
+Line 118:
+  File 1 -> FAT[prev_cluster_id] = FAT_END_OF_CLUSTER_CHAIN;
+  File 2 -> uint32_t to_free = current_cluster_id;
+--------------------------------------------------
+Line 119:
+  File 1 -> // Free remaining clusters
+  File 2 -> FAT[prev_cluster_id] = FAT_END_OF_CLUSTER_CHAIN;
+--------------------------------------------------
+Line 120:
+  File 1 -> while (!is_eoc(FAT[to_free])) {
+  File 2 -> // Free remaining clusters
+--------------------------------------------------
+Line 121:
+  File 1 -> uint32_t next = FAT[to_free];
+  File 2 -> while (!is_eoc(FAT[to_free])) {
+--------------------------------------------------
+Line 122:
+  File 1 -> FAT[to_free] = 0;
+  File 2 -> uint32_t next = FAT[to_free];
+--------------------------------------------------
+Line 123:
+  File 1 -> to_free = next;
+  File 2 -> FAT[to_free] = 0;
+--------------------------------------------------
+Line 124:
+  File 1 -> }
+  File 2 -> to_free = next;
+--------------------------------------------------
+Line 126:
+  File 1 -> } else {
+  File 2 -> }
+--------------------------------------------------
+Line 127:
+  File 1 -> // Grow the chain
+  File 2 -> } else {
+--------------------------------------------------
+Line 128:
+  File 1 -> uint32_t last = prev_cluster_id;
+  File 2 -> // Grow the chain
+--------------------------------------------------
+Line 129:
+  File 1 -> while (clusters_used < clusters_needed) {
+  File 2 -> uint32_t last = (clusters_used == 0) ? start_cluster_id : prev_cluster_id;
+--------------------------------------------------
+Line 130:
+  File 1 -> // Find a free cluster
+  File 2 -> 
+--------------------------------------------------
+Line 131:
+  File 1 -> uint32_t new_cluster = find_free_cluster();
+  File 2 -> // Handle case of new file
+--------------------------------------------------
+Line 132:
+  File 1 -> if (new_cluster == 0) {
+  File 2 -> if (clusters_used == 0) {
+--------------------------------------------------
+Line 133:
+  File 1 -> PANIC("Out of clusters!");
+  File 2 -> start_cluster_id = find_free_cluster();
+--------------------------------------------------
+Line 134:
+  File 1 -> }
+  File 2 -> if (start_cluster_id == 0) {
+--------------------------------------------------
+Line 135:
+  File 1 -> 
+  File 2 -> PANIC("Out of clusters!");
+--------------------------------------------------
+Line 136:
+  File 1 -> FAT[last] = new_cluster;
+  File 2 -> }
+--------------------------------------------------
+Line 137:
+  File 1 -> last = new_cluster;
+  File 2 -> FAT[start_cluster_id] = FAT_END_OF_CLUSTER_CHAIN;
+--------------------------------------------------
+Line 138:
+  File 1 -> clusters_used++;
+  File 2 -> last = start_cluster_id;
+--------------------------------------------------
+Line 139:
+  File 1 -> }
+  File 2 -> clusters_used++;
+--------------------------------------------------
+Line 140:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 141:
+  File 1 -> FAT[last] = FAT_END_OF_CLUSTER_CHAIN;
+  File 2 -> 
+--------------------------------------------------
+Line 142:
+  File 1 -> }
+  File 2 -> while (clusters_used < clusters_needed) {
+--------------------------------------------------
+Line 143:
+  File 1 -> 
+  File 2 -> // Find a free cluster
+--------------------------------------------------
+Line 144:
+  File 1 -> return clusters_used;
+  File 2 -> uint32_t new_cluster = find_free_cluster();
+--------------------------------------------------
+Line 145:
+  File 1 -> }
+  File 2 -> if (new_cluster == 0) {
+--------------------------------------------------
+Line 146:
+  File 1 -> 
+  File 2 -> PANIC("Out of clusters!");
+--------------------------------------------------
+Line 147:
+  File 1 -> void *fat_get_cluster(uint32_t cluster) {
+  File 2 -> }
+--------------------------------------------------
+Line 148:
+  File 1 -> // Obtain size to allocate in pages
+  File 2 -> 
+--------------------------------------------------
+Line 149:
+  File 1 -> size_t cluster_pages = ((SECTOR_SIZE * sectors_per_cluster) + PAGE_SIZE - 1) / PAGE_SIZE;
+  File 2 -> FAT[last] = new_cluster;
+--------------------------------------------------
+Line 150:
+  File 1 -> uintptr_t *data = kalloc(cluster_pages);
+  File 2 -> last = new_cluster;
+--------------------------------------------------
+Line 151:
+  File 1 -> 
+  File 2 -> clusters_used++;
+--------------------------------------------------
+Line 152:
+  File 1 -> if (!data) {
+  File 2 -> }
+--------------------------------------------------
+Line 153:
+  File 1 -> PANIC("fat32: failed to allocate buffer for cluster");
+  File 2 -> 
+--------------------------------------------------
+Line 154:
+  File 1 -> }
+  File 2 -> FAT[last] = FAT_END_OF_CLUSTER_CHAIN;
+--------------------------------------------------
+Line 155:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 156:
+  File 1 -> // Compute start of the sectors that need to be read.
+  File 2 -> 
+--------------------------------------------------
+Line 157:
+  File 1 -> uint32_t cluster_lba = cluster_begin_lba + (cluster - 2) * sectors_per_cluster;
+  File 2 -> read_write_disk(FAT, fat_begin_lba, 1); // Commit FAT to disk.
+--------------------------------------------------
+Line 158:
+  File 1 -> 
+  File 2 -> read_write_disk(FAT, fat_begin_lba + sectors_per_fat, 1);
+--------------------------------------------------
+Line 159:
+  File 1 -> // Read in the sectors to the buffer
+  File 2 -> 
+--------------------------------------------------
+Line 160:
+  File 1 -> for (uint32_t i = 0; i < sectors_per_cluster; i++) {
+  File 2 -> return clusters_used;
+--------------------------------------------------
+Line 161:
+  File 1 -> uint8_t *sector_ptr = (uint8_t *)data + i * SECTOR_SIZE;
+  File 2 -> }
+--------------------------------------------------
+Line 162:
+  File 1 -> read_write_disk(sector_ptr, cluster_lba + i, 0);
+  File 2 -> 
+--------------------------------------------------
+Line 163:
+  File 1 -> }
+  File 2 -> void *fat_get_cluster(uint32_t cluster) {
+--------------------------------------------------
+Line 164:
+  File 1 -> 
+  File 2 -> // Obtain size to allocate in pages
+--------------------------------------------------
+Line 165:
+  File 1 -> return data;
+  File 2 -> size_t cluster_pages = ((SECTOR_SIZE * sectors_per_cluster) + PAGE_SIZE - 1) / PAGE_SIZE;
+--------------------------------------------------
+Line 166:
+  File 1 -> }
+  File 2 -> uintptr_t *data = kalloc(cluster_pages);
+--------------------------------------------------
+Line 168:
+  File 1 -> void init_fat32() {
+  File 2 -> if (!data) {
+--------------------------------------------------
+Line 169:
+  File 1 -> /*
+  File 2 -> PANIC("fat32: failed to allocate buffer for cluster");
+--------------------------------------------------
+Line 170:
+  File 1 -> The BPB is not naturally aligned, so certain reads WILL cause exceptions if words
+  File 2 -> }
+--------------------------------------------------
+Line 171:
+  File 1 -> are not aligned on their respective barriers. (bytes_per_sector is a prime example!)
+  File 2 -> 
+--------------------------------------------------
+Line 172:
+  File 1 -> We'll read all data using an array of u8s instead, just reading by offset.
+  File 2 -> // Compute start of the sectors that need to be read.
+--------------------------------------------------
+Line 173:
+  File 1 -> I imagine that the extra translation is inefficient, but it's intuitive!
+  File 2 -> uint32_t cluster_lba = cluster_begin_lba + (cluster - 2) * sectors_per_cluster;
+--------------------------------------------------
+Line 174:
+  File 1 -> Technically we only need 512B, but a page is fine.
+  File 2 -> 
+--------------------------------------------------
+Line 175:
+  File 1 -> */
+  File 2 -> // Read in the sectors to the buffer
+--------------------------------------------------
+Line 176:
+  File 1 -> uint8_t *sector0 = kalloc(1); // BPB data pointer
+  File 2 -> for (uint32_t i = 0; i < sectors_per_cluster; i++) {
+--------------------------------------------------
+Line 177:
+  File 1 -> read_write_disk(sector0, 0, 0);
+  File 2 -> uint8_t *sector_ptr = (uint8_t *)data + i * SECTOR_SIZE;
+--------------------------------------------------
+Line 178:
+  File 1 -> 
+  File 2 -> read_write_disk(sector_ptr, cluster_lba + i, 0);
+--------------------------------------------------
+Line 179:
+  File 1 -> // Check signature
+  File 2 -> }
+--------------------------------------------------
+Line 180:
+  File 1 -> if (read_bpb_u16(sector0, BPB_PART_SIGNATURE) != FAT32_SIGNATURE) {
+  File 2 -> 
+--------------------------------------------------
+Line 181:
+  File 1 -> PANIC("fat32: not fat32 partition %x", read_bpb_u16(sector0, BPB_PART_SIGNATURE));
+  File 2 -> return data;
+--------------------------------------------------
+Line 183:
+  File 1 -> // Ensure sector size is correct
+  File 2 -> 
+--------------------------------------------------
+Line 184:
+  File 1 -> if (read_bpb_u16(sector0, BPB_BYTES_PER_SECTOR) != SECTOR_SIZE) {
+  File 2 -> void init_fat32() {
+--------------------------------------------------
+Line 185:
+  File 1 -> PANIC("fat32: invalid sector size %x", read_bpb_u16(sector0, BPB_BYTES_PER_SECTOR));
+  File 2 -> /*
+--------------------------------------------------
+Line 186:
+  File 1 -> }
+  File 2 -> The BPB is not naturally aligned, so certain reads WILL cause exceptions if words
+--------------------------------------------------
+Line 187:
+  File 1 -> // Get (and check!) number of FATs
+  File 2 -> are not aligned on their respective barriers. (bytes_per_sector is a prime example!)
+--------------------------------------------------
+Line 188:
+  File 1 -> uint8_t num_fats = read_bpb_u8(sector0, BPB_NUM_FATS);
+  File 2 -> We'll read all data using an array of u8s instead, just reading by offset.
+--------------------------------------------------
+Line 189:
+  File 1 -> if (num_fats != 2) {
+  File 2 -> I imagine that the extra translation is inefficient, but it's intuitive!
+--------------------------------------------------
+Line 190:
+  File 1 -> PANIC("fat32: unsupported FAT count %x", num_fats);
+  File 2 -> Technically we only need 512B, but a page is fine.
+--------------------------------------------------
+Line 191:
+  File 1 -> }
+  File 2 -> */
+--------------------------------------------------
+Line 192:
+  File 1 -> 
+  File 2 -> uint8_t *sector0 = kalloc(1); // BPB data pointer
+--------------------------------------------------
+Line 193:
+  File 1 -> // Get number of reserved sectors
+  File 2 -> read_write_disk(sector0, 0, 0);
+--------------------------------------------------
+Line 194:
+  File 1 -> uint16_t reserved_sectors = read_bpb_u16(sector0, BPB_RESERVED_SECTORS);
+  File 2 -> 
+--------------------------------------------------
+Line 195:
+  File 1 -> 
+  File 2 -> // Check signature
+--------------------------------------------------
+Line 196:
+  File 1 -> // Get sectors per FAT
+  File 2 -> if (read_bpb_u16(sector0, BPB_PART_SIGNATURE) != FAT32_SIGNATURE) {
+--------------------------------------------------
+Line 197:
+  File 1 -> uint32_t sectors_per_fat = read_bpb_u32(sector0, BPB_FAT_SECTORS_32);
+  File 2 -> PANIC("fat32: not fat32 partition %x", read_bpb_u16(sector0, BPB_PART_SIGNATURE));
+--------------------------------------------------
+Line 198:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 199:
+  File 1 -> // Now calculate all needed info for the FAT parsing! May need tweaking, I'm assuming LBA_begin is 0.
+  File 2 -> // Ensure sector size is correct
+--------------------------------------------------
+Line 200:
+  File 1 -> fat_begin_lba = reserved_sectors;
+  File 2 -> if (read_bpb_u16(sector0, BPB_BYTES_PER_SECTOR) != SECTOR_SIZE) {
+--------------------------------------------------
+Line 201:
+  File 1 -> cluster_begin_lba = reserved_sectors + (num_fats * sectors_per_fat);
+  File 2 -> PANIC("fat32: invalid sector size %x", read_bpb_u16(sector0, BPB_BYTES_PER_SECTOR));
+--------------------------------------------------
+Line 202:
+  File 1 -> sectors_per_cluster = read_bpb_u8(sector0, BPB_SECTORS_PER_CLUSTER);
+  File 2 -> }
+--------------------------------------------------
+Line 203:
+  File 1 -> root_dir_first_cluster = read_bpb_u32(sector0, BPB_ROOT_CLUSTER);
+  File 2 -> // Get (and check!) number of FATs
+--------------------------------------------------
+Line 204:
+  File 1 -> cluster_entries = (SECTOR_SIZE * sectors_per_cluster) / sizeof(struct dir_entry);
+  File 2 -> uint8_t num_fats = read_bpb_u8(sector0, BPB_NUM_FATS);
+--------------------------------------------------
+Line 205:
+  File 1 -> pages_per_cluster = (sectors_per_cluster * SECTOR_SIZE) / PAGE_SIZE;
+  File 2 -> if (num_fats != 2) {
+--------------------------------------------------
+Line 206:
+  File 1 -> bytes_per_cluster = (sectors_per_cluster * SECTOR_SIZE);
+  File 2 -> PANIC("fat32: unsupported FAT count %x", num_fats);
+--------------------------------------------------
+Line 207:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 208:
+  File 1 -> // printf("fat32: Start sector of the FAT: %d\n", fat_begin_lba);
+  File 2 -> 
+--------------------------------------------------
+Line 209:
+  File 1 -> // printf("fat32: Start sector of data: %d\n", cluster_begin_lba);
+  File 2 -> // Get number of reserved sectors
+--------------------------------------------------
+Line 210:
+  File 1 -> // printf("fat32: Number of reserved sectors: %d\n", reserved_sectors);
+  File 2 -> uint16_t reserved_sectors = read_bpb_u16(sector0, BPB_RESERVED_SECTORS);
+--------------------------------------------------
+Line 211:
+  File 1 -> // printf("fat32: Number of FATs: %d\n", num_fats);
+  File 2 -> 
+--------------------------------------------------
+Line 212:
+  File 1 -> // printf("fat32: Sectors in a cluster: %d\n", sectors_per_cluster);
+  File 2 -> // Get sectors per FAT
+--------------------------------------------------
+Line 213:
+  File 1 -> // printf("fat32: Cluster number of root directory: %d\n", root_dir_first_cluster);
+  File 2 -> sectors_per_fat = read_bpb_u32(sector0, BPB_FAT_SECTORS_32);
+--------------------------------------------------
+Line 214:
+  File 1 -> // printf("fat32: Number of dir_entries in a cluster: %d\n\n", cluster_entries);
+  File 2 -> 
+--------------------------------------------------
+Line 215:
+  File 1 -> 
+  File 2 -> // Now calculate all needed info for the FAT parsing! May need tweaking, I'm assuming LBA_begin is 0.
+--------------------------------------------------
+Line 216:
+  File 1 -> // Load FAT into memory
+  File 2 -> fat_begin_lba = reserved_sectors;
+--------------------------------------------------
+Line 217:
+  File 1 -> fat_entries = (sectors_per_fat * SECTOR_SIZE) / sizeof(uint32_t);
+  File 2 -> cluster_begin_lba = reserved_sectors + (num_fats * sectors_per_fat);
+--------------------------------------------------
+Line 218:
+  File 1 -> size_t fat_pages = ((sectors_per_fat * SECTOR_SIZE) + PAGE_SIZE - 1) / PAGE_SIZE;
+  File 2 -> sectors_per_cluster = read_bpb_u8(sector0, BPB_SECTORS_PER_CLUSTER);
+--------------------------------------------------
+Line 219:
+  File 1 -> FAT = (uint32_t *) kalloc(fat_pages);
+  File 2 -> root_dir_first_cluster = read_bpb_u32(sector0, BPB_ROOT_CLUSTER);
+--------------------------------------------------
+Line 220:
+  File 1 -> 
+  File 2 -> cluster_entries = (SECTOR_SIZE * sectors_per_cluster) / sizeof(struct dir_entry);
+--------------------------------------------------
+Line 221:
+  File 1 -> if (!FAT) {
+  File 2 -> pages_per_cluster = (sectors_per_cluster * SECTOR_SIZE) / PAGE_SIZE;
+--------------------------------------------------
+Line 222:
+  File 1 -> PANIC("fat32: couldn't allocate memory for FAT");
+  File 2 -> bytes_per_cluster = (sectors_per_cluster * SECTOR_SIZE);
+--------------------------------------------------
+Line 223:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 225:
+  File 1 -> for (uint32_t i = 0; i < sectors_per_fat; i++) {
+  File 2 -> // printf("fat32: Start sector of the FAT: %d\n", fat_begin_lba);
+--------------------------------------------------
+Line 226:
+  File 1 -> read_write_disk(((uint8_t *)FAT) + (i * SECTOR_SIZE), fat_begin_lba + i, 0); // Read into RAM
+  File 2 -> // printf("fat32: Start sector of data: %d\n", cluster_begin_lba);
+--------------------------------------------------
+Line 227:
+  File 1 -> }
+  File 2 -> // printf("fat32: Number of reserved sectors: %d\n", reserved_sectors);
+--------------------------------------------------
+Line 228:
+  File 1 -> 
+  File 2 -> // printf("fat32: Number of FATs: %d\n", num_fats);
+--------------------------------------------------
+Line 229:
+  File 1 -> // printf("fat32: loaded FAT into memory (%u entries, %u bytes)\n", fat_entries, sectors_per_fat * SECTOR_SIZE);
+  File 2 -> // printf("fat32: Sectors in a cluster: %d\n", sectors_per_cluster);
+--------------------------------------------------
+Line 230:
+  File 1 -> }
+  File 2 -> // printf("fat32: Cluster number of root directory: %d\n", root_dir_first_cluster);
+--------------------------------------------------
+Line 231:
+  File 1 -> 
+  File 2 -> // printf("fat32: Number of dir_entries in a cluster: %d\n\n", cluster_entries);
+--------------------------------------------------
+Line 232:
+  File 1 -> void file_name_to_8_3(const char* path, char* buf) {
+  File 2 -> 
+--------------------------------------------------
+Line 233:
+  File 1 -> // Determine what file name to search for in `cd`
+  File 2 -> // Load FAT into memory
+--------------------------------------------------
+Line 234:
+  File 1 -> uint32_t path_index = 0; // Index into the path string
+  File 2 -> fat_entries = (sectors_per_fat * SECTOR_SIZE) / sizeof(uint32_t);
+--------------------------------------------------
+Line 235:
+  File 1 -> char path_char = '\0';
+  File 2 -> size_t fat_pages = ((sectors_per_fat * SECTOR_SIZE) + PAGE_SIZE - 1) / PAGE_SIZE;
+--------------------------------------------------
+Line 236:
+  File 1 -> 
+  File 2 -> FAT = (uint32_t *) kalloc(fat_pages);
+--------------------------------------------------
+Line 237:
+  File 1 -> // Get the current path item to check for
+  File 2 -> 
+--------------------------------------------------
+Line 238:
+  File 1 -> for (int i = 0; i < 11; i++) { // Build name char by char.
+  File 2 -> if (!FAT) {
+--------------------------------------------------
+Line 239:
+  File 1 -> path_char = path[path_index];
+  File 2 -> PANIC("fat32: couldn't allocate memory for FAT");
+--------------------------------------------------
+Line 240:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 241:
+  File 1 -> // Determine if char indicates a file extension or directory and handle case.
+  File 2 -> 
+--------------------------------------------------
+Line 242:
+  File 1 -> if (path_char == '/' || path_char == '\0') { // Is directory
+  File 2 -> for (uint32_t i = 0; i < sectors_per_fat; i++) {
+--------------------------------------------------
+Line 243:
+  File 1 -> // Pad the rest of the name with ' '.
+  File 2 -> read_write_disk(((uint8_t *)FAT) + (i * SECTOR_SIZE), fat_begin_lba + i, 0); // Read into RAM
+--------------------------------------------------
+Line 244:
+  File 1 -> while (i < 11) {
+  File 2 -> }
+--------------------------------------------------
+Line 245:
+  File 1 -> buf[i] = ' ';
+  File 2 -> 
+--------------------------------------------------
+Line 246:
+  File 1 -> i++;
+  File 2 -> // printf("fat32: loaded FAT into memory (%u entries, %u bytes)\n", fat_entries, sectors_per_fat * SECTOR_SIZE);
+--------------------------------------------------
+Line 248:
+  File 1 -> break;
+  File 2 -> 
+--------------------------------------------------
+Line 249:
+  File 1 -> } else if (path_char == '.') { // Is file
+  File 2 -> void file_name_to_8_3(const char* path, char* buf) {
+--------------------------------------------------
+Line 250:
+  File 1 -> for (;i < 8; i++) { // Pad rest of file name, but not ext.
+  File 2 -> // Determine what file name to search for in `cd`
+--------------------------------------------------
+Line 251:
+  File 1 -> buf[i] = ' ';
+  File 2 -> uint32_t path_index = 0; // Index into the path string
+--------------------------------------------------
+Line 252:
+  File 1 -> }
+  File 2 -> char path_char = '\0';
+--------------------------------------------------
+Line 253:
+  File 1 -> i--;
+  File 2 -> 
+--------------------------------------------------
+Line 254:
+  File 1 -> } else {
+  File 2 -> // Get the current path item to check for
+--------------------------------------------------
+Line 255:
+  File 1 -> buf[i] = path_char;
+  File 2 -> for (int i = 0; i < 11; i++) { // Build name char by char.
+--------------------------------------------------
+Line 256:
+  File 1 -> }
+  File 2 -> path_char = path[path_index];
+--------------------------------------------------
+Line 258:
+  File 1 -> path_index++; // Get next path char index
+  File 2 -> // Determine if char indicates a file extension or directory and handle case.
+--------------------------------------------------
+Line 259:
+  File 1 -> }
+  File 2 -> if (path_char == '/' || path_char == '\0') { // Is directory
+--------------------------------------------------
+Line 260:
+  File 1 -> 
+  File 2 -> // Pad the rest of the name with ' '.
+--------------------------------------------------
+Line 261:
+  File 1 -> return;
+  File 2 -> while (i < 11) {
+--------------------------------------------------
+Line 262:
+  File 1 -> }
+  File 2 -> buf[i] = ' ';
+--------------------------------------------------
+Line 263:
+  File 1 -> 
+  File 2 -> i++;
+--------------------------------------------------
+Line 264:
+  File 1 -> void *fat32_get_file_by_path(const char* path, uint32_t *file_size) {
+  File 2 -> }
+--------------------------------------------------
+Line 265:
+  File 1 -> // Start at root cluster
+  File 2 -> break;
+--------------------------------------------------
+Line 266:
+  File 1 -> uint32_t cluster_id = root_dir_first_cluster;
+  File 2 -> } else if (path_char == '.') { // Is file
+--------------------------------------------------
+Line 267:
+  File 1 -> void* cluster = fat_get_cluster(cluster_id);
+  File 2 -> for (;i < 8; i++) { // Pad rest of file name, but not ext.
+--------------------------------------------------
+Line 268:
+  File 1 -> struct dir_entry *entries = (struct dir_entry *) cluster;
+  File 2 -> buf[i] = ' ';
+--------------------------------------------------
+Line 269:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 270:
+  File 1 -> // Get path info
+  File 2 -> i--;
+--------------------------------------------------
+Line 271:
+  File 1 -> char file_names[64][12];
+  File 2 -> } else {
+--------------------------------------------------
+Line 272:
+  File 1 -> uint32_t argc;
+  File 2 -> buf[i] = path_char;
+--------------------------------------------------
+Line 273:
+  File 1 -> path_to_directory_tokens(path, file_names, &argc);
+  File 2 -> }
+--------------------------------------------------
+Line 275:
+  File 1 -> // Traverse the directories until we find the file in the path
+  File 2 -> path_index++; // Get next path char index
+--------------------------------------------------
+Line 276:
+  File 1 -> int dir_level = 0; // How many directories we've entered
+  File 2 -> }
+--------------------------------------------------
+Line 277:
+  File 1 -> int dir_found = 0; // If we find a dir, skip searching for next cluster in the chain.
+  File 2 -> 
+--------------------------------------------------
+Line 278:
+  File 1 -> while (dir_level < argc) {
+  File 2 -> return;
+--------------------------------------------------
+Line 279:
+  File 1 -> // Get the current item of the path to search for
+  File 2 -> }
+--------------------------------------------------
+Line 280:
+  File 1 -> char file_name[12];
+  File 2 -> 
+--------------------------------------------------
+Line 281:
+  File 1 -> memset(file_name, 0, 12);
+  File 2 -> void *fat32_get_file_by_path(const char* path, uint32_t *file_size) {
+--------------------------------------------------
+Line 282:
+  File 1 -> file_name_to_8_3(file_names[dir_level], file_name);
+  File 2 -> // Start at root cluster
+--------------------------------------------------
+Line 283:
+  File 1 -> 
+  File 2 -> uint32_t cluster_id = root_dir_first_cluster;
+--------------------------------------------------
+Line 284:
+  File 1 -> // Read through entries in the cluster
+  File 2 -> void* cluster = fat_get_cluster(cluster_id);
+--------------------------------------------------
+Line 285:
+  File 1 -> for (int entry_number = 0; entry_number < cluster_entries; entry_number++) {
+  File 2 -> struct dir_entry *entries = (struct dir_entry *) cluster;
+--------------------------------------------------
+Line 286:
+  File 1 -> // Get the entry
+  File 2 -> 
+--------------------------------------------------
+Line 287:
+  File 1 -> struct dir_entry entry = entries[entry_number];
+  File 2 -> // Get path info
+--------------------------------------------------
+Line 288:
+  File 1 -> 
+  File 2 -> char file_names[64][12];
+--------------------------------------------------
+Line 289:
+  File 1 -> if (entry.name[0] == 0x00) {
+  File 2 -> uint32_t argc;
+--------------------------------------------------
+Line 290:
+  File 1 -> // printf("No more entries.\n");
+  File 2 -> path_to_directory_tokens(path, file_names, &argc);
+--------------------------------------------------
+Line 291:
+  File 1 -> file_size = 0;
+  File 2 -> 
+--------------------------------------------------
+Line 292:
+  File 1 -> return NULL;
+  File 2 -> // Traverse the directories until we find the file in the path
+--------------------------------------------------
+Line 293:
+  File 1 -> }
+  File 2 -> int dir_level = 0; // How many directories we've entered
+--------------------------------------------------
+Line 294:
+  File 1 -> if (entry.name[0] == 0xE5) {
+  File 2 -> int dir_found = 0; // If we find a dir, skip searching for next cluster in the chain.
+--------------------------------------------------
+Line 295:
+  File 1 -> // printf("Deleted entry.\n");
+  File 2 -> while (dir_level < argc) {
+--------------------------------------------------
+Line 296:
+  File 1 -> continue; // Deleted entry
+  File 2 -> // Get the current item of the path to search for
+--------------------------------------------------
+Line 297:
+  File 1 -> }
+  File 2 -> char file_name[12];
+--------------------------------------------------
+Line 298:
+  File 1 -> 
+  File 2 -> memset(file_name, 0, 12);
+--------------------------------------------------
+Line 299:
+  File 1 -> // Read name
+  File 2 -> file_name_to_8_3(file_names[dir_level], file_name);
+--------------------------------------------------
+Line 300:
+  File 1 -> char entry_name[12];
+  File 2 -> 
+--------------------------------------------------
+Line 301:
+  File 1 -> memset(entry_name, 0, 12);
+  File 2 -> // Read through entries in the cluster
+--------------------------------------------------
+Line 302:
+  File 1 -> memcpy(entry_name, entry.name, 11); // Copy entry to null terminated string.
+  File 2 -> for (int entry_number = 0; entry_number < cluster_entries; entry_number++) {
+--------------------------------------------------
+Line 303:
+  File 1 -> 
+  File 2 -> // Get the entry
+--------------------------------------------------
+Line 304:
+  File 1 -> // Found the dir/file, now handle entering subdir or return file.
+  File 2 -> struct dir_entry entry = entries[entry_number];
+--------------------------------------------------
+Line 305:
+  File 1 -> if (strcmp(file_name, entry_name) == 0) {
+  File 2 -> 
+--------------------------------------------------
+Line 306:
+  File 1 -> // printf("Entry attr: 0x%x\n", entry.attr);
+  File 2 -> if (entry.name[0] == 0x00) {
+--------------------------------------------------
+Line 307:
+  File 1 -> if ((entry.attr & FILE_ATTR_LFN_ENTRY) != 0) {
+  File 2 -> // printf("No more entries.\n");
+--------------------------------------------------
+Line 308:
+  File 1 -> PANIC("LFN Entries are not currently supported.");
+  File 2 -> file_size = 0;
+--------------------------------------------------
+Line 309:
+  File 1 -> }
+  File 2 -> return NULL;
+--------------------------------------------------
+Line 310:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 311:
+  File 1 -> if ((entry.attr & FILE_ATTR_SUB_DIR) != 0) { // This is a subdir, continue down rabbit hole with next cluster
+  File 2 -> if (entry.name[0] == 0xE5) {
+--------------------------------------------------
+Line 312:
+  File 1 -> printf("Dir found!\n");
+  File 2 -> // printf("Deleted entry.\n");
+--------------------------------------------------
+Line 313:
+  File 1 -> cluster_id = entry.first_cluster_low | (entry.first_cluster_high << 16);
+  File 2 -> continue; // Deleted entry
+--------------------------------------------------
+Line 314:
+  File 1 -> kfree_order(cluster, order_for_pages(pages_per_cluster)); // Don't leak memory ya fool!
+  File 2 -> }
+--------------------------------------------------
+Line 315:
+  File 1 -> cluster = fat_get_cluster(cluster_id);
+  File 2 -> 
+--------------------------------------------------
+Line 316:
+  File 1 -> dir_level++;
+  File 2 -> // Read name
+--------------------------------------------------
+Line 317:
+  File 1 -> dir_found = 1; // Note to not jump to next cluster in the chain
+  File 2 -> char entry_name[12];
+--------------------------------------------------
+Line 318:
+  File 1 -> break;
+  File 2 -> memset(entry_name, 0, 12);
+--------------------------------------------------
+Line 319:
+  File 1 -> } else { // It's a file!
+  File 2 -> memcpy(entry_name, entry.name, 11); // Copy entry to null terminated string.
+--------------------------------------------------
+Line 320:
+  File 1 -> printf("dir: %d, argc: %d\n", dir_level, argc);
+  File 2 -> 
+--------------------------------------------------
+Line 321:
+  File 1 -> if (dir_level != (argc - 1)) { // Ensure we're at the end of the path, don't return files in the middle of the path.
+  File 2 -> // Found the dir/file, now handle entering subdir or return file.
+--------------------------------------------------
+Line 322:
+  File 1 -> *file_size = 0;
+  File 2 -> if (strcmp(file_name, entry_name) == 0) {
+--------------------------------------------------
+Line 323:
+  File 1 -> return NULL;
+  File 2 -> // printf("Entry attr: 0x%x\n", entry.attr);
+--------------------------------------------------
+Line 324:
+  File 1 -> }
+  File 2 -> if ((entry.attr & FILE_ATTR_LFN_ENTRY) != 0) {
+--------------------------------------------------
+Line 325:
+  File 1 -> 
+  File 2 -> PANIC("LFN Entries are not currently supported.");
+--------------------------------------------------
+Line 326:
+  File 1 -> // Get the size of the file data
+  File 2 -> }
+--------------------------------------------------
+Line 327:
+  File 1 -> *file_size = entry.file_size;
+  File 2 -> 
+--------------------------------------------------
+Line 328:
+  File 1 -> uint32_t file_cluster = entry.first_cluster_low | (entry.first_cluster_high << 16);
+  File 2 -> if ((entry.attr & FILE_ATTR_SUB_DIR) != 0) { // This is a subdir, continue down rabbit hole with next cluster
+--------------------------------------------------
+Line 329:
+  File 1 -> 
+  File 2 -> printf("Dir found!\n");
+--------------------------------------------------
+Line 330:
+  File 1 -> // Get the size of the file data
+  File 2 -> cluster_id = entry.first_cluster_low | (entry.first_cluster_high << 16);
+--------------------------------------------------
+Line 331:
+  File 1 -> uint32_t file_cluster_count = 0; // We need to ensure the whole file is returned, so count the clusters!
+  File 2 -> kfree_order(cluster, order_for_pages(pages_per_cluster)); // Don't leak memory ya fool!
+--------------------------------------------------
+Line 332:
+  File 1 -> uint32_t file_cluster_tmp = file_cluster;
+  File 2 -> cluster = fat_get_cluster(cluster_id);
+--------------------------------------------------
+Line 333:
+  File 1 -> while (!is_eoc(file_cluster_tmp) && file_cluster_tmp < fat_entries) {
+  File 2 -> dir_level++;
+--------------------------------------------------
+Line 334:
+  File 1 -> file_cluster_count++;
+  File 2 -> dir_found = 1; // Note to not jump to next cluster in the chain
+--------------------------------------------------
+Line 335:
+  File 1 -> file_cluster_tmp = FAT[file_cluster_tmp];
+  File 2 -> break;
+--------------------------------------------------
+Line 336:
+  File 1 -> }
+  File 2 -> } else { // It's a file!
+--------------------------------------------------
+Line 337:
+  File 1 -> // printf("File uses %d clusters.\n", file_cluster_count);
+  File 2 -> printf("dir: %d, argc: %d\n", dir_level, argc);
+--------------------------------------------------
+Line 338:
+  File 1 -> 
+  File 2 -> if (dir_level != (argc - 1)) { // Ensure we're at the end of the path, don't return files in the middle of the path.
+--------------------------------------------------
+Line 339:
+  File 1 -> void* file_data = kalloc(((file_cluster_count * sectors_per_cluster * SECTOR_SIZE) + PAGE_SIZE - 1) / PAGE_SIZE);
+  File 2 -> *file_size = 0;
+--------------------------------------------------
+Line 340:
+  File 1 -> 
+  File 2 -> return NULL;
+--------------------------------------------------
+Line 341:
+  File 1 -> // Fill the data and return
+  File 2 -> }
+--------------------------------------------------
+Line 342:
+  File 1 -> uint8_t* data_ptr = (uint8_t *) file_data;
+  File 2 -> 
+--------------------------------------------------
+Line 343:
+  File 1 -> file_cluster_tmp = file_cluster;
+  File 2 -> // Get the size of the file data
+--------------------------------------------------
+Line 344:
+  File 1 -> 
+  File 2 -> *file_size = entry.file_size;
+--------------------------------------------------
+Line 345:
+  File 1 -> while (!is_eoc(file_cluster_tmp) && file_cluster_tmp < fat_entries) {
+  File 2 -> uint32_t file_cluster = entry.first_cluster_low | (entry.first_cluster_high << 16);
+--------------------------------------------------
+Line 346:
+  File 1 -> void* cluster_data = fat_get_cluster(file_cluster_tmp);
+  File 2 -> 
+--------------------------------------------------
+Line 347:
+  File 1 -> memcpy(data_ptr, cluster_data, sectors_per_cluster * SECTOR_SIZE);
+  File 2 -> // Get the size of the file data
+--------------------------------------------------
+Line 348:
+  File 1 -> kfree_order(cluster_data, order_for_pages(pages_per_cluster));
+  File 2 -> uint32_t file_cluster_count = 0; // We need to ensure the whole file is returned, so count the clusters!
+--------------------------------------------------
+Line 349:
+  File 1 -> data_ptr += sectors_per_cluster * SECTOR_SIZE;
+  File 2 -> uint32_t file_cluster_tmp = file_cluster;
+--------------------------------------------------
+Line 350:
+  File 1 -> file_cluster_tmp = FAT[file_cluster_tmp];
+  File 2 -> while (!is_eoc(file_cluster_tmp) && file_cluster_tmp < fat_entries) {
+--------------------------------------------------
+Line 351:
+  File 1 -> }
+  File 2 -> file_cluster_count++;
+--------------------------------------------------
+Line 352:
+  File 1 -> 
+  File 2 -> file_cluster_tmp = FAT[file_cluster_tmp];
+--------------------------------------------------
+Line 353:
+  File 1 -> return file_data;
+  File 2 -> }
+--------------------------------------------------
+Line 354:
+  File 1 -> }
+  File 2 -> // printf("File uses %d clusters.\n", file_cluster_count);
+--------------------------------------------------
+Line 355:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 356:
+  File 1 -> }
+  File 2 -> void* file_data = kalloc(((file_cluster_count * sectors_per_cluster * SECTOR_SIZE) + PAGE_SIZE - 1) / PAGE_SIZE);
+--------------------------------------------------
+Line 358:
+  File 1 -> if (!dir_found) {
+  File 2 -> // Fill the data and return
+--------------------------------------------------
+Line 359:
+  File 1 -> // Traverse to the next cluster if file/dir not found in this cluster
+  File 2 -> uint8_t* data_ptr = (uint8_t *) file_data;
+--------------------------------------------------
+Line 360:
+  File 1 -> if (is_eoc(FAT[cluster_id])) {
+  File 2 -> file_cluster_tmp = file_cluster;
+--------------------------------------------------
+Line 361:
+  File 1 -> // No next cluster, so file does not exist!
+  File 2 -> 
+--------------------------------------------------
+Line 362:
+  File 1 -> printf("End of cluster!\n");
+  File 2 -> while (!is_eoc(file_cluster_tmp) && file_cluster_tmp < fat_entries) {
+--------------------------------------------------
+Line 363:
+  File 1 -> *file_size = 0;
+  File 2 -> void* cluster_data = fat_get_cluster(file_cluster_tmp);
+--------------------------------------------------
+Line 364:
+  File 1 -> return NULL;
+  File 2 -> memcpy(data_ptr, cluster_data, sectors_per_cluster * SECTOR_SIZE);
+--------------------------------------------------
+Line 365:
+  File 1 -> }
+  File 2 -> kfree_order(cluster_data, order_for_pages(pages_per_cluster));
+--------------------------------------------------
+Line 366:
+  File 1 -> 
+  File 2 -> data_ptr += sectors_per_cluster * SECTOR_SIZE;
+--------------------------------------------------
+Line 367:
+  File 1 -> cluster_id = FAT[cluster_id];
+  File 2 -> file_cluster_tmp = FAT[file_cluster_tmp];
+--------------------------------------------------
+Line 368:
+  File 1 -> cluster = (uint32_t *) fat_get_cluster(cluster_id);
+  File 2 -> }
+--------------------------------------------------
+Line 369:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 370:
+  File 1 -> dir_found = 0; // Reset, since we've either entered a new dir, or it was already 0.
+  File 2 -> return file_data;
+--------------------------------------------------
+Line 373:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 374:
+  File 1 -> enum FILE_ERR fat32_write_file_by_path(const char* path, void* file_data, uint64_t file_size, uint8_t flags) {
+  File 2 -> 
+--------------------------------------------------
+Line 375:
+  File 1 -> // Start at root cluster
+  File 2 -> if (!dir_found) {
+--------------------------------------------------
+Line 376:
+  File 1 -> uint32_t cluster_id = root_dir_first_cluster;
+  File 2 -> // Traverse to the next cluster if file/dir not found in this cluster
+--------------------------------------------------
+Line 377:
+  File 1 -> void* cluster = fat_get_cluster(cluster_id);
+  File 2 -> if (is_eoc(FAT[cluster_id])) {
+--------------------------------------------------
+Line 378:
+  File 1 -> struct dir_entry *entries = (struct dir_entry *) cluster;
+  File 2 -> // No next cluster, so file does not exist!
+--------------------------------------------------
+Line 379:
+  File 1 -> struct dir_entry last_deleted_entry;
+  File 2 -> printf("End of cluster!\n");
+--------------------------------------------------
+Line 380:
+  File 1 -> 
+  File 2 -> *file_size = 0;
+--------------------------------------------------
+Line 381:
+  File 1 -> // Get path info
+  File 2 -> return NULL;
+--------------------------------------------------
+Line 382:
+  File 1 -> char file_names[64][12];
+  File 2 -> }
+--------------------------------------------------
+Line 383:
+  File 1 -> uint32_t argc;
+  File 2 -> 
+--------------------------------------------------
+Line 384:
+  File 1 -> path_to_directory_tokens(path, file_names, &argc);
+  File 2 -> cluster_id = FAT[cluster_id];
+--------------------------------------------------
+Line 385:
+  File 1 -> 
+  File 2 -> cluster = (uint32_t *) fat_get_cluster(cluster_id);
+--------------------------------------------------
+Line 386:
+  File 1 -> // Traverse the directories until we find the file in the path
+  File 2 -> }
+--------------------------------------------------
+Line 387:
+  File 1 -> int dir_level = 0; // How many directories we've entered
+  File 2 -> dir_found = 0; // Reset, since we've either entered a new dir, or it was already 0.
+--------------------------------------------------
+Line 388:
+  File 1 -> int dir_found = 0; // If we find a dir, skip searching for next cluster in the chain.
+  File 2 -> }
+--------------------------------------------------
+Line 389:
+  File 1 -> while (dir_level < argc) {
+  File 2 -> }
+--------------------------------------------------
+Line 390:
+  File 1 -> // Get the current item of the path to search for
+  File 2 -> 
+--------------------------------------------------
+Line 391:
+  File 1 -> char file_name[12];
+  File 2 -> enum FILE_ERR fat32_write_file_by_path(const char* path, void* file_data, uint64_t file_size, uint8_t flags) {
+--------------------------------------------------
+Line 392:
+  File 1 -> memset(file_name, 0, 12);
+  File 2 -> // Start at root cluster
+--------------------------------------------------
+Line 393:
+  File 1 -> file_name_to_8_3(file_names[dir_level], file_name);
+  File 2 -> uint32_t cluster_id = root_dir_first_cluster;
+--------------------------------------------------
+Line 394:
+  File 1 -> 
+  File 2 -> void* cluster = fat_get_cluster(cluster_id);
+--------------------------------------------------
+Line 395:
+  File 1 -> // Read through entries in the cluster
+  File 2 -> struct dir_entry *entries = (struct dir_entry *) cluster;
+--------------------------------------------------
+Line 396:
+  File 1 -> for (int entry_number = 0; entry_number < cluster_entries; entry_number++) {
+  File 2 -> struct dir_entry last_deleted_entry;
+--------------------------------------------------
+Line 397:
+  File 1 -> // Get the entry
+  File 2 -> 
+--------------------------------------------------
+Line 398:
+  File 1 -> struct dir_entry entry = entries[entry_number];
+  File 2 -> // Get path info
+--------------------------------------------------
+Line 399:
+  File 1 -> 
+  File 2 -> char file_names[64][12];
+--------------------------------------------------
+Line 400:
+  File 1 -> if (entry.name[0] == 0x00) {
+  File 2 -> uint32_t argc;
+--------------------------------------------------
+Line 401:
+  File 1 -> // printf("No more entries.\n");
+  File 2 -> path_to_directory_tokens(path, file_names, &argc);
+--------------------------------------------------
+Line 402:
+  File 1 -> file_size = 0;
+  File 2 -> 
+--------------------------------------------------
+Line 403:
+  File 1 -> return NULL;
+  File 2 -> // Traverse the directories until we find the file in the path
+--------------------------------------------------
+Line 404:
+  File 1 -> }
+  File 2 -> int dir_level = 0; // How many directories we've entered
+--------------------------------------------------
+Line 405:
+  File 1 -> if (entry.name[0] == 0xE5) {
+  File 2 -> int dir_found = 0; // If we find a dir, skip searching for next cluster in the chain.
+--------------------------------------------------
+Line 406:
+  File 1 -> last_deleted_entry = entry; // We may use this for writing later!
+  File 2 -> while (dir_level < argc) {
+--------------------------------------------------
+Line 407:
+  File 1 -> continue; // Deleted entry
+  File 2 -> // Get the current item of the path to search for
+--------------------------------------------------
+Line 408:
+  File 1 -> }
+  File 2 -> char file_name[12];
+--------------------------------------------------
+Line 409:
+  File 1 -> 
+  File 2 -> memset(file_name, 0, 12);
+--------------------------------------------------
+Line 410:
+  File 1 -> // Read name
+  File 2 -> file_name_to_8_3(file_names[dir_level], file_name);
+--------------------------------------------------
+Line 411:
+  File 1 -> char entry_name[12];
+  File 2 -> 
+--------------------------------------------------
+Line 412:
+  File 1 -> memset(entry_name, 0, 12);
+  File 2 -> // Read through entries in the cluster
+--------------------------------------------------
+Line 413:
+  File 1 -> memcpy(entry_name, entry.name, 11); // Copy entry to null terminated string.
+  File 2 -> for (int entry_number = 0; entry_number < cluster_entries; entry_number++) {
+--------------------------------------------------
+Line 414:
+  File 1 -> 
+  File 2 -> // Get the entry
+--------------------------------------------------
+Line 415:
+  File 1 -> // Found the dir/file, now handle entering subdir or return file.
+  File 2 -> struct dir_entry entry = entries[entry_number];
+--------------------------------------------------
+Line 416:
+  File 1 -> if (strcmp(file_name, entry_name) == 0) {
+  File 2 -> 
+--------------------------------------------------
+Line 417:
+  File 1 -> // printf("Entry attr: 0x%x\n", entry.attr);
+  File 2 -> if (entry.name[0] == 0x00) {
+--------------------------------------------------
+Line 418:
+  File 1 -> if ((entry.attr & FILE_ATTR_LFN_ENTRY) != 0) {
+  File 2 -> // printf("No more entries.\n");
+--------------------------------------------------
+Line 419:
+  File 1 -> PANIC("LFN Entries are not currently supported.");
+  File 2 -> break;
+--------------------------------------------------
+Line 421:
+  File 1 -> 
+  File 2 -> if (entry.name[0] == 0xE5) {
+--------------------------------------------------
+Line 422:
+  File 1 -> if ((entry.attr & FILE_ATTR_SUB_DIR) != 0) { // This is a subdir, continue down rabbit hole with next cluster
+  File 2 -> last_deleted_entry = entry; // We may use this for writing later!
+--------------------------------------------------
+Line 423:
+  File 1 -> printf("Dir found!\n");
+  File 2 -> continue; // Deleted entry
+--------------------------------------------------
+Line 424:
+  File 1 -> cluster_id = entry.first_cluster_low | (entry.first_cluster_high << 16);
+  File 2 -> }
+--------------------------------------------------
+Line 425:
+  File 1 -> kfree_order(cluster, order_for_pages(pages_per_cluster)); // Don't leak memory ya fool!
+  File 2 -> 
+--------------------------------------------------
+Line 426:
+  File 1 -> cluster = fat_get_cluster(cluster_id);
+  File 2 -> // Read name
+--------------------------------------------------
+Line 427:
+  File 1 -> dir_level++;
+  File 2 -> char entry_name[12];
+--------------------------------------------------
+Line 428:
+  File 1 -> dir_found = 1; // Note to not jump to next cluster in the chain
+  File 2 -> memset(entry_name, 0, 12);
+--------------------------------------------------
+Line 429:
+  File 1 -> break;
+  File 2 -> memcpy(entry_name, entry.name, 11); // Copy entry to null terminated string.
+--------------------------------------------------
+Line 430:
+  File 1 -> } else { // It's a file!
+  File 2 -> 
+--------------------------------------------------
+Line 431:
+  File 1 -> printf("dir: %d, argc: %d\n", dir_level, argc);
+  File 2 -> // Found the dir/file, now handle entering subdir or return file.
+--------------------------------------------------
+Line 432:
+  File 1 -> if (dir_level != (argc - 1)) { // Ensure we're at the end of the path, don't return files in the middle of the path.
+  File 2 -> if (strcmp(file_name, entry_name) == 0) {
+--------------------------------------------------
+Line 433:
+  File 1 -> return NULL;
+  File 2 -> // printf("Entry attr: 0x%x\n", entry.attr);
+--------------------------------------------------
+Line 434:
+  File 1 -> }
+  File 2 -> if ((entry.attr & FILE_ATTR_LFN_ENTRY) != 0) {
+--------------------------------------------------
+Line 435:
+  File 1 -> 
+  File 2 -> PANIC("LFN Entries are not currently supported.");
+--------------------------------------------------
+Line 436:
+  File 1 -> // At end of the path, with a matching existing file. Shrink/extend FAT cluster entries, then overwrite file.
+  File 2 -> }
+--------------------------------------------------
+Line 437:
+  File 1 -> PANIC("NOT IMPLEMENTED FILE OVERWRITE");
+  File 2 -> 
+--------------------------------------------------
+Line 438:
+  File 1 -> }
+  File 2 -> if ((entry.attr & FILE_ATTR_SUB_DIR) != 0) { // This is a subdir, continue down rabbit hole with next cluster
+--------------------------------------------------
+Line 439:
+  File 1 -> }
+  File 2 -> printf("Dir found!\n");
+--------------------------------------------------
+Line 440:
+  File 1 -> }
+  File 2 -> cluster_id = entry.first_cluster_low | (entry.first_cluster_high << 16);
+--------------------------------------------------
+Line 441:
+  File 1 -> 
+  File 2 -> kfree_order(cluster, order_for_pages(pages_per_cluster)); // Don't leak memory ya fool!
+--------------------------------------------------
+Line 442:
+  File 1 -> if (!dir_found) {
+  File 2 -> cluster = fat_get_cluster(cluster_id);
+--------------------------------------------------
+Line 443:
+  File 1 -> // Traverse to the next cluster if file/dir not found in this cluster
+  File 2 -> dir_level++;
+--------------------------------------------------
+Line 444:
+  File 1 -> if (is_eoc(FAT[cluster_id])) {
+  File 2 -> dir_found = 1; // Note to not jump to next cluster in the chain
+--------------------------------------------------
+Line 445:
+  File 1 -> // No next cluster, so file does not exist!
+  File 2 -> break;
+--------------------------------------------------
+Line 446:
+  File 1 -> if ((argc - 1) != dir_level) {
+  File 2 -> } else { // It's a file!
+--------------------------------------------------
+Line 447:
+  File 1 -> return FILE_NOT_FOUND;
+  File 2 -> printf("File found!\n");
+--------------------------------------------------
+Line 448:
+  File 1 -> }
+  File 2 -> if (dir_level != (argc - 1)) { // Ensure we're at the end of the path, don't return files in the middle of the path.
+--------------------------------------------------
+Line 449:
+  File 1 -> 
+  File 2 -> return FILE_NOT_DIRECTORY;
+--------------------------------------------------
+Line 450:
+  File 1 -> // File doesn't exist, and at the end of path in the correct directory. Make FAT cluster entries, then write file.
+  File 2 -> }
+--------------------------------------------------
+Line 451:
+  File 1 -> PANIC("NOT IMPLEMENTED NEW FILE WRITING");
+  File 2 -> // File found, and is at end of path. Write to existing file!
+--------------------------------------------------
+Line 452:
+  File 1 -> }
+  File 2 -> // Allocate starting cluster
+--------------------------------------------------
+Line 454:
+  File 1 -> cluster_id = FAT[cluster_id];
+  File 2 -> struct dir_entry entry;
+--------------------------------------------------
+Line 455:
+  File 1 -> cluster = (uint32_t *) fat_get_cluster(cluster_id);
+  File 2 -> memset(&entry, 0, sizeof(struct dir_entry));
+--------------------------------------------------
+Line 456:
+  File 1 -> }
+  File 2 -> file_name_to_8_3(file_names[dir_level], entry.name);
+--------------------------------------------------
+Line 457:
+  File 1 -> dir_found = 0; // Since we've either entered a new dir, or it was already 0.
+  File 2 -> entry.attr = FILE_ATTR_ARCHIVE;
+--------------------------------------------------
+Line 458:
+  File 1 -> }
+  File 2 -> entry.file_size = file_size;
+--------------------------------------------------
+Line 459:
+  File 1 -> }
+  File 2 -> entries[entry_number] = entry;
+--------------------------------------------------
+Line 462:
+  File 1 -> 
+  File 2 -> // Write file contents
+--------------------------------------------------
+Line 463:
+  File 1 -> 
+  File 2 -> uint32_t entry_cluster_id = (entry.first_cluster_high << 16) | entry.first_cluster_low;
+--------------------------------------------------
+Line 464:
+  File 1 -> <no line>
+  File 2 -> uint32_t entry_cluster_count = update_fat_chain(file_size, entry_cluster_id);
+--------------------------------------------------
+Line 465:
+  File 1 -> <no line>
+  File 2 -> for (int i = 0; i < entry_cluster_count; i++) {
+--------------------------------------------------
+Line 466:
+  File 1 -> <no line>
+  File 2 -> write_to_cluster(file_data + (bytes_per_cluster * i), entry_cluster_id);
+--------------------------------------------------
+Line 467:
+  File 1 -> <no line>
+  File 2 -> entry_cluster_id = FAT[entry_cluster_id];
+--------------------------------------------------
+Line 468:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 469:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 470:
+  File 1 -> <no line>
+  File 2 -> // Write back the directory entry cluster
+--------------------------------------------------
+Line 471:
+  File 1 -> <no line>
+  File 2 -> write_to_cluster(entries, cluster_id);
+--------------------------------------------------
+Line 472:
+  File 1 -> <no line>
+  File 2 -> return SUCCESS;
+--------------------------------------------------
+Line 473:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 474:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 475:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 476:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 477:
+  File 1 -> <no line>
+  File 2 -> if (!dir_found) {
+--------------------------------------------------
+Line 478:
+  File 1 -> <no line>
+  File 2 -> // Traverse to the next cluster if file/dir not found in this cluster
+--------------------------------------------------
+Line 479:
+  File 1 -> <no line>
+  File 2 -> if (is_eoc(FAT[cluster_id])) {
+--------------------------------------------------
+Line 480:
+  File 1 -> <no line>
+  File 2 -> // No next cluster, so file does not exist!
+--------------------------------------------------
+Line 481:
+  File 1 -> <no line>
+  File 2 -> if ((argc - 1) != dir_level) {
+--------------------------------------------------
+Line 482:
+  File 1 -> <no line>
+  File 2 -> return FILE_NOT_FOUND;
+--------------------------------------------------
+Line 483:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 484:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 485:
+  File 1 -> <no line>
+  File 2 -> // File doesn't exist, and at the end of path in the correct directory. Make FAT cluster entries, then write file.
+--------------------------------------------------
+Line 486:
+  File 1 -> <no line>
+  File 2 -> // Initialize entry and populate it's starting cluster
+--------------------------------------------------
+Line 487:
+  File 1 -> <no line>
+  File 2 -> int free_slot = -1;
+--------------------------------------------------
+Line 488:
+  File 1 -> <no line>
+  File 2 -> for (int i = 0; i < cluster_entries; i++) {
+--------------------------------------------------
+Line 489:
+  File 1 -> <no line>
+  File 2 -> if (entries[i].name[0] == 0x00 || entries[i].name[0] == 0xE5) {
+--------------------------------------------------
+Line 490:
+  File 1 -> <no line>
+  File 2 -> free_slot = i;
+--------------------------------------------------
+Line 491:
+  File 1 -> <no line>
+  File 2 -> break;
+--------------------------------------------------
+Line 492:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 493:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 494:
+  File 1 -> <no line>
+  File 2 -> if (free_slot == -1) {
+--------------------------------------------------
+Line 495:
+  File 1 -> <no line>
+  File 2 -> return DIR_FULL;
+--------------------------------------------------
+Line 496:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 497:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 498:
+  File 1 -> <no line>
+  File 2 -> // Allocate starting cluster
+--------------------------------------------------
+Line 499:
+  File 1 -> <no line>
+  File 2 -> uint32_t entry_start_cluster = find_free_cluster();
+--------------------------------------------------
+Line 500:
+  File 1 -> <no line>
+  File 2 -> if (!entry_start_cluster) {
+--------------------------------------------------
+Line 501:
+  File 1 -> <no line>
+  File 2 -> return NO_SPACE;
+--------------------------------------------------
+Line 502:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 503:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 504:
+  File 1 -> <no line>
+  File 2 -> struct dir_entry entry;
+--------------------------------------------------
+Line 505:
+  File 1 -> <no line>
+  File 2 -> memset(&entry, 0, sizeof(struct dir_entry));
+--------------------------------------------------
+Line 506:
+  File 1 -> <no line>
+  File 2 -> file_name_to_8_3(file_names[dir_level], entry.name);
+--------------------------------------------------
+Line 507:
+  File 1 -> <no line>
+  File 2 -> entry.attr = FILE_ATTR_ARCHIVE;
+--------------------------------------------------
+Line 508:
+  File 1 -> <no line>
+  File 2 -> entry.first_cluster_high = (entry_start_cluster >> 16) & 0xFFFF;
+--------------------------------------------------
+Line 509:
+  File 1 -> <no line>
+  File 2 -> entry.first_cluster_low = entry_start_cluster & 0xFFFF;
+--------------------------------------------------
+Line 510:
+  File 1 -> <no line>
+  File 2 -> entry.file_size = file_size;
+--------------------------------------------------
+Line 511:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 512:
+  File 1 -> <no line>
+  File 2 -> // Insert entry into the directory cluster (cache!)
+--------------------------------------------------
+Line 513:
+  File 1 -> <no line>
+  File 2 -> entries[free_slot] = entry;
+--------------------------------------------------
+Line 514:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 515:
+  File 1 -> <no line>
+  File 2 -> // Write file contents
+--------------------------------------------------
+Line 516:
+  File 1 -> <no line>
+  File 2 -> uint32_t entry_cluster_id = entry_start_cluster;
+--------------------------------------------------
+Line 517:
+  File 1 -> <no line>
+  File 2 -> uint32_t entry_cluster_count = update_fat_chain(file_size, entry_cluster_id);
+--------------------------------------------------
+Line 518:
+  File 1 -> <no line>
+  File 2 -> for (int i = 0; i < entry_cluster_count; i++) {
+--------------------------------------------------
+Line 519:
+  File 1 -> <no line>
+  File 2 -> write_to_cluster(file_data + (bytes_per_cluster * i), entry_cluster_id);
+--------------------------------------------------
+Line 520:
+  File 1 -> <no line>
+  File 2 -> entry_cluster_id = FAT[entry_cluster_id];
+--------------------------------------------------
+Line 521:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 522:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 523:
+  File 1 -> <no line>
+  File 2 -> // Write back the directory entry cluster
+--------------------------------------------------
+Line 524:
+  File 1 -> <no line>
+  File 2 -> write_to_cluster(entries, cluster_id);
+--------------------------------------------------
+Line 525:
+  File 1 -> <no line>
+  File 2 -> return SUCCESS;
+--------------------------------------------------
+Line 526:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 527:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 528:
+  File 1 -> <no line>
+  File 2 -> // Get next cluster to read if !is_eoc
+--------------------------------------------------
+Line 529:
+  File 1 -> <no line>
+  File 2 -> cluster_id = FAT[cluster_id];
+--------------------------------------------------
+Line 530:
+  File 1 -> <no line>
+  File 2 -> cluster = (uint32_t *) fat_get_cluster(cluster_id);
+--------------------------------------------------
+Line 531:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 532:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 533:
+  File 1 -> <no line>
+  File 2 -> dir_found = 0; // Since we've either entered a new dir, or it was already 0.
+--------------------------------------------------
+Line 534:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 535:
+  File 1 -> <no line>
+  File 2 -> return UNKNOWN_ERR;
+--------------------------------------------------
+Line 536:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 537:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 538:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 539:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 540:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+
+Found 512 difference(s).

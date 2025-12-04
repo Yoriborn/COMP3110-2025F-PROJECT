@@ -2,12 +2,852 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\ext2_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\ext2_header_V2.h'...
 
 Line 24:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> enum file_system_state {
+  File 2 -> #define OPT_FEAT_PREALLOCATE_BLKS_IN_DIR    (1 << 0)
+--------------------------------------------------
+Line 25:
+  File 1 -> CLEAN_FILE_SYSTEM = 1,
+  File 2 -> #define OPT_FEAT_AFS_SERVER_INODES_EXIST    (1 << 1)
+--------------------------------------------------
+Line 26:
+  File 1 -> ERROR_FILE_SYSTEM = 2
+  File 2 -> #define OPT_FEAT_FS_HAS_JOURNAL             (1 << 2)
+--------------------------------------------------
+Line 27:
+  File 1 -> };
+  File 2 -> #define OPT_FEAT_INODE_EXT_ATTR             (1 << 3)
+--------------------------------------------------
+Line 28:
+  File 1 -> 
+  File 2 -> #define OPT_FEAT_FS_RESIZEABLE              (1 << 4)
+--------------------------------------------------
+Line 29:
+  File 1 -> enum error_handle_methods {
+  File 2 -> #define OPT_FEAT_FS_DIR_HASH_INDEX          (1 << 5)
+--------------------------------------------------
+Line 30:
+  File 1 -> IGNORE = 1,
+  File 2 -> #define REQ_FEAT_COMPRESSION                (1 << 0)
+--------------------------------------------------
+Line 31:
+  File 1 -> READ_ONLY = 2,
+  File 2 -> #define REQ_FEAT_DIR_ENTRY_TYPE_FIELD       (1 << 1)
+--------------------------------------------------
+Line 32:
+  File 1 -> PANIC = 3,
+  File 2 -> #define REQ_FEAT_FS_REPLAY_JOURNAL          (1 << 2)
+--------------------------------------------------
+Line 33:
+  File 1 -> };
+  File 2 -> #define REQ_FEAT_FS_JOURNAL_DEVICE          (1 << 3)
+--------------------------------------------------
+Line 34:
+  File 1 -> 
+  File 2 -> #define RO_FEAT_SPARSE_SBLOCK_GROUP_DES_T   (1 << 0)
+--------------------------------------------------
+Line 35:
+  File 1 -> enum creator_os_ids {
+  File 2 -> #define RO_FEAT_64BIT_FILE_SIZE             (1 << 1)
+--------------------------------------------------
+Line 36:
+  File 1 -> LINUX,
+  File 2 -> #define RO_FEAT_DIR_CONTENTS_BINARY_TREE    (1 << 2)
+--------------------------------------------------
+Line 37:
+  File 1 -> GNU_HURD,
+  File 2 -> 
+--------------------------------------------------
+Line 38:
+  File 1 -> MASIX,
+  File 2 -> extern uint32_t ext2_block_size;
+--------------------------------------------------
+Line 39:
+  File 1 -> FREE_BSD,
+  File 2 -> 
+--------------------------------------------------
+Line 40:
+  File 1 -> OTHER_LITES,
+  File 2 -> enum file_system_state {
+--------------------------------------------------
+Line 41:
+  File 1 -> };
+  File 2 -> CLEAN_FILE_SYSTEM = 1,
+--------------------------------------------------
+Line 42:
+  File 1 -> 
+  File 2 -> ERROR_FILE_SYSTEM = 2
+--------------------------------------------------
+Line 43:
+  File 1 -> #define EXT2_SIGNATURE 0xEF53
+  File 2 -> };
+--------------------------------------------------
+Line 45:
+  File 1 -> struct extended_s_block {
+  File 2 -> enum error_handle_methods {
+--------------------------------------------------
+Line 46:
+  File 1 -> uint32_t first_non_reserved_inode;              // First non-reserved inode in file system.
+  File 2 -> IGNORE = 1,
+--------------------------------------------------
+Line 47:
+  File 1 -> uint16_t size_inode_bytes;                      // Size of each inode structure in bytes.
+  File 2 -> READ_ONLY = 2,
+--------------------------------------------------
+Line 48:
+  File 1 -> uint16_t current_block_group;                   // Block group that this superblock is part of (if backup copy).
+  File 2 -> PANIC = 3,
+--------------------------------------------------
+Line 49:
+  File 1 -> uint32_t optional_features_present;             // Non-required features, but are available for support.
+  File 2 -> };
+--------------------------------------------------
+Line 50:
+  File 1 -> uint32_t required_features_present;             // Required features to read or write.
+  File 2 -> 
+--------------------------------------------------
+Line 51:
+  File 1 -> uint32_t rw_required_features;                  // Required features to write, if unsupported allows reading only.
+  File 2 -> enum creator_os_ids {
+--------------------------------------------------
+Line 52:
+  File 1 -> uint8_t  file_system_id[16];                    // File system ID.
+  File 2 -> LINUX,
+--------------------------------------------------
+Line 53:
+  File 1 -> char     volume_name[16];                       // Volume name in null terminated string.
+  File 2 -> GNU_HURD,
+--------------------------------------------------
+Line 54:
+  File 1 -> char     last_mounted_path_volume[64];          // Path volume that was last mounted to, null terminated string.
+  File 2 -> MASIX,
+--------------------------------------------------
+Line 55:
+  File 1 -> uint32_t compression_algorithms_used;           // Compression algorithms used.
+  File 2 -> FREE_BSD,
+--------------------------------------------------
+Line 56:
+  File 1 -> uint8_t  number_blocks_to_preallocate_files;    // Number of blocks to preallocate for files.
+  File 2 -> OTHER_LITES,
+--------------------------------------------------
+Line 57:
+  File 1 -> uint8_t  number_blocks_to_preallocate_dirs;     // Number of blocks to preallocate for directories.
+  File 2 -> };
+--------------------------------------------------
+Line 58:
+  File 1 -> uint16_t reserved1;                             // Unused.
+  File 2 -> 
+--------------------------------------------------
+Line 59:
+  File 1 -> uint8_t  journal_id[16];                        // Journal ID.
+  File 2 -> #define EXT2_SIGNATURE 0xEF53
+--------------------------------------------------
+Line 60:
+  File 1 -> uint32_t journal_inode;                         // Journal inode.
+  File 2 -> 
+--------------------------------------------------
+Line 61:
+  File 1 -> uint32_t journal_device;                        // Journal device.
+  File 2 -> struct extended_s_block {
+--------------------------------------------------
+Line 62:
+  File 1 -> uint32_t head_orphan_inode_list;                // Head of orphan inode list.
+  File 2 -> uint32_t first_non_reserved_inode;              // First non-reserved inode in file system.
+--------------------------------------------------
+Line 63:
+  File 1 -> uint8_t  reserved2[787];                        // Unused.
+  File 2 -> uint16_t size_inode_bytes;                      // Size of each inode structure in bytes.
+--------------------------------------------------
+Line 64:
+  File 1 -> } __attribute__((packed));
+  File 2 -> uint16_t current_block_group;                   // Block group that this superblock is part of (if backup copy).
+--------------------------------------------------
+Line 65:
+  File 1 -> 
+  File 2 -> uint32_t optional_features_present;             // Non-required features, but are available for support.
+--------------------------------------------------
+Line 66:
+  File 1 -> struct s_block {
+  File 2 -> uint32_t required_features_present;             // Required features to read or write.
+--------------------------------------------------
+Line 67:
+  File 1 -> uint32_t inode_count;               // Total number of inodes in file system.
+  File 2 -> uint32_t rw_required_features;                  // Required features to write, if unsupported allows reading only.
+--------------------------------------------------
+Line 68:
+  File 1 -> uint32_t block_count;               // Total number of blocks in file system.
+  File 2 -> uint8_t  file_system_id[16];                    // File system ID.
+--------------------------------------------------
+Line 69:
+  File 1 -> uint32_t block_reserved_su;         // Number of blocks reserved for superuser.
+  File 2 -> char     volume_name[16];                       // Volume name in null terminated string.
+--------------------------------------------------
+Line 70:
+  File 1 -> uint32_t unallocated_block_count;   // Total number of unallocated blocks.
+  File 2 -> char     last_mounted_path_volume[64];          // Path volume that was last mounted to, null terminated string.
+--------------------------------------------------
+Line 71:
+  File 1 -> uint32_t unallocated_inode_count;   // Total number of unallocated inodes.
+  File 2 -> uint32_t compression_algorithms_used;           // Compression algorithms used.
+--------------------------------------------------
+Line 72:
+  File 1 -> uint32_t superblock_block_number;   // Block number of the block containing the superblock.
+  File 2 -> uint8_t  number_blocks_to_preallocate_files;    // Number of blocks to preallocate for files.
+--------------------------------------------------
+Line 73:
+  File 1 -> uint32_t block_size_shift;          // Block size where (block_size = 1024 << block_size_shift)
+  File 2 -> uint8_t  number_blocks_to_preallocate_dirs;     // Number of blocks to preallocate for directories.
+--------------------------------------------------
+Line 74:
+  File 1 -> uint32_t fragment_size_shift;       // Fragment size where (fragment_size = 1024 << fragment_size_shift)
+  File 2 -> uint16_t reserved1;                             // Unused.
+--------------------------------------------------
+Line 75:
+  File 1 -> uint32_t blocks_in_block_group;     // Number of blocks in each block group.
+  File 2 -> uint8_t  journal_id[16];                        // Journal ID.
+--------------------------------------------------
+Line 76:
+  File 1 -> uint32_t fragments_in_block_group;  // Number of fragments in each block group.
+  File 2 -> uint32_t journal_inode;                         // Journal inode.
+--------------------------------------------------
+Line 77:
+  File 1 -> uint32_t inodes_in_block_group;     // Number of inodes in each block group.
+  File 2 -> uint32_t journal_device;                        // Journal device.
+--------------------------------------------------
+Line 78:
+  File 1 -> uint32_t last_mount_time;           // Last mount time (POSIX time).
+  File 2 -> uint32_t head_orphan_inode_list;                // Head of orphan inode list.
+--------------------------------------------------
+Line 79:
+  File 1 -> uint32_t last_written_time;         // Last written time (POSIX time).
+  File 2 -> uint8_t  reserved2[787];                        // Unused.
+--------------------------------------------------
+Line 80:
+  File 1 -> uint16_t mount_count_fsck;          // Number of times the volume has been mounted since last fsck.
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 81:
+  File 1 -> uint16_t mount_count_until_fsck;    // Number of mounts allowed before a fsck must be done.
+  File 2 -> 
+--------------------------------------------------
+Line 82:
+  File 1 -> uint16_t signature;                 // EXT2 signature (0xEF53).
+  File 2 -> struct s_block {
+--------------------------------------------------
+Line 83:
+  File 1 -> uint16_t file_system_state;         // State of filesystem. See: `enum file_system_state`.
+  File 2 -> uint32_t inode_count;               // Total number of inodes in file system.
+--------------------------------------------------
+Line 84:
+  File 1 -> uint16_t error_action;              // What to do when encountering an error. See: `enum error_handle_methods`.
+  File 2 -> uint32_t block_count;               // Total number of blocks in file system.
+--------------------------------------------------
+Line 85:
+  File 1 -> uint16_t minor_version;             // Minor portion of the version.
+  File 2 -> uint32_t block_reserved_su;         // Number of blocks reserved for superuser.
+--------------------------------------------------
+Line 86:
+  File 1 -> uint32_t time_since_last_fsck;      // Time since last fsck (POSIX time).
+  File 2 -> uint32_t unallocated_block_count;   // Total number of unallocated blocks.
+--------------------------------------------------
+Line 87:
+  File 1 -> uint32_t interval_forced_fsck;      // Interval between forced fsck (POSIX time).
+  File 2 -> uint32_t unallocated_inode_count;   // Total number of unallocated inodes.
+--------------------------------------------------
+Line 88:
+  File 1 -> uint32_t os_id;                     // OS ID from which the filesystem on this volume was created.
+  File 2 -> uint32_t superblock_block_number;   // Block number of the block containing the superblock.
+--------------------------------------------------
+Line 89:
+  File 1 -> uint32_t major_version;             // Major portion of the version.
+  File 2 -> uint32_t block_size_shift;          // Block size where (block_size = 1024 << block_size_shift)
+--------------------------------------------------
+Line 90:
+  File 1 -> uint16_t user_id_reserved_blocks;   // User ID that can use reserved blocks.
+  File 2 -> uint32_t fragment_size_shift;       // Fragment size where (fragment_size = 1024 << fragment_size_shift)
+--------------------------------------------------
+Line 91:
+  File 1 -> uint16_t group_id_reserved_blocks;  // Group ID that can use reserved blocks.
+  File 2 -> uint32_t blocks_in_block_group;     // Number of blocks in each block group.
+--------------------------------------------------
+Line 92:
+  File 1 -> struct extended_s_block esb;        // If major version is >= 1, extended superblock is here.
+  File 2 -> uint32_t fragments_in_block_group;  // Number of fragments in each block group.
+--------------------------------------------------
+Line 93:
+  File 1 -> } __attribute__((packed));
+  File 2 -> uint32_t inodes_in_block_group;     // Number of inodes in each block group.
+--------------------------------------------------
+Line 94:
+  File 1 -> 
+  File 2 -> uint32_t last_mount_time;           // Last mount time (POSIX time).
+--------------------------------------------------
+Line 95:
+  File 1 -> struct block_group_descriptor_table {
+  File 2 -> uint32_t last_written_time;         // Last written time (POSIX time).
+--------------------------------------------------
+Line 96:
+  File 1 -> uint32_t block_usage_bitmap_block_addr;
+  File 2 -> uint16_t mount_count_fsck;          // Number of times the volume has been mounted since last fsck.
+--------------------------------------------------
+Line 97:
+  File 1 -> uint32_t inode_usage_bitmap_block_addr;
+  File 2 -> uint16_t mount_count_until_fsck;    // Number of mounts allowed before a fsck must be done.
+--------------------------------------------------
+Line 98:
+  File 1 -> uint32_t inode_block_start_block_addr;
+  File 2 -> uint16_t signature;                 // EXT2 signature (0xEF53).
+--------------------------------------------------
+Line 99:
+  File 1 -> uint16_t unallocated_block_in_group_count;
+  File 2 -> uint16_t file_system_state;         // State of filesystem. See: `enum file_system_state`.
+--------------------------------------------------
+Line 100:
+  File 1 -> uint16_t unallocated_inode_in_group_count;
+  File 2 -> uint16_t error_action;              // What to do when encountering an error. See: `enum error_handle_methods`.
+--------------------------------------------------
+Line 101:
+  File 1 -> uint16_t directories_in_group_count;
+  File 2 -> uint16_t minor_version;             // Minor portion of the version.
+--------------------------------------------------
+Line 102:
+  File 1 -> uint8_t padding[14];
+  File 2 -> uint32_t time_since_last_fsck;      // Time since last fsck (POSIX time).
+--------------------------------------------------
+Line 103:
+  File 1 -> } __attribute__((packed));
+  File 2 -> uint32_t interval_forced_fsck;      // Interval between forced fsck (POSIX time).
+--------------------------------------------------
+Line 104:
+  File 1 -> 
+  File 2 -> uint32_t os_id;                     // OS ID from which the filesystem on this volume was created.
+--------------------------------------------------
+Line 105:
+  File 1 -> struct inode {
+  File 2 -> uint32_t major_version;             // Major portion of the version.
+--------------------------------------------------
+Line 106:
+  File 1 -> uint16_t permissions; // Contains the permissions and the type of inode
+  File 2 -> uint16_t user_id_reserved_blocks;   // User ID that can use reserved blocks.
+--------------------------------------------------
+Line 107:
+  File 1 -> uint16_t user_id;
+  File 2 -> uint16_t group_id_reserved_blocks;  // Group ID that can use reserved blocks.
+--------------------------------------------------
+Line 108:
+  File 1 -> uint32_t low_size; // Lower 32 bits of the size of the inode
+  File 2 -> struct extended_s_block esb;        // If major version is >= 1, extended superblock is here.
+--------------------------------------------------
+Line 109:
+  File 1 -> uint32_t last_access_time;
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 110:
+  File 1 -> uint32_t creation_time;
+  File 2 -> 
+--------------------------------------------------
+Line 111:
+  File 1 -> uint32_t last_modification_time;
+  File 2 -> struct block_group_descriptor_table {
+--------------------------------------------------
+Line 112:
+  File 1 -> uint32_t deletion_time;
+  File 2 -> uint32_t block_usage_bitmap_block_addr;
+--------------------------------------------------
+Line 113:
+  File 1 -> uint16_t group_id;
+  File 2 -> uint32_t inode_usage_bitmap_block_addr;
+--------------------------------------------------
+Line 114:
+  File 1 -> uint16_t count_hard_links; // Count of dir entries to the inode. When 0, the data blocks are marked as unallocated.
+  File 2 -> uint32_t inode_block_start_block_addr;
+--------------------------------------------------
+Line 115:
+  File 1 -> uint32_t count_disk_sectors; // Count of disk sectors in use by the inode, no including the inode structure nor dir entries linked.
+  File 2 -> uint16_t unallocated_block_in_group_count;
+--------------------------------------------------
+Line 116:
+  File 1 -> uint32_t flags;
+  File 2 -> uint16_t unallocated_inode_in_group_count;
+--------------------------------------------------
+Line 117:
+  File 1 -> uint32_t os_specific_value_1;
+  File 2 -> uint16_t directories_in_group_count;
+--------------------------------------------------
+Line 118:
+  File 1 -> uint32_t direct_block_pointer[12];
+  File 2 -> uint8_t padding[14];
+--------------------------------------------------
+Line 119:
+  File 1 -> uint32_t single_indirect_block_pointer;
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 120:
+  File 1 -> uint32_t double_indirect_block_pointer;
+  File 2 -> 
+--------------------------------------------------
+Line 121:
+  File 1 -> uint32_t triply_indirect_block_pointer;
+  File 2 -> struct inode {
+--------------------------------------------------
+Line 122:
+  File 1 -> uint32_t gen_number;
+  File 2 -> uint16_t permissions; // Contains the permissions and the type of inode
+--------------------------------------------------
+Line 123:
+  File 1 -> uint32_t extended_attribute_block;
+  File 2 -> uint16_t user_id;
+--------------------------------------------------
+Line 124:
+  File 1 -> uint32_t high_size; // Upper 32 bits of size if file, otherwise directory ACL.
+  File 2 -> uint32_t low_size; // Lower 32 bits of the size of the inode
+--------------------------------------------------
+Line 125:
+  File 1 -> uint32_t block_address_of_fragment;
+  File 2 -> uint32_t last_access_time;
+--------------------------------------------------
+Line 126:
+  File 1 -> uint8_t  os_specific_value_2[12];
+  File 2 -> uint32_t creation_time;
+--------------------------------------------------
+Line 127:
+  File 1 -> 
+  File 2 -> uint32_t last_modification_time;
+--------------------------------------------------
+Line 128:
+  File 1 -> } __attribute__((packed)) __attribute__((aligned(256)));
+  File 2 -> uint32_t deletion_time;
+--------------------------------------------------
+Line 129:
+  File 1 -> 
+  File 2 -> uint16_t group_id;
+--------------------------------------------------
+Line 130:
+  File 1 -> 
+  File 2 -> uint16_t count_hard_links; // Count of dir entries to the inode. When 0, the data blocks are marked as unallocated.
+--------------------------------------------------
+Line 131:
+  File 1 -> // Top 4 bits of inode_permissions_type
+  File 2 -> uint32_t count_disk_sectors; // Count of disk sectors in use by the inode, no including the inode structure nor dir entries linked.
+--------------------------------------------------
+Line 132:
+  File 1 -> enum inode_type {
+  File 2 -> uint32_t flags;
+--------------------------------------------------
+Line 133:
+  File 1 -> INODE_TYPE_FIFO         = 0x1000,
+  File 2 -> uint32_t os_specific_value_1;
+--------------------------------------------------
+Line 134:
+  File 1 -> INODE_TYPE_CHAR_DEVICE  = 0x2000,
+  File 2 -> uint32_t direct_block_pointer[12];
+--------------------------------------------------
+Line 135:
+  File 1 -> INODE_TYPE_DIRECTORY    = 0x4000,
+  File 2 -> uint32_t single_indirect_block_pointer;
+--------------------------------------------------
+Line 136:
+  File 1 -> INODE_TYPE_BLOCK_DEVICE = 0x6000,
+  File 2 -> uint32_t double_indirect_block_pointer;
+--------------------------------------------------
+Line 137:
+  File 1 -> INODE_TYPE_FILE         = 0x8000,
+  File 2 -> uint32_t triply_indirect_block_pointer;
+--------------------------------------------------
+Line 138:
+  File 1 -> INODE_TYPE_SYM_LINK     = 0xA000,
+  File 2 -> uint32_t gen_number;
+--------------------------------------------------
+Line 139:
+  File 1 -> INODE_TYPE_UNIX_SOCKET  = 0xC000,
+  File 2 -> uint32_t extended_attribute_block;
+--------------------------------------------------
+Line 140:
+  File 1 -> };
+  File 2 -> uint32_t high_size; // Upper 32 bits of size if file, otherwise directory ACL.
+--------------------------------------------------
+Line 141:
+  File 1 -> 
+  File 2 -> uint32_t block_address_of_fragment;
+--------------------------------------------------
+Line 142:
+  File 1 -> // Bottom 12 bits of inode_permissions_type
+  File 2 -> uint8_t  os_specific_value_2[12];
+--------------------------------------------------
+Line 143:
+  File 1 -> enum inode_permissions {
+  File 2 -> 
+--------------------------------------------------
+Line 144:
+  File 1 -> OTHER_EXE    = 0x001,
+  File 2 -> } __attribute__((packed)) __attribute__((aligned(256)));
+--------------------------------------------------
+Line 145:
+  File 1 -> OTHER_WRITE  = 0x002,
+  File 2 -> 
+--------------------------------------------------
+Line 146:
+  File 1 -> OTHER_READ   = 0x004,
+  File 2 -> 
+--------------------------------------------------
+Line 147:
+  File 1 -> GROUP_EXE    = 0x008,
+  File 2 -> // Top 4 bits of inode_permissions_type
+--------------------------------------------------
+Line 148:
+  File 1 -> GROUP_WRITE  = 0x010,
+  File 2 -> enum inode_type {
+--------------------------------------------------
+Line 149:
+  File 1 -> GROUP_READ   = 0x020,
+  File 2 -> INODE_TYPE_FIFO         = 0x1000,
+--------------------------------------------------
+Line 150:
+  File 1 -> USER_EXE     = 0x040,
+  File 2 -> INODE_TYPE_CHAR_DEVICE  = 0x2000,
+--------------------------------------------------
+Line 151:
+  File 1 -> USER_WRITE   = 0x080,
+  File 2 -> INODE_TYPE_DIRECTORY    = 0x4000,
+--------------------------------------------------
+Line 152:
+  File 1 -> USER_READ    = 0x100,
+  File 2 -> INODE_TYPE_BLOCK_DEVICE = 0x6000,
+--------------------------------------------------
+Line 153:
+  File 1 -> STICKY_BIT   = 0x200,
+  File 2 -> INODE_TYPE_FILE         = 0x8000,
+--------------------------------------------------
+Line 154:
+  File 1 -> SET_GROUP_ID = 0x400,
+  File 2 -> INODE_TYPE_SYM_LINK     = 0xA000,
+--------------------------------------------------
+Line 155:
+  File 1 -> SET_USER_ID  = 0x800,
+  File 2 -> INODE_TYPE_UNIX_SOCKET  = 0xC000,
+--------------------------------------------------
+Line 158:
+  File 1 -> enum inode_flags {
+  File 2 -> // Bottom 12 bits of inode_permissions_type
+--------------------------------------------------
+Line 159:
+  File 1 -> SECURE_DELETION             = 0x00000001, // not used
+  File 2 -> enum inode_permissions {
+--------------------------------------------------
+Line 160:
+  File 1 -> COPY_ON_DELETE              = 0x00000002, // not used
+  File 2 -> OTHER_EXE    = 0x001,
+--------------------------------------------------
+Line 161:
+  File 1 -> FILE_COMPRESSION            = 0x00000004, // not used
+  File 2 -> OTHER_WRITE  = 0x002,
+--------------------------------------------------
+Line 162:
+  File 1 -> SYNCHRONOUS_UPDATES         = 0x00000008, // New data is immediately written to disk
+  File 2 -> OTHER_READ   = 0x004,
+--------------------------------------------------
+Line 163:
+  File 1 -> IMMUTABE_FILE               = 0x00000010, // Content cannot be changed
+  File 2 -> GROUP_EXE    = 0x008,
+--------------------------------------------------
+Line 164:
+  File 1 -> APPEND_ONLY                 = 0x00000020,
+  File 2 -> GROUP_WRITE  = 0x010,
+--------------------------------------------------
+Line 165:
+  File 1 -> DUMP_EXCLUDE                = 0x00000040, // File not included in `dump` command
+  File 2 -> GROUP_READ   = 0x020,
+--------------------------------------------------
+Line 166:
+  File 1 -> LAST_ACCESS_TIME_NO_UPDATE  = 0x00000080,
+  File 2 -> USER_EXE     = 0x040,
+--------------------------------------------------
+Line 167:
+  File 1 -> HASH_INDEXED_DIR            = 0x00010000,
+  File 2 -> USER_WRITE   = 0x080,
+--------------------------------------------------
+Line 168:
+  File 1 -> AFS_DIR                     = 0x00020000,
+  File 2 -> USER_READ    = 0x100,
+--------------------------------------------------
+Line 169:
+  File 1 -> JOURNAL_FILE_DATA           = 0x00040000,
+  File 2 -> STICKY_BIT   = 0x200,
+--------------------------------------------------
+Line 170:
+  File 1 -> };
+  File 2 -> SET_GROUP_ID = 0x400,
+--------------------------------------------------
+Line 171:
+  File 1 -> 
+  File 2 -> SET_USER_ID  = 0x800,
+--------------------------------------------------
+Line 172:
+  File 1 -> struct directory_entry {
+  File 2 -> };
+--------------------------------------------------
+Line 173:
+  File 1 -> uint32_t inode;
+  File 2 -> 
+--------------------------------------------------
+Line 174:
+  File 1 -> uint16_t rec_len;        // Total length of the entry
+  File 2 -> enum inode_flags {
+--------------------------------------------------
+Line 175:
+  File 1 -> uint8_t  name_len_lsb_8; // Name length least-significant 8 bits
+  File 2 -> SECURE_DELETION             = 0x00000001, // not used
+--------------------------------------------------
+Line 176:
+  File 1 -> uint8_t  type_indicator; // Type indicator (we don't allow > 256 chars in names.)
+  File 2 -> COPY_ON_DELETE              = 0x00000002, // not used
+--------------------------------------------------
+Line 177:
+  File 1 -> char*    name;           // Name of the dir
+  File 2 -> FILE_COMPRESSION            = 0x00000004, // not used
+--------------------------------------------------
+Line 178:
+  File 1 -> } __attribute__((packed));
+  File 2 -> SYNCHRONOUS_UPDATES         = 0x00000008, // New data is immediately written to disk
+--------------------------------------------------
+Line 179:
+  File 1 -> 
+  File 2 -> IMMUTABE_FILE               = 0x00000010, // Content cannot be changed
+--------------------------------------------------
+Line 180:
+  File 1 -> enum dir_entry_type_indicators {
+  File 2 -> APPEND_ONLY                 = 0x00000020,
+--------------------------------------------------
+Line 181:
+  File 1 -> INDICATOR_TYPE_UNKNOWN_TYPE = 0,
+  File 2 -> DUMP_EXCLUDE                = 0x00000040, // File not included in `dump` command
+--------------------------------------------------
+Line 182:
+  File 1 -> INDICATOR_TYPE_REGULAR_FILE,
+  File 2 -> LAST_ACCESS_TIME_NO_UPDATE  = 0x00000080,
+--------------------------------------------------
+Line 183:
+  File 1 -> INDICATOR_TYPE_DIRECTORY,
+  File 2 -> HASH_INDEXED_DIR            = 0x00010000,
+--------------------------------------------------
+Line 184:
+  File 1 -> INDICATOR_TYPE_CHAR_DEVICE,
+  File 2 -> AFS_DIR                     = 0x00020000,
+--------------------------------------------------
+Line 185:
+  File 1 -> INDICATOR_TYPE_BLOCK_DEVICE,
+  File 2 -> JOURNAL_FILE_DATA           = 0x00040000,
+--------------------------------------------------
+Line 186:
+  File 1 -> INDICATOR_TYPE_FIFO,
+  File 2 -> };
+--------------------------------------------------
+Line 187:
+  File 1 -> INDICATOR_TYPE_SOCKET,
+  File 2 -> 
+--------------------------------------------------
+Line 188:
+  File 1 -> INDICATOR_TYPE_SOFT_SYM_LINK,
+  File 2 -> struct directory_entry {
+--------------------------------------------------
+Line 189:
+  File 1 -> };
+  File 2 -> uint32_t inode;
+--------------------------------------------------
+Line 190:
+  File 1 -> 
+  File 2 -> uint16_t rec_len;        // Total length of the entry
+--------------------------------------------------
+Line 191:
+  File 1 -> #define OPT_FEAT_PREALLOCATE_BLKS_IN_DIR    (1 << 0)
+  File 2 -> uint8_t  name_len_lsb_8; // Name length least-significant 8 bits
+--------------------------------------------------
+Line 192:
+  File 1 -> #define OPT_FEAT_AFS_SERVER_INODES_EXIST    (1 << 1)
+  File 2 -> uint8_t  type_indicator; // Type indicator (we don't allow > 256 chars in names.)
+--------------------------------------------------
+Line 193:
+  File 1 -> #define OPT_FEAT_FS_HAS_JOURNAL             (1 << 2)
+  File 2 -> char*    name;           // Name of the dir
+--------------------------------------------------
+Line 194:
+  File 1 -> #define OPT_FEAT_INODE_EXT_ATTR             (1 << 3)
+  File 2 -> } __attribute__((packed));
+--------------------------------------------------
+Line 195:
+  File 1 -> #define OPT_FEAT_FS_RESIZEABLE              (1 << 4)
+  File 2 -> 
+--------------------------------------------------
+Line 196:
+  File 1 -> #define OPT_FEAT_FS_DIR_HASH_INDEX          (1 << 5)
+  File 2 -> enum dir_entry_type_indicators {
+--------------------------------------------------
+Line 197:
+  File 1 -> #define REQ_FEAT_COMPRESSION                (1 << 0)
+  File 2 -> INDICATOR_TYPE_UNKNOWN_TYPE = 0,
+--------------------------------------------------
+Line 198:
+  File 1 -> #define REQ_FEAT_DIR_ENTRY_TYPE_FIELD       (1 << 1)
+  File 2 -> INDICATOR_TYPE_REGULAR_FILE,
+--------------------------------------------------
+Line 199:
+  File 1 -> #define REQ_FEAT_FS_REPLAY_JOURNAL          (1 << 2)
+  File 2 -> INDICATOR_TYPE_DIRECTORY,
+--------------------------------------------------
+Line 200:
+  File 1 -> #define REQ_FEAT_FS_JOURNAL_DEVICE          (1 << 3)
+  File 2 -> INDICATOR_TYPE_CHAR_DEVICE,
+--------------------------------------------------
+Line 201:
+  File 1 -> #define RO_FEAT_SPARSE_SBLOCK_GROUP_DES_T   (1 << 0)
+  File 2 -> INDICATOR_TYPE_BLOCK_DEVICE,
+--------------------------------------------------
+Line 202:
+  File 1 -> #define RO_FEAT_64BIT_FILE_SIZE             (1 << 1)
+  File 2 -> INDICATOR_TYPE_FIFO,
+--------------------------------------------------
+Line 203:
+  File 1 -> #define RO_FEAT_DIR_CONTENTS_BINARY_TREE    (1 << 2)
+  File 2 -> INDICATOR_TYPE_SOCKET,
+--------------------------------------------------
+Line 204:
+  File 1 -> 
+  File 2 -> INDICATOR_TYPE_SOFT_SYM_LINK,
+--------------------------------------------------
+Line 205:
+  File 1 -> void init_ext2(void);
+  File 2 -> };
+--------------------------------------------------
+Line 206:
+  File 1 -> void* read_block(uint32_t block_num);
+  File 2 -> 
+--------------------------------------------------
+Line 208:
+  File 1 -> /**
+  File 2 -> 
+--------------------------------------------------
+Line 209:
+  File 1 -> * Returns the `struct inode` for the root directory. Returns null on error.
+  File 2 -> void init_ext2(void);
+--------------------------------------------------
+Line 210:
+  File 1 -> * Size of `inode` is saved in one page.
+  File 2 -> void* read_block(uint32_t block_num);
+--------------------------------------------------
+Line 211:
+  File 1 -> */
+  File 2 -> 
+--------------------------------------------------
+Line 212:
+  File 1 -> struct inode* get_root_inode(void);
+  File 2 -> /**
+--------------------------------------------------
+Line 213:
+  File 1 -> 
+  File 2 -> * Get the block address of the data pointed to by a block index of an inode.
+--------------------------------------------------
+Line 214:
+  File 1 -> /**
+  File 2 -> *
+--------------------------------------------------
+Line 215:
+  File 1 -> * Retrieves an inode from a given path, or NULL if not found.
+  File 2 -> * @param i_node The inode to retrieve data from
+--------------------------------------------------
+Line 216:
+  File 1 -> *
+  File 2 -> * @param block_index The index of the block to retrieve
+--------------------------------------------------
+Line 217:
+  File 1 -> * @param path String of *nix style path.
+  File 2 -> *
+--------------------------------------------------
+Line 218:
+  File 1 -> *
+  File 2 -> * @returns The block address of the data requested.
+--------------------------------------------------
+Line 219:
+  File 1 -> * @returns Inode structure of the given file.
+  File 2 -> */
+--------------------------------------------------
+Line 220:
+  File 1 -> */
+  File 2 -> uint32_t get_block_address(struct inode *i_node, uint32_t block_index);
+--------------------------------------------------
+Line 221:
+  File 1 -> struct inode* get_inode(char* path);
+  File 2 -> 
+--------------------------------------------------
+Line 222:
+  File 1 -> 
+  File 2 -> /**
+--------------------------------------------------
+Line 223:
+  File 1 -> #endif
+  File 2 -> * Retrieves the root directory inode.
+--------------------------------------------------
+Line 224:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 225:
+  File 1 -> <no line>
+  File 2 -> * @returns the `struct inode` for the root directory. Returns null on error.
+--------------------------------------------------
+Line 226:
+  File 1 -> <no line>
+  File 2 -> * Size of `inode` is saved in one page.
+--------------------------------------------------
+Line 227:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 228:
+  File 1 -> <no line>
+  File 2 -> struct inode* get_root_inode(void);
+--------------------------------------------------
+Line 229:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 230:
+  File 1 -> <no line>
+  File 2 -> /**
+--------------------------------------------------
+Line 231:
+  File 1 -> <no line>
+  File 2 -> * Retrieves an inode from a given path, or NULL if not found.
+--------------------------------------------------
+Line 232:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 233:
+  File 1 -> <no line>
+  File 2 -> * @param path String of *nix style path.
+--------------------------------------------------
+Line 234:
+  File 1 -> <no line>
+  File 2 -> *
+--------------------------------------------------
+Line 235:
+  File 1 -> <no line>
+  File 2 -> * @returns Inode structure of the given file.
+--------------------------------------------------
+Line 236:
+  File 1 -> <no line>
+  File 2 -> */
+--------------------------------------------------
+Line 237:
+  File 1 -> <no line>
+  File 2 -> struct inode* get_inode(char* path);
+--------------------------------------------------
+Line 238:
+  File 1 -> <no line>
+  File 2 -> 
+--------------------------------------------------
+Line 239:
+  File 1 -> <no line>
+  File 2 -> #endif
+--------------------------------------------------
+
+Found 212 difference(s).

@@ -2,12 +2,344 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\ext2_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\ext2_V2.c'...
 
 Line 103:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> printf("Inode table start block: %d\n", inode_table_block);
+  File 2 -> // printf("Inode table start block: %d\n", inode_table_block);
+--------------------------------------------------
+Line 197:
+  File 1 -> struct directory_entry *entry;
+  File 2 -> struct directory_entry *entry = read_block(get_block_address(current_node, block_number));
+--------------------------------------------------
+Line 198:
+  File 1 -> if (block_number < 12) {
+  File 2 -> 
+--------------------------------------------------
+Line 199:
+  File 1 -> // Direct block pointer
+  File 2 -> // printf("Entries to search for in dir: %d\n", entries_to_search);
+--------------------------------------------------
+Line 200:
+  File 1 -> entry = read_block(current_node->direct_block_pointer[block_number]);
+  File 2 -> 
+--------------------------------------------------
+Line 201:
+  File 1 -> } else if (block_number < (ext2_block_size + 12)) {
+  File 2 -> // Read through entire block of entries
+--------------------------------------------------
+Line 202:
+  File 1 -> // Single indirect block pointer
+  File 2 -> uint32_t block_idx = 0;
+--------------------------------------------------
+Line 203:
+  File 1 -> uint32_t *blocks = read_block(current_node->single_indirect_block_pointer); // Array of direct block pointers
+  File 2 -> // printf("Searching for: \"%s\"\n", current_path_item);
+--------------------------------------------------
+Line 204:
+  File 1 -> entry = read_block(blocks[block_number - 12]);
+  File 2 -> for (; block_idx < ext2_block_size;) {
+--------------------------------------------------
+Line 205:
+  File 1 -> kfree_size(blocks, PAGE_SIZE);
+  File 2 -> // Check that this entry is not empty.
+--------------------------------------------------
+Line 206:
+  File 1 -> } else { // Assume we're never using more than 16MiB for a single directory.
+  File 2 -> if (entry->inode == 0) {
+--------------------------------------------------
+Line 207:
+  File 1 -> PANIC("EXT2: Directory search exceeded 16MiB.");
+  File 2 -> // Skip this entry.
+--------------------------------------------------
+Line 208:
+  File 1 -> }
+  File 2 -> uint8_t *entry_addr = (uint8_t *) entry + entry->rec_len;
+--------------------------------------------------
+Line 209:
+  File 1 -> 
+  File 2 -> entry = (struct directory_entry *) entry_addr;
+--------------------------------------------------
+Line 210:
+  File 1 -> printf("Entries to search for in dir: %d\n", entries_to_search);
+  File 2 -> block_idx += entry->rec_len;
+--------------------------------------------------
+Line 211:
+  File 1 -> 
+  File 2 -> continue;
+--------------------------------------------------
+Line 212:
+  File 1 -> // Read through entire block of entries
+  File 2 -> }
+--------------------------------------------------
+Line 213:
+  File 1 -> uint32_t block_idx = 0;
+  File 2 -> 
+--------------------------------------------------
+Line 214:
+  File 1 -> printf("Searching for: \"%s\"\n", current_path_item);
+  File 2 -> // Check that this entry is valid.
+--------------------------------------------------
+Line 215:
+  File 1 -> for (; block_idx < ext2_block_size;) {
+  File 2 -> if (entry->rec_len < 8) {
+--------------------------------------------------
+Line 216:
+  File 1 -> // Check that this entry is not empty.
+  File 2 -> // Corrupted entry, retrieve next block.
+--------------------------------------------------
+Line 217:
+  File 1 -> if (entry->inode == 0) {
+  File 2 -> block_number++;
+--------------------------------------------------
+Line 218:
+  File 1 -> // Skip this entry.
+  File 2 -> break;
+--------------------------------------------------
+Line 219:
+  File 1 -> uint8_t *entry_addr = (uint8_t *) entry + entry->rec_len;
+  File 2 -> }
+--------------------------------------------------
+Line 220:
+  File 1 -> entry = (struct directory_entry *) entry_addr;
+  File 2 -> 
+--------------------------------------------------
+Line 221:
+  File 1 -> block_idx += entry->rec_len;
+  File 2 -> // Compare the name of the entry to the path.
+--------------------------------------------------
+Line 222:
+  File 1 -> continue;
+  File 2 -> char entry_name[256];
+--------------------------------------------------
+Line 223:
+  File 1 -> }
+  File 2 -> uint32_t n = entry->name_len_lsb_8;
+--------------------------------------------------
+Line 224:
+  File 1 -> 
+  File 2 -> memcpy(entry_name, &entry->name, n);
+--------------------------------------------------
+Line 225:
+  File 1 -> // Check that this entry is valid.
+  File 2 -> entry_name[n] = '\0';
+--------------------------------------------------
+Line 226:
+  File 1 -> if (entry->rec_len < 8) {
+  File 2 -> 
+--------------------------------------------------
+Line 227:
+  File 1 -> // Corrupted entry, retrieve next block.
+  File 2 -> // printf("Entry data:\n");
+--------------------------------------------------
+Line 228:
+  File 1 -> block_number++;
+  File 2 -> // printf("\tName: %s\n", entry_name);
+--------------------------------------------------
+Line 229:
+  File 1 -> break;
+  File 2 -> // printf("\tInode: %d\n", entry->inode);
+--------------------------------------------------
+Line 230:
+  File 1 -> }
+  File 2 -> // printf("\tLength: %d\n", entry->name_len_lsb_8);
+--------------------------------------------------
+Line 231:
+  File 1 -> 
+  File 2 -> // printf("\tType: %d\n\n", entry->type_indicator);
+--------------------------------------------------
+Line 232:
+  File 1 -> // Compare the name of the entry to the path.
+  File 2 -> 
+--------------------------------------------------
+Line 233:
+  File 1 -> char entry_name[256];
+  File 2 -> // Check name
+--------------------------------------------------
+Line 234:
+  File 1 -> uint32_t n = entry->name_len_lsb_8;
+  File 2 -> if (!strcmp(entry_name, current_path_item)) {
+--------------------------------------------------
+Line 235:
+  File 1 -> memcpy(entry_name, &entry->name, n);
+  File 2 -> struct inode *i_node = find_inode(entry->inode); // Retrieve the inode
+--------------------------------------------------
+Line 236:
+  File 1 -> entry_name[n] = '\0';
+  File 2 -> current_path_item = strtok_r(NULL, "/", save_ptr); // Check the next path item
+--------------------------------------------------
+Line 238:
+  File 1 -> printf("Entry data:\n");
+  File 2 -> if (current_path_item == NULL) {
+--------------------------------------------------
+Line 239:
+  File 1 -> printf("\tName: %s\n", entry_name);
+  File 2 -> // Last path item, return the i_node.
+--------------------------------------------------
+Line 240:
+  File 1 -> printf("\tInode: %d\n", entry->inode);
+  File 2 -> // printf("End of path chain.\n");
+--------------------------------------------------
+Line 241:
+  File 1 -> printf("\tLength: %d\n", entry->name_len_lsb_8);
+  File 2 -> return i_node;
+--------------------------------------------------
+Line 242:
+  File 1 -> printf("\tType: %d\n\n", entry->type_indicator);
+  File 2 -> }
+--------------------------------------------------
+Line 244:
+  File 1 -> // Check name
+  File 2 -> // Not last item, traverse next dir level.
+--------------------------------------------------
+Line 245:
+  File 1 -> if (!strcmp(entry_name, current_path_item)) {
+  File 2 -> kfree_size(current_node, PAGE_SIZE); // Free the old inode
+--------------------------------------------------
+Line 246:
+  File 1 -> struct inode *i_node = find_inode(entry->inode); // Retrieve the inode
+  File 2 -> // printf("Entering directory:\n\t%s\n", entry_name);
+--------------------------------------------------
+Line 247:
+  File 1 -> current_path_item = strtok_r(NULL, "/", save_ptr); // Check the next path item
+  File 2 -> current_node = i_node;
+--------------------------------------------------
+Line 249:
+  File 1 -> if (current_path_item == NULL) {
+  File 2 -> // Reset things in prep of next dir traversal.
+--------------------------------------------------
+Line 250:
+  File 1 -> // Last path item, return the i_node.
+  File 2 -> block_number = 0 - 1; // Easier than handling logic for the break, just account for the increment later.
+--------------------------------------------------
+Line 251:
+  File 1 -> printf("End of path chain.\n");
+  File 2 -> block_idx = 0;
+--------------------------------------------------
+Line 252:
+  File 1 -> return i_node;
+  File 2 -> entries_to_search = current_node->count_hard_links;
+--------------------------------------------------
+Line 253:
+  File 1 -> }
+  File 2 -> break;
+--------------------------------------------------
+Line 254:
+  File 1 -> 
+  File 2 -> }
+--------------------------------------------------
+Line 255:
+  File 1 -> // Not last item, traverse next dir level.
+  File 2 -> 
+--------------------------------------------------
+Line 256:
+  File 1 -> kfree_size(current_node, PAGE_SIZE); // Free the old inode
+  File 2 -> // Not the right entry, try the next.
+--------------------------------------------------
+Line 257:
+  File 1 -> printf("Entering directory:\n\t%s\n", entry_name);
+  File 2 -> uint8_t *entry_addr = (uint8_t *) entry + entry->rec_len;
+--------------------------------------------------
+Line 258:
+  File 1 -> current_node = i_node;
+  File 2 -> entry = (struct directory_entry *) entry_addr;
+--------------------------------------------------
+Line 259:
+  File 1 -> 
+  File 2 -> entries_to_search--;
+--------------------------------------------------
+Line 260:
+  File 1 -> // Reset things in prep of next dir traversal.
+  File 2 -> block_idx += entry->rec_len;
+--------------------------------------------------
+Line 261:
+  File 1 -> block_number = 0 - 1; // Easier than handling logic for the break, just account for the increment later.
+  File 2 -> 
+--------------------------------------------------
+Line 262:
+  File 1 -> block_idx = 0;
+  File 2 -> // Break from search if all entries are checked
+--------------------------------------------------
+Line 263:
+  File 1 -> entries_to_search = current_node->count_hard_links;
+  File 2 -> if (entries_to_search < 0) {
+--------------------------------------------------
+Line 264:
+  File 1 -> break;
+  File 2 -> return NULL;
+--------------------------------------------------
+Line 267:
+  File 1 -> // Not the right entry, try the next.
+  File 2 -> }
+--------------------------------------------------
+Line 268:
+  File 1 -> uint8_t *entry_addr = (uint8_t *) entry + entry->rec_len;
+  File 2 -> 
+--------------------------------------------------
+Line 269:
+  File 1 -> entry = (struct directory_entry *) entry_addr;
+  File 2 -> // Entry not found, try next block.
+--------------------------------------------------
+Line 270:
+  File 1 -> entries_to_search--;
+  File 2 -> block_number++;
+--------------------------------------------------
+Line 271:
+  File 1 -> block_idx += entry->rec_len;
+  File 2 -> }
+--------------------------------------------------
+Line 273:
+  File 1 -> // Break from search if all entries are checked
+  File 2 -> return NULL; // No inode found.
+--------------------------------------------------
+Line 274:
+  File 1 -> if (entries_to_search < 0) {
+  File 2 -> }
+--------------------------------------------------
+Line 275:
+  File 1 -> return NULL;
+  File 2 -> 
+--------------------------------------------------
+Line 276:
+  File 1 -> }
+  File 2 -> <no line>
+--------------------------------------------------
+Line 277:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 278:
+  File 1 -> }
+  File 2 -> <no line>
+--------------------------------------------------
+Line 279:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 280:
+  File 1 -> // Entry not found, try next block.
+  File 2 -> <no line>
+--------------------------------------------------
+Line 281:
+  File 1 -> block_number++;
+  File 2 -> <no line>
+--------------------------------------------------
+Line 282:
+  File 1 -> }
+  File 2 -> <no line>
+--------------------------------------------------
+Line 283:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 284:
+  File 1 -> return NULL; // No inode found.
+  File 2 -> <no line>
+--------------------------------------------------
+Line 285:
+  File 1 -> }
+  File 2 -> <no line>
+--------------------------------------------------
+Line 286:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+
+Found 85 difference(s).

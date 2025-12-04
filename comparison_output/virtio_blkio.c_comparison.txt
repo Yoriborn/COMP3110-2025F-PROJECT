@@ -2,12 +2,352 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_blkio_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\virtio_blkio_V2.c'...
 
 Line 5:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> #include "headers/blkio.h"
+  File 2 -> #include "virtio_blkio.h"
+--------------------------------------------------
+Line 6:
+  File 1 -> #include "headers/virtio.h"
+  File 2 -> #include "virtio.h"
+--------------------------------------------------
+Line 7:
+  File 1 -> #include "../klib/headers/stdio.h"
+  File 2 -> #include "../../klib/stdio.h"
+--------------------------------------------------
+Line 8:
+  File 1 -> #include "../klib/headers/stdlib.h"
+  File 2 -> #include "../../klib/stdlib.h"
+--------------------------------------------------
+Line 9:
+  File 1 -> #include "../kernel/headers/kernel.h"
+  File 2 -> #include "../../kernel/kernel.h"
+--------------------------------------------------
+Line 16:
+  File 1 -> void virtio_blk_init(void) {
+  File 2 -> #define port 0
+--------------------------------------------------
+Line 17:
+  File 1 -> if (virtio_reg_read32(VIRTR_MAGIC_O) != VIRTIO_MAGIC_NUMBER) {
+  File 2 -> 
+--------------------------------------------------
+Line 18:
+  File 1 -> PANIC("virtio: invalid magic value!");
+  File 2 -> void virtio_blk_init(void) {
+--------------------------------------------------
+Line 19:
+  File 1 -> }
+  File 2 -> if (virtio_reg_read32(port, VIRTR_MAGIC_O) != VIRTIO_MAGIC_NUMBER) {
+--------------------------------------------------
+Line 20:
+  File 1 -> if (virtio_reg_read32(VIRTR_VERSION_O) != 1) {
+  File 2 -> PANIC("virtio: invalid magic value!");
+--------------------------------------------------
+Line 21:
+  File 1 -> PANIC("virtio: invalid version");
+  File 2 -> }
+--------------------------------------------------
+Line 22:
+  File 1 -> }
+  File 2 -> if (virtio_reg_read32(port, VIRTR_VERSION_O) != 1) {
+--------------------------------------------------
+Line 23:
+  File 1 -> if (virtio_reg_read32(VIRTR_DEV_ID_O) != VIRTIO_DEVICE_BLK) {
+  File 2 -> PANIC("virtio: invalid version");
+--------------------------------------------------
+Line 24:
+  File 1 -> PANIC("virtio: invalid device id");
+  File 2 -> }
+--------------------------------------------------
+Line 25:
+  File 1 -> }
+  File 2 -> if (virtio_reg_read32(port, VIRTR_DEV_ID_O) != VIRTIO_DEVICE_BLK) {
+--------------------------------------------------
+Line 26:
+  File 1 -> 
+  File 2 -> PANIC("virtio: invalid device id");
+--------------------------------------------------
+Line 27:
+  File 1 -> // Reset device
+  File 2 -> }
+--------------------------------------------------
+Line 28:
+  File 1 -> virtio_reg_write32(VIRTR_DEV_STATUS_O, 0);
+  File 2 -> 
+--------------------------------------------------
+Line 29:
+  File 1 -> // Set ACK status bit
+  File 2 -> // Reset device
+--------------------------------------------------
+Line 30:
+  File 1 -> virtio_reg_fetch_and_or32(VIRTR_DEV_STATUS_O, VIRTIO_STATUS_ACKNOWLEDGE);
+  File 2 -> virtio_reg_write32(port, VIRTR_DEV_STATUS_O, 0);
+--------------------------------------------------
+Line 31:
+  File 1 -> // Set DRIVER status bit
+  File 2 -> // Set ACK status bit
+--------------------------------------------------
+Line 32:
+  File 1 -> virtio_reg_fetch_and_or32(VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER);
+  File 2 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_ACKNOWLEDGE);
+--------------------------------------------------
+Line 33:
+  File 1 -> // Set FEATURES bit
+  File 2 -> // Set DRIVER status bit
+--------------------------------------------------
+Line 34:
+  File 1 -> virtio_reg_fetch_and_or32(VIRTR_DEV_STATUS_O, VIRTIO_STATUS_FEATURES_OK);
+  File 2 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER);
+--------------------------------------------------
+Line 35:
+  File 1 -> 
+  File 2 -> // Set FEATURES bit
+--------------------------------------------------
+Line 36:
+  File 1 -> // BLK device setup!
+  File 2 -> virtio_reg_fetch_and_or32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_FEATURES_OK);
+--------------------------------------------------
+Line 37:
+  File 1 -> blk_request_vq = virtq_init(0);
+  File 2 -> 
+--------------------------------------------------
+Line 38:
+  File 1 -> // Set the DRIVER_OK status bit
+  File 2 -> // BLK device setup!
+--------------------------------------------------
+Line 39:
+  File 1 -> virtio_reg_write32(VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER_OK);
+  File 2 -> blk_request_vq = virtq_init(port, 0);
+--------------------------------------------------
+Line 40:
+  File 1 -> 
+  File 2 -> // Set the DRIVER_OK status bit
+--------------------------------------------------
+Line 41:
+  File 1 -> // Get disk capacity
+  File 2 -> virtio_reg_write32(port, VIRTR_DEV_STATUS_O, VIRTIO_STATUS_DRIVER_OK);
+--------------------------------------------------
+Line 42:
+  File 1 -> blk_capacity = virtio_reg_read64(VIRTR_CFG_O + 0) * SECTOR_SIZE;
+  File 2 -> 
+--------------------------------------------------
+Line 43:
+  File 1 -> printf("virtio-blk: capacity is %d bytes\n", blk_capacity);
+  File 2 -> // Get disk capacity
+--------------------------------------------------
+Line 44:
+  File 1 -> 
+  File 2 -> blk_capacity = virtio_reg_read64(port, VIRTR_CFG_O + 0) * SECTOR_SIZE;
+--------------------------------------------------
+Line 45:
+  File 1 -> // Allocate a region to store requests to the device.
+  File 2 -> printf("virtio-blk: capacity is %d bytes\n", blk_capacity);
+--------------------------------------------------
+Line 46:
+  File 1 -> blk_req_paddr = (uint32_t) kalloc(align_up(sizeof(*blk_req), PAGE_SIZE) / PAGE_SIZE);
+  File 2 -> 
+--------------------------------------------------
+Line 47:
+  File 1 -> if (!blk_req_paddr) {
+  File 2 -> // Allocate a region to store requests to the device.
+--------------------------------------------------
+Line 48:
+  File 1 -> PANIC("virtio-blk: out of memory");
+  File 2 -> blk_req_paddr = (uint32_t) kalloc(align_up(sizeof(*blk_req), PAGE_SIZE) / PAGE_SIZE);
+--------------------------------------------------
+Line 49:
+  File 1 -> }
+  File 2 -> if (!blk_req_paddr) {
+--------------------------------------------------
+Line 50:
+  File 1 -> blk_req = (struct virtio_blk_req *) blk_req_paddr;
+  File 2 -> PANIC("virtio-blk: out of memory");
+--------------------------------------------------
+Line 52:
+  File 1 -> 
+  File 2 -> blk_req = (struct virtio_blk_req *) blk_req_paddr;
+--------------------------------------------------
+Line 53:
+  File 1 -> void read_write_disk(void *buf, unsigned sector, int is_write) {
+  File 2 -> }
+--------------------------------------------------
+Line 54:
+  File 1 -> if (sector >= blk_capacity / SECTOR_SIZE) {
+  File 2 -> 
+--------------------------------------------------
+Line 55:
+  File 1 -> PANIC("virtio-blk: tried to read/write sector=%d, but capacity is %d", sector, blk_capacity / SECTOR_SIZE);
+  File 2 -> void read_write_disk(void *buf, unsigned sector, int is_write) {
+--------------------------------------------------
+Line 56:
+  File 1 -> return;
+  File 2 -> if (sector >= blk_capacity / SECTOR_SIZE) {
+--------------------------------------------------
+Line 57:
+  File 1 -> }
+  File 2 -> PANIC("virtio-blk: tried to read/write sector=%d, but capacity is %d", sector, blk_capacity / SECTOR_SIZE);
+--------------------------------------------------
+Line 58:
+  File 1 -> 
+  File 2 -> return;
+--------------------------------------------------
+Line 59:
+  File 1 -> // Build request
+  File 2 -> }
+--------------------------------------------------
+Line 60:
+  File 1 -> blk_req->sector = sector;
+  File 2 -> 
+--------------------------------------------------
+Line 61:
+  File 1 -> blk_req->type = is_write ? VIRTIO_BLK_T_OUT : VIRTIO_BLK_T_IN;
+  File 2 -> // Build request
+--------------------------------------------------
+Line 62:
+  File 1 -> if (is_write) {
+  File 2 -> blk_req->sector = sector;
+--------------------------------------------------
+Line 63:
+  File 1 -> memcpy(blk_req->data, buf, SECTOR_SIZE);
+  File 2 -> blk_req->type = is_write ? VIRTIO_BLK_T_OUT : VIRTIO_BLK_T_IN;
+--------------------------------------------------
+Line 64:
+  File 1 -> }
+  File 2 -> if (is_write) {
+--------------------------------------------------
+Line 65:
+  File 1 -> 
+  File 2 -> memcpy(blk_req->data, buf, SECTOR_SIZE);
+--------------------------------------------------
+Line 66:
+  File 1 -> // Build virtqueue descriptors
+  File 2 -> }
+--------------------------------------------------
+Line 67:
+  File 1 -> struct virt_queue *vq = blk_request_vq;
+  File 2 -> 
+--------------------------------------------------
+Line 68:
+  File 1 -> vq->buffers[0].addr = blk_req_paddr;
+  File 2 -> // Build virtqueue descriptors
+--------------------------------------------------
+Line 69:
+  File 1 -> vq->buffers[0].len = sizeof(uint32_t) * 2 + sizeof(uint64_t); // sizeof(type, reserved, sector) in virtio_blk_req
+  File 2 -> struct virt_queue *vq = blk_request_vq;
+--------------------------------------------------
+Line 70:
+  File 1 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+  File 2 -> vq->buffers[0].addr = blk_req_paddr;
+--------------------------------------------------
+Line 71:
+  File 1 -> vq->buffers[0].next = 1;
+  File 2 -> vq->buffers[0].len = sizeof(uint32_t) * 2 + sizeof(uint64_t); // sizeof(type, reserved, sector) in virtio_blk_req
+--------------------------------------------------
+Line 72:
+  File 1 -> 
+  File 2 -> vq->buffers[0].flags = VIRTQ_DESC_F_NEXT;
+--------------------------------------------------
+Line 73:
+  File 1 -> vq->buffers[1].addr = blk_req_paddr + offsetof(struct virtio_blk_req, data);
+  File 2 -> vq->buffers[0].next = 1;
+--------------------------------------------------
+Line 74:
+  File 1 -> vq->buffers[1].len = SECTOR_SIZE;
+  File 2 -> 
+--------------------------------------------------
+Line 75:
+  File 1 -> vq->buffers[1].flags = VIRTQ_DESC_F_NEXT | (is_write ? 0 : VIRTQ_DESC_F_WRITE);
+  File 2 -> vq->buffers[1].addr = blk_req_paddr + offsetof(struct virtio_blk_req, data);
+--------------------------------------------------
+Line 76:
+  File 1 -> vq->buffers[1].next = 2;
+  File 2 -> vq->buffers[1].len = SECTOR_SIZE;
+--------------------------------------------------
+Line 77:
+  File 1 -> 
+  File 2 -> vq->buffers[1].flags = VIRTQ_DESC_F_NEXT | (is_write ? 0 : VIRTQ_DESC_F_WRITE);
+--------------------------------------------------
+Line 78:
+  File 1 -> vq->buffers[2].addr = blk_req_paddr + offsetof(struct virtio_blk_req, status);
+  File 2 -> vq->buffers[1].next = 2;
+--------------------------------------------------
+Line 79:
+  File 1 -> vq->buffers[2].len = sizeof(uint8_t);
+  File 2 -> 
+--------------------------------------------------
+Line 80:
+  File 1 -> vq->buffers[2].flags = VIRTQ_DESC_F_WRITE;
+  File 2 -> vq->buffers[2].addr = blk_req_paddr + offsetof(struct virtio_blk_req, status);
+--------------------------------------------------
+Line 81:
+  File 1 -> 
+  File 2 -> vq->buffers[2].len = sizeof(uint8_t);
+--------------------------------------------------
+Line 82:
+  File 1 -> // Notify device of request
+  File 2 -> vq->buffers[2].flags = VIRTQ_DESC_F_WRITE;
+--------------------------------------------------
+Line 83:
+  File 1 -> virtq_kick(vq, 0);
+  File 2 -> 
+--------------------------------------------------
+Line 84:
+  File 1 -> 
+  File 2 -> // Notify device of request
+--------------------------------------------------
+Line 85:
+  File 1 -> // Wait unitl the device finishes processing.
+  File 2 -> virtq_kick(port, vq, 0);
+--------------------------------------------------
+Line 86:
+  File 1 -> while (virtq_is_busy(vq)) {}
+  File 2 -> 
+--------------------------------------------------
+Line 87:
+  File 1 -> 
+  File 2 -> // Wait until the device finishes processing.
+--------------------------------------------------
+Line 88:
+  File 1 -> if (blk_req->status != 0) {
+  File 2 -> while (virtq_is_busy(vq)) {}
+--------------------------------------------------
+Line 89:
+  File 1 -> printf("virtio-blk: warn: failed to r/w sector=%d status%d\n", sector, blk_req->status);
+  File 2 -> 
+--------------------------------------------------
+Line 90:
+  File 1 -> return;
+  File 2 -> if (blk_req->status != 0) {
+--------------------------------------------------
+Line 91:
+  File 1 -> }
+  File 2 -> printf("virtio-blk: warn: failed to r/w sector=%d status%d\n", sector, blk_req->status);
+--------------------------------------------------
+Line 92:
+  File 1 -> 
+  File 2 -> return;
+--------------------------------------------------
+Line 93:
+  File 1 -> if (!is_write) {
+  File 2 -> }
+--------------------------------------------------
+Line 94:
+  File 1 -> memcpy(buf, blk_req->data, SECTOR_SIZE);
+  File 2 -> 
+--------------------------------------------------
+Line 95:
+  File 1 -> }
+  File 2 -> if (!is_write) {
+--------------------------------------------------
+Line 96:
+  File 1 -> }
+  File 2 -> memcpy(buf, blk_req->data, SECTOR_SIZE);
+--------------------------------------------------
+Line 97:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+Line 98:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+
+Found 87 difference(s).

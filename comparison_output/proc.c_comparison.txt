@@ -2,12 +2,308 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\proc_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\proc_V2.c'...
 
 Line 127:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> map_page(page_table, VIRTIO_PADDR, VIRTIO_PADDR, PAGE_R | PAGE_W); // Map virtio to kernel map
+  File 2 -> // Devices map
+--------------------------------------------------
+Line 128:
+  File 1 -> 
+  File 2 -> for (int i = 0; i < 8; i++) {
+--------------------------------------------------
+Line 129:
+  File 1 -> // Map user pages
+  File 2 -> uint64_t addr = VIRTIO_PADDR + (0x1000 * i); // Each MMIO has a page.
+--------------------------------------------------
+Line 130:
+  File 1 -> for (uint64_t off = 0; off < image_size; off += PAGE_SIZE) {
+  File 2 -> map_page(page_table, addr, addr, PAGE_R | PAGE_W); // Map virtio to kernel map
+--------------------------------------------------
+Line 131:
+  File 1 -> uint64_t page = (uint64_t) kalloc(1);
+  File 2 -> }
+--------------------------------------------------
+Line 133:
+  File 1 -> // Handle case where the data to be copied is small than the page size
+  File 2 -> 
+--------------------------------------------------
+Line 134:
+  File 1 -> size_t remaining = image_size - off;
+  File 2 -> // Map user pages
+--------------------------------------------------
+Line 135:
+  File 1 -> size_t copy_size = PAGE_SIZE <= remaining ? PAGE_SIZE : remaining;
+  File 2 -> for (uint64_t off = 0; off < image_size; off += PAGE_SIZE) {
+--------------------------------------------------
+Line 136:
+  File 1 -> 
+  File 2 -> uint64_t page = (uint64_t) kalloc(1);
+--------------------------------------------------
+Line 137:
+  File 1 -> // Fill and map the page
+  File 2 -> 
+--------------------------------------------------
+Line 138:
+  File 1 -> memcpy((void *) page, image + off, copy_size);
+  File 2 -> // Handle case where the data to be copied is small than the page size
+--------------------------------------------------
+Line 139:
+  File 1 -> map_page(page_table, USER_BASE + off, page, PAGE_U | PAGE_R | PAGE_W | PAGE_X);
+  File 2 -> size_t remaining = image_size - off;
+--------------------------------------------------
+Line 140:
+  File 1 -> }
+  File 2 -> size_t copy_size = PAGE_SIZE <= remaining ? PAGE_SIZE : remaining;
+--------------------------------------------------
+Line 142:
+  File 1 -> 
+  File 2 -> // Fill and map the page
+--------------------------------------------------
+Line 143:
+  File 1 -> proc->page_table = page_table;
+  File 2 -> memcpy((void *) page, image + off, copy_size);
+--------------------------------------------------
+Line 144:
+  File 1 -> 
+  File 2 -> map_page(page_table, USER_BASE + off, page, PAGE_U | PAGE_R | PAGE_W | PAGE_X);
+--------------------------------------------------
+Line 145:
+  File 1 -> // Init remaining struct members
+  File 2 -> }
+--------------------------------------------------
+Line 146:
+  File 1 -> proc->pid = i + 1; // PID is always the current process slot + 1
+  File 2 -> 
+--------------------------------------------------
+Line 147:
+  File 1 -> proc->state = PROC_RUNNABLE;
+  File 2 -> 
+--------------------------------------------------
+Line 148:
+  File 1 -> 
+  File 2 -> proc->page_table = page_table;
+--------------------------------------------------
+Line 149:
+  File 1 -> return proc;
+  File 2 -> 
+--------------------------------------------------
+Line 150:
+  File 1 -> }
+  File 2 -> // Init remaining struct members
+--------------------------------------------------
+Line 151:
+  File 1 -> 
+  File 2 -> proc->pid = i + 1; // PID is always the current process slot + 1
+--------------------------------------------------
+Line 152:
+  File 1 -> /*
+  File 2 -> proc->state = PROC_RUNNABLE;
+--------------------------------------------------
+Line 153:
+  File 1 -> Pass control to the scheduler
+  File 2 -> 
+--------------------------------------------------
+Line 154:
+  File 1 -> */
+  File 2 -> return proc;
+--------------------------------------------------
+Line 155:
+  File 1 -> void yield(void) {
+  File 2 -> }
+--------------------------------------------------
+Line 156:
+  File 1 -> // Search for a runnable process
+  File 2 -> 
+--------------------------------------------------
+Line 157:
+  File 1 -> struct process *next = idle_proc;
+  File 2 -> /*
+--------------------------------------------------
+Line 158:
+  File 1 -> for (int i = 0; i < PROCS_MAX; i++) {
+  File 2 -> Pass control to the scheduler
+--------------------------------------------------
+Line 159:
+  File 1 -> struct process *proc = &procs[(current_proc->pid + i) % PROCS_MAX];
+  File 2 -> */
+--------------------------------------------------
+Line 160:
+  File 1 -> 
+  File 2 -> void yield(void) {
+--------------------------------------------------
+Line 161:
+  File 1 -> if (proc->state == PROC_RUNNABLE && proc->pid > 0) { // Do not run idle task
+  File 2 -> // Search for a runnable process
+--------------------------------------------------
+Line 162:
+  File 1 -> next = proc;
+  File 2 -> struct process *next = idle_proc;
+--------------------------------------------------
+Line 163:
+  File 1 -> break;
+  File 2 -> for (int i = 0; i < PROCS_MAX; i++) {
+--------------------------------------------------
+Line 164:
+  File 1 -> }
+  File 2 -> struct process *proc = &procs[(current_proc->pid + i) % PROCS_MAX];
+--------------------------------------------------
+Line 165:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 166:
+  File 1 -> 
+  File 2 -> if (proc->state == PROC_RUNNABLE && proc->pid > 0) { // Do not run idle task
+--------------------------------------------------
+Line 167:
+  File 1 -> // In case of no runnable process other than the current one, just return to current process.
+  File 2 -> next = proc;
+--------------------------------------------------
+Line 168:
+  File 1 -> if (next == current_proc) {
+  File 2 -> break;
+--------------------------------------------------
+Line 169:
+  File 1 -> return;
+  File 2 -> }
+--------------------------------------------------
+Line 172:
+  File 1 -> // Context Switch here
+  File 2 -> // In case of no runnable process other than the current one, just return to current process.
+--------------------------------------------------
+Line 173:
+  File 1 -> struct process *prev = current_proc;
+  File 2 -> if (next == current_proc) {
+--------------------------------------------------
+Line 174:
+  File 1 -> current_proc = next;
+  File 2 -> return;
+--------------------------------------------------
+Line 175:
+  File 1 -> // Reset the kernel stack for trap handling and switch top level page table pointer (satp) to next process
+  File 2 -> }
+--------------------------------------------------
+Line 176:
+  File 1 -> __asm__ __volatile__ (
+  File 2 -> 
+--------------------------------------------------
+Line 177:
+  File 1 -> 
+  File 2 -> // Context Switch here
+--------------------------------------------------
+Line 178:
+  File 1 -> "csrw sscratch, %[sscratch]\n"
+  File 2 -> struct process *prev = current_proc;
+--------------------------------------------------
+Line 179:
+  File 1 -> :
+  File 2 -> current_proc = next;
+--------------------------------------------------
+Line 180:
+  File 1 -> : [sscratch] "r" ((uint64_t) &next->stack[sizeof(next->stack)]) // Holds the sp for the context to resume under
+  File 2 -> // Reset the kernel stack for trap handling and switch top level page table pointer (satp) to next process
+--------------------------------------------------
+Line 181:
+  File 1 -> );
+  File 2 -> __asm__ __volatile__ (
+--------------------------------------------------
+Line 183:
+  File 1 -> 
+  File 2 -> "csrw sscratch, %[sscratch]\n"
+--------------------------------------------------
+Line 184:
+  File 1 -> uint64_t new_satp = (SATP_SV39 | (uint64_t) next->page_table / PAGE_SIZE);
+  File 2 -> :
+--------------------------------------------------
+Line 185:
+  File 1 -> 
+  File 2 -> : [sscratch] "r" ((uint64_t) &next->stack[sizeof(next->stack)]) // Holds the sp for the context to resume under
+--------------------------------------------------
+Line 186:
+  File 1 -> __asm__ __volatile__ (
+  File 2 -> );
+--------------------------------------------------
+Line 187:
+  File 1 -> "sfence.vma\n"
+  File 2 -> 
+--------------------------------------------------
+Line 188:
+  File 1 -> "csrw satp, %[satp]\n"
+  File 2 -> 
+--------------------------------------------------
+Line 189:
+  File 1 -> "sfence.vma\n"
+  File 2 -> uint64_t new_satp = (SATP_SV39 | (uint64_t) next->page_table / PAGE_SIZE);
+--------------------------------------------------
+Line 190:
+  File 1 -> :
+  File 2 -> 
+--------------------------------------------------
+Line 191:
+  File 1 -> : [satp] "r" ((uint64_t) new_satp) // Stores the PPN (physical address / page size) to `satp`, along with sv39 mode.
+  File 2 -> __asm__ __volatile__ (
+--------------------------------------------------
+Line 192:
+  File 1 -> );
+  File 2 -> "sfence.vma\n"
+--------------------------------------------------
+Line 193:
+  File 1 -> 
+  File 2 -> "csrw satp, %[satp]\n"
+--------------------------------------------------
+Line 194:
+  File 1 -> switch_context(&prev->sp, &next->sp);
+  File 2 -> "sfence.vma\n"
+--------------------------------------------------
+Line 195:
+  File 1 -> 
+  File 2 -> :
+--------------------------------------------------
+Line 196:
+  File 1 -> 
+  File 2 -> : [satp] "r" ((uint64_t) new_satp) // Stores the PPN (physical address / page size) to `satp`, along with sv39 mode.
+--------------------------------------------------
+Line 197:
+  File 1 -> }
+  File 2 -> );
+--------------------------------------------------
+Line 199:
+  File 1 -> void proc_exit(void) {
+  File 2 -> switch_context(&prev->sp, &next->sp);
+--------------------------------------------------
+Line 200:
+  File 1 -> printf("Process %d exited\n", current_proc->pid);
+  File 2 -> 
+--------------------------------------------------
+Line 201:
+  File 1 -> current_proc->state = PROC_EXITED;
+  File 2 -> 
+--------------------------------------------------
+Line 202:
+  File 1 -> yield();
+  File 2 -> }
+--------------------------------------------------
+Line 203:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 204:
+  File 1 -> <no line>
+  File 2 -> void proc_exit(void) {
+--------------------------------------------------
+Line 205:
+  File 1 -> <no line>
+  File 2 -> printf("Process %d exited\n", current_proc->pid);
+--------------------------------------------------
+Line 206:
+  File 1 -> <no line>
+  File 2 -> current_proc->state = PROC_EXITED;
+--------------------------------------------------
+Line 207:
+  File 1 -> <no line>
+  File 2 -> yield();
+--------------------------------------------------
+Line 208:
+  File 1 -> <no line>
+  File 2 -> }
+--------------------------------------------------
+
+Found 76 difference(s).

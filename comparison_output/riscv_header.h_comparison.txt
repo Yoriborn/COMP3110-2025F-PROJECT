@@ -2,12 +2,36 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\riscv_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\riscv_header_V2.h'...
 
 Line 4:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> static inline int is_aligned(uint64_t value, uint64_t align) {
+  File 2 -> /*
+--------------------------------------------------
+Line 5:
+  File 1 -> if (align == 0)
+  File 2 -> RISCV specific stuff should USUALLY go here, but I only support this arch at the moment. When more archs are added,
+--------------------------------------------------
+Line 6:
+  File 1 -> align = sizeof(void*);
+  File 2 -> this will be populated.
+--------------------------------------------------
+Line 7:
+  File 1 -> return value % align == 0;
+  File 2 -> */
+--------------------------------------------------
+Line 8:
+  File 1 -> }
+  File 2 -> 
+--------------------------------------------------
+Line 9:
+  File 1 -> 
+  File 2 -> #endif
+--------------------------------------------------
+Line 10:
+  File 1 -> 
+  File 2 -> <no line>
+--------------------------------------------------
+Line 11:
+  File 1 -> #endif
+  File 2 -> <no line>
+--------------------------------------------------
+
+Found 8 difference(s).

@@ -2,12 +2,96 @@
 Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\kernel_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\kernel_V2.c'...
 
 Line 20:
-Traceback (most recent call last):
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 42, in <module>
-    compare_files(file1, file2)
-  File "C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\file_comparison\alex-comparison-script.py", line 23, in compare_files
-    print(f"  File 1 \u2192 {line1}")
-  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 9: character maps to <undefined>
+  File 1 -> init_memory();
+  File 2 -> printf("\nkernel: Init of arch code\n");
+--------------------------------------------------
+Line 21:
+  File 1 -> init_trap_handler();
+  File 2 -> init_memory();
+--------------------------------------------------
+Line 22:
+  File 1 -> init_proc();
+  File 2 -> init_trap_handler();
+--------------------------------------------------
+Line 23:
+  File 1 -> 
+  File 2 -> init_proc();
+--------------------------------------------------
+Line 24:
+  File 1 -> // File Handling
+  File 2 -> 
+--------------------------------------------------
+Line 25:
+  File 1 -> virtio_blk_init();
+  File 2 -> // Device Drivers
+--------------------------------------------------
+Line 26:
+  File 1 -> init_ext2();
+  File 2 -> printf("\nkernel: Init of device drivers\n");
+--------------------------------------------------
+Line 27:
+  File 1 -> 
+  File 2 -> virtio_blk_init();
+--------------------------------------------------
+Line 28:
+  File 1 -> // test of fs implementation
+  File 2 -> //virtio_gpu_init();
+--------------------------------------------------
+Line 29:
+  File 1 -> filedec_t file = open_file("hello.txt", O_RW);
+  File 2 -> 
+--------------------------------------------------
+Line 30:
+  File 1 -> char* buf = kalloc(1);
+  File 2 -> printf("\nkernel: Init of File systems\n");
+--------------------------------------------------
+Line 31:
+  File 1 -> while (read_file(file, buf, PAGE_SIZE)) { // Read in all available bytes
+  File 2 -> init_ext2();
+--------------------------------------------------
+Line 32:
+  File 1 -> printf("\n%s\n", buf);
+  File 2 -> 
+--------------------------------------------------
+Line 33:
+  File 1 -> }
+  File 2 -> printf("\nkernel: Loading userland\n");
+--------------------------------------------------
+Line 35:
+  File 1 -> close_file(file);
+  File 2 -> // Allow the scheduler to take control, and move to userspace!
+--------------------------------------------------
+Line 36:
+  File 1 -> kfree_size(buf, PAGE_SIZE);
+  File 2 -> create_process(_binary_shell_bin_start, (size_t) _binary_shell_bin_size);
+--------------------------------------------------
+Line 38:
+  File 1 -> //virtio_gpu_init();
+  File 2 -> printf("\nkernel: Passing control to programs.\n\n\n");
+--------------------------------------------------
+Line 40:
+  File 1 -> // Allow the scheduler to take control, and move to userspace!
+  File 2 -> // Kernel init finished, run user programs.
+--------------------------------------------------
+Line 41:
+  File 1 -> create_process(_binary_shell_bin_start, (size_t) _binary_shell_bin_size);
+  File 2 -> yield();
+--------------------------------------------------
+Line 42:
+  File 1 -> yield();
+  File 2 -> 
+--------------------------------------------------
+Line 43:
+  File 1 -> 
+  File 2 -> PANIC("Exited out of scheduler!?");
+--------------------------------------------------
+Line 44:
+  File 1 -> PANIC("Exited out of scheduler!?");
+  File 2 -> }
+--------------------------------------------------
+Line 45:
+  File 1 -> }
+  File 2 -> <no line>
+--------------------------------------------------
+
+Found 23 difference(s).
