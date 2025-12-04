@@ -1,9 +1,10 @@
 import os
 import subprocess
 
-DATABASE_DIR = "database"
-COMPARISON_SCRIPT = "file_comparison/alex-comparison-script.py"
-OUTPUT_DIR = "comparison_output"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_DIR = os.path.join(BASE_DIR, "database")
+COMPARISON_SCRIPT = os.path.join(BASE_DIR, "file_comparison", "alex-comparison-script.py")
+OUTPUT_DIR = os.path.join(BASE_DIR, "comparison_output")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -48,3 +49,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
