@@ -1,5 +1,5 @@
 
-Comparing 'database\entry_V1.s' and 'database\entry_V2.s'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\entry_V1.s' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\entry_V2.s'...
 
 Line 2:
 Traceback (most recent call last):

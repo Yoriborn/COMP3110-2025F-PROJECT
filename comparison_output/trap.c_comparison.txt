@@ -1,5 +1,5 @@
 
-Comparing 'database\trap_V1.c' and 'database\trap_V2.c'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\trap_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\trap_V2.c'...
 
 Line 5:
 Traceback (most recent call last):

@@ -1,5 +1,5 @@
 
-Comparing 'database\stdio_header_V1.h' and 'database\stdio_header_V2.h'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\stdio_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\stdio_header_V2.h'...
 
 Line 13:
 Traceback (most recent call last):

@@ -1,5 +1,5 @@
 
-Comparing 'database\paging_header_V1.h' and 'database\paging_header_V2.h'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\paging_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\paging_header_V2.h'...
 
 Line 25:
 Traceback (most recent call last):

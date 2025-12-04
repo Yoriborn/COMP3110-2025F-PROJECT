@@ -1,5 +1,5 @@
 
-Comparing 'database\ext2_header_V1.h' and 'database\ext2_header_V2.h'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\ext2_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\ext2_header_V2.h'...
 
 Line 24:
 Traceback (most recent call last):

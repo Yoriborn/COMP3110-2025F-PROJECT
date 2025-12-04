@@ -1,5 +1,5 @@
 
-Comparing 'database\riscv_header_V1.h' and 'database\riscv_header_V2.h'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\riscv_header_V1.h' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\riscv_header_V2.h'...
 
 Line 4:
 Traceback (most recent call last):

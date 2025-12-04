@@ -1,5 +1,5 @@
 
-Comparing 'database\proc_V1.c' and 'database\proc_V2.c'...
+Comparing 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\proc_V1.c' and 'C:\Users\Liv's Gaming PC\Documents\COMP3110-2025F-PROJECT\database\proc_V2.c'...
 
 Line 127:
 Traceback (most recent call last):
