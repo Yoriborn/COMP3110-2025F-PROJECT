@@ -1,13 +1,15 @@
+# Create an automation script to run every dataset
 import os
 import subprocess
-
+# Get all the directories and paths needed
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE_DIR = os.path.join(BASE_DIR, "database")
 COMPARISON_SCRIPT = os.path.join(BASE_DIR, "file_comparison", "alex-comparison-script.py")
 OUTPUT_DIR = os.path.join(BASE_DIR, "comparison_output")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-
+# Figure out if a file is a V1 version
+# Filter only the V1 files and then convert it to V2
 def is_v1_file(filename):
     return filename.endswith("_V1.c") or filename.endswith("_V1.h") or filename.endswith("_V1.s")
 
@@ -19,7 +21,7 @@ def main():
     v1_files = [f for f in all_files if is_v1_file(f)]
 
     print(f"Found {len(v1_files)} V1 files. Running comparisons...\n")
-
+    # Loop through all of the V1 files and comapre them to the V2 files that match
     for v1 in v1_files:
         v2 = get_v2_filename(v1)
 
@@ -31,10 +33,11 @@ def main():
             continue
 
         print(f"Comparing: {v1} <-> {v2}")
-
+        # Build the output files name
         out_name = v1.replace("_V1", "") + "_comparison.txt"
         out_path = os.path.join(OUTPUT_DIR, out_name)
-
+        # Run the comparison script and make the output to the file
+        # Save comaprisons and errors
         with open(out_path, "w", encoding="utf-8") as out:
             subprocess.run(
                 ["python", COMPARISON_SCRIPT, v1_path, v2_path],
