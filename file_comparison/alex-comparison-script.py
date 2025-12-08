@@ -1,9 +1,8 @@
+# Create a program that compares two text files line by line and prints the differences
 import sys
-
+# Open files and read into lists
 def compare_files(file1_path, file2_path):
-    """
-    Compare two text files line by line and print differences.
-    """
+    
     with open(file1_path, 'r') as file1, open(file2_path, 'r') as file2:
         lines1 = file1.readlines()
         lines2 = file2.readlines()
@@ -12,7 +11,8 @@ def compare_files(file1_path, file2_path):
     differences = 0
 
     print(f"\nComparing '{file1_path}' and '{file2_path}'...\n")
-
+    # Compare every line in the files
+    # If anything is different in the lines, record and print it
     for i in range(max_lines):
         line1 = lines1[i].strip() if i < len(lines1) else "<no line>"
         line2 = lines2[i].strip() if i < len(lines2) else "<no line>"
@@ -38,5 +38,5 @@ if __name__ == "__main__":
     file1 = sys.argv[1]
     file2 = sys.argv[2]
 
-
+    # Run the comparison
     compare_files(file1, file2)
